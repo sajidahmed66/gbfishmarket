@@ -1,13 +1,16 @@
-import NavBar from '../NavBar/NavBar'
-
-
+import { useEffect } from 'react';
+import NavBar from '../NavBar/NavBar';
 interface ILayoutProps {
-    children: React.ReactNode
+    title: string;
+    children: React.ReactNode;
 }
 
-const Layout = ({ children }: ILayoutProps) => {
+const Layout = ({ children, title }: ILayoutProps) => {
+    useEffect(() => {
+        document.title = title;
+    }, [])
     return (
-        <div>
+        <div >
             <NavBar />
             <div>
                 {children}

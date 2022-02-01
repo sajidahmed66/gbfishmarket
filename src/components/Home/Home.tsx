@@ -2,8 +2,9 @@ import Layout from "../Common/Layout";
 
 const Home = () => {
     return (
-        <Layout>
-            <h1>Home</h1>
+        <Layout title="Home" >
+            <div>
+            </div>
         </Layout>
     )
 }

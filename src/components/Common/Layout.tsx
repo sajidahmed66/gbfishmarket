@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 interface ILayoutProps {
   title: string;
@@ -13,6 +14,7 @@ const Layout = ({ children, title }: ILayoutProps) => {
     <div>
       <NavBar />
       <div>{children}</div>
+      <Footer />
     </div>
   );
 };

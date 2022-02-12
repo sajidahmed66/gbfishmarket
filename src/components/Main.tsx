@@ -4,6 +4,7 @@ import AboutUs from "./AboutUs/AboutUs";
 import Products from "./Products/Products";
 import Home from ".//Home/Home";
 import ContactUs from "./ContactUs/ContactUS";
+import NotFound404 from "./404/NotFound404";
 
 const Main = () => {
   return (
@@ -12,7 +13,7 @@ const Main = () => {
       <Route path="aboutus" element={<AboutUs />} />
       <Route path="products" element={<Products />} />
       <Route path="contactus" element={<ContactUs />} />
-      {/* <Route path="*" element={<div>Not Found</div>} /> */}
+      <Route path="*" element={<NotFound404 />} />
     </Routes>
   );
 };

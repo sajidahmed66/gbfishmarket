@@ -1,4 +1,5 @@
 import Layout from "../Common/Layout";
+import { Link } from "react-router-dom";
 
 const NotFound404 = () => {
   return (
@@ -19,19 +20,19 @@ const NotFound404 = () => {
                 The page you are looking for does not exist.
               </p>
 
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
               >
                 Go home
-              </a>
+              </Link>
             </div>
             {/* <!-- content - end --> */}
 
             {/* <!-- image - start --> */}
             <div className="h-80 md:h-auto bg-gray-100 overflow-hidden shadow-lg rounded-lg relative">
               <img
-                src="https://images.unsplash.com/photo-1590642916589-592bca10dfbf?auto=format&q=75&fit=crop&w=600"
+                src={require("../../assets/img/404.png")}
                 loading="lazy"
                 alt="Photo by @heydevn"
                 className="w-full h-full object-cover object-center absolute inset-0"

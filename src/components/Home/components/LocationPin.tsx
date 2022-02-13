@@ -3,9 +3,9 @@ import { IlocationProps } from "../../../utils/interfaces";
 
 const LocationPin = ({ lat, lng, address }: IlocationProps) => {
   return (
-    <div className="pin">
-      <GrLocation className="pin-icon" />
-      <p className="pin-text">{address}</p>
+    <div className="">
+      <GrLocation className="h-6 w-6 cursor-pointer fill-red-500" />
+      {/* <p className="pin-text">{address}</p> */}
     </div>
   );
 };

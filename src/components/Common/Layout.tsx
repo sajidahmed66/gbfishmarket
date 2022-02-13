@@ -9,7 +9,7 @@ interface ILayoutProps {
 const Layout = ({ children, title }: ILayoutProps) => {
   useEffect(() => {
     document.title = title;
-  }, []);
+  }, [title]);
   return (
     <div>
       <NavBar />

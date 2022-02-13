@@ -34,7 +34,7 @@ const NotFound404 = () => {
               <img
                 src={require("../../assets/img/404.png")}
                 loading="lazy"
-                alt="Photo by @heydevn"
+                alt="404"
                 className="w-full h-full object-cover object-center absolute inset-0"
               />
             </div>

@@ -1,6 +1,6 @@
-import { GOOGLE_API_KEY } from "../../../utils/config";
+import { GOOGLE_API_KEY, GOOGLE_MAP_ID } from "../../../utils/config";
 import GoogleMapReact from "google-map-react";
-import LocationPin from "./LocationPin";
+// import LocationPin from "./LocationPin";
 import { IlocationProps } from "../../../utils/interfaces";
 
 interface ILocalMapProps {
@@ -19,18 +19,42 @@ const LocalMap = ({ location, zoomLevel }: ILocalMapProps) => {
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
           defaultCenter={location}
           defaultZoom={zoomLevel}
-        >
-          <LocationPin
-            lat={location.lat}
-            lng={location.lng}
-            address={location.address}
-          />
-          <LocationPin
-            lat={23.730924075997564}
-            lng={90.38944596963947}
-            address={"lalbagh fort"}
-          />
-        </GoogleMapReact>
+          options={{
+            mapId: GOOGLE_MAP_ID,
+          }}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => {
+            const marker = new maps.Marker({
+              position: location,
+              map,
+              title: "Pallabi",
+            });
+            const infowindow = new maps.InfoWindow({
+              content: "Pallabi",
+            });
+            marker.addListener("mouseover", () => {
+              infowindow.open(map, marker);
+            });
+            marker.addListener("mouseout", () => {
+              infowindow.close(map, marker);
+            });
+
+            const marker2 = new maps.Marker({
+              position: { lat: 23.730924075997564, lng: 90.39370078740157 },
+              map,
+              title: "another location",
+            });
+            const infowindow2 = new maps.InfoWindow({
+              content: "another location",
+            });
+            marker2.addListener("mouseover", () => {
+              infowindow2.open(map, marker2);
+            });
+            marker2.addListener("mouseout", () => {
+              infowindow2.close(map, marker2);
+            });
+          }}
+        ></GoogleMapReact>
       </div>
     </div>
   );

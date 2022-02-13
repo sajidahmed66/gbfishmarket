@@ -1,6 +1,8 @@
 import Layout from "../Common/Layout";
 import LocalMap from "./components/LocalMap";
+import IntroAbout from "./components/IntroAbout";
 import { IlocationProps } from "../../utils/interfaces";
+
 const Home = () => {
   const locationStatic: IlocationProps = {
     address: "1600 Amphitheatre Parkway, Mountain View, california.",
@@ -10,7 +12,8 @@ const Home = () => {
   return (
     <Layout title="Home">
       <div>
-        <LocalMap location={locationStatic} zoomLevel={7} />
+        <IntroAbout />
+        <LocalMap location={locationStatic} zoomLevel={8.5} />
       </div>
     </Layout>
   );

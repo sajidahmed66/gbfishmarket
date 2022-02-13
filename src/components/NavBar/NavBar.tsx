@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -7,6 +7,9 @@ import { AiFillCloseCircle } from "react-icons/ai";
 // deep space Sparkle = #475B63
 // lavender = #FFEAEC
 const NavBar = () => {
+  const pervScrollY = useRef(0);
+  pervScrollY.current = 110;
+  const [makeSticky, setMakeSticky] = useState("");
   const [isToggle, setIsToggle] = useState(false);
   const [toggleClass, setToggleClass] = useState(
     "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden"
@@ -24,9 +27,25 @@ const NavBar = () => {
     setIsToggle(!isToggle);
   };
 
+  const handleStickyNav = () => {
+    const currentScrollY = window.scrollY;
+    if (pervScrollY.current > currentScrollY) {
+      setMakeSticky("");
+    }
+    if (pervScrollY.current < currentScrollY) {
+      setMakeSticky("sticky");
+    }
+
+    // console.log(makeSticky, pervScrollY, currentScrollY);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleStickyNav, { passive: true });
+    return () => window.removeEventListener("scroll", handleStickyNav);
+  }, [makeSticky]);
+
   return (
-    <nav className="bg-gray-700 h-28 ">
-      <div className="flex flex-row mx-auto items-center justify-between self-center max-w-screen-xl px-12 ">
+    <nav className={`bg-gray-700 h-26 top-0 z-10 ${makeSticky}`}>
+      <div className="flex flex-row mx-auto items-center justify-between self-center max-w-screen-xl px-12">
         <div className=" h-full w-48 bg-white border border-y-0 border-black  ">
           <Link to="/">
             <img

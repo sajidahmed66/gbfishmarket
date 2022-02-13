@@ -68,7 +68,7 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="/aboutus"
+              to="/about-us"
               className={({ isActive }) =>
                 isActive ? "text-violet-50" : "text-black"
               }
@@ -88,7 +88,7 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="/contactus"
+              to="/contact-us"
               className={({ isActive }) =>
                 isActive ? "text-violet-50" : "text-black"
               }
@@ -127,7 +127,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/aboutus"
+                    to="/about-us"
                     className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                   >
                     About Us
@@ -143,7 +143,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/contactus"
+                    to="/contact-us"
                     className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                   >
                     Contact Us

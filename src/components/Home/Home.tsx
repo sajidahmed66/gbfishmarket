@@ -1,6 +1,7 @@
 import Layout from "../Common/Layout";
 import LocalMap from "./components/LocalMap";
 import IntroAbout from "./components/IntroAbout";
+import DiscoverProducts from "./components/DiscoverProducts";
 import { IlocationProps } from "../../utils/interfaces";
 import Carosal from "./components/Carosal";
 
@@ -15,6 +16,7 @@ const Home = () => {
       <div>
         <Carosal />
         <IntroAbout />
+        <DiscoverProducts />
         <LocalMap location={locationStatic} zoomLevel={8.5} />
       </div>
     </Layout>

@@ -4,7 +4,7 @@ import Products from "./Products/Products";
 import Home from ".//Home/Home";
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
-
+import 'tw-elements';
 const Main = () => {
   return (
     <Routes>

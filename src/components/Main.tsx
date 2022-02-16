@@ -1,10 +1,10 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AboutUs from "./AboutUs/AboutUs";
 import Products from "./Products/Products";
 import Home from ".//Home/Home";
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
-
+import 'tw-elements';
 const Main = () => {
   return (
     <Routes>

@@ -2,7 +2,7 @@ const ProductCards = () => {
   return (
     <>
       {/* single card */}
-      <div className="max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 mb-4 ">
+      <div className="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 mb-4 ">
         <img
           className="object-cover w-full h-56"
           src={require("../../../assets/img/products/protuct-1.jpg")}

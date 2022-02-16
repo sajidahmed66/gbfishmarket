@@ -35,8 +35,6 @@ const NavBar = () => {
     if (pervScrollY.current < currentScrollY) {
       setMakeSticky("sticky");
     }
-
-    // console.log(makeSticky, pervScrollY, currentScrollY);
   };
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNav, { passive: true });
@@ -44,112 +42,117 @@ const NavBar = () => {
   }, [makeSticky]);
 
   return (
-    <nav className={`bg-gray-700 h-26 top-0 z-10 ${makeSticky}`}>
-      <div className="flex flex-row mx-auto items-center justify-between self-center max-w-screen-xl px-12">
-        <div className=" h-full w-48 bg-white border border-y-0 border-black  ">
+    <nav className={`bg-white drop-shadow-md h-20 top-0 z-20 ${makeSticky}`}>
+      <div className="flex flex-row mx-auto items-center justify-between  max-w-screen-xl px-12">
+        <div className="w-48">
           <Link to="/">
             <img
               src={require("../../assets/img/gbicon.PNG")}
               alt="LOGO"
-              className="py-3"
+              className="py-3 h-20"
             />
           </Link>
         </div>
-        <ul className="hidden md:flex md:flex-row md:items-center md:space-x-6">
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-violet-50" : "text-black"
-              }
-            >
-              <span className="text-xl font-bold">Home</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about-us"
-              className={({ isActive }) =>
-                isActive ? "text-violet-50" : "text-black"
-              }
-            >
-              <span className="text-xl font-bold">About Us</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/products"
-              className={({ isActive }) =>
-                isActive ? "text-violet-50" : "text-black"
-              }
-            >
-              <span className="text-xl font-bold">Products</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? "text-violet-50" : "text-black"
-              }
-            >
-              <span className="text-xl font-bold">Contact Us</span>
-            </NavLink>
-          </li>
-        </ul>
-        <div className="flex justify-center">
-          <div>
-            <div className="relative">
-              {isToggle ? (
-                <AiFillCloseCircle
-                  className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
-                  style={{ color: "#FFEAEC" }}
-                  onClick={toggleMenuHandler}
-                />
-              ) : (
-                <GiHamburgerMenu
-                  className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
-                  style={{ color: "#FFEAEC" }}
-                  onClick={toggleMenuHandler}
-                />
-              )}
-              <ul
-                className={toggleClass}
-                aria-labelledby="dropdownMenuButton1s"
+        <div className="flex">
+          <ul className="hidden md:flex md:flex-row md:items-center md:space-x-6 md:justify-end">
+            <li>
+              <NavLink
+                to="/"
+                // className={({ isActive }) =>
+                //   isActive ? "#b8cc08" : "text-black"
+                // }
+                style={({ isActive }) =>
+                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                }
               >
-                <li>
-                  <Link
-                    to="/"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about-us"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                  >
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/products"
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                  >
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/contact-us"
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
+                <span className="text-xl font-bold">Home</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about-us"
+                style={({ isActive }) =>
+                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                }
+              >
+                <span className="text-xl font-bold">About Us</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/products"
+                style={({ isActive }) =>
+                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                }
+              >
+                <span className="text-xl font-bold">Products</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                style={({ isActive }) =>
+                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                }
+              >
+                <span className="text-xl font-bold">Contact Us</span>
+              </NavLink>
+            </li>
+          </ul>
+          <div className="flex justify-center">
+            <div>
+              <div className="relative">
+                {isToggle ? (
+                  <AiFillCloseCircle
+                    className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
+                    style={{ color: "#FFEAEC" }}
+                    onClick={toggleMenuHandler}
+                  />
+                ) : (
+                  <GiHamburgerMenu
+                    className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
+                    style={{ color: "#FFEAEC" }}
+                    onClick={toggleMenuHandler}
+                  />
+                )}
+                <ul
+                  className={toggleClass}
+                  aria-labelledby="dropdownMenuButton1s"
+                >
+                  <li>
+                    <Link
+                      to="/"
+                      className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/about-us"
+                      className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/products"
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                    >
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/contact-us"
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                    >
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

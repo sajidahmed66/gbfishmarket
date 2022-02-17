@@ -33,7 +33,7 @@ const NavBar = () => {
       setMakeSticky("");
     }
     if (pervScrollY.current < currentScrollY) {
-      setMakeSticky("sticky");
+      setMakeSticky("sticky opacity-80 ");
     }
   };
   useEffect(() => {
@@ -42,7 +42,9 @@ const NavBar = () => {
   }, [makeSticky]);
 
   return (
-    <nav className={`bg-white drop-shadow-md h-20 top-0 z-20 ${makeSticky}`}>
+    <nav
+      className={`bg-white drop-shadow-md h-20 top-0 z-20 hover:opacity-100 ${makeSticky}`}
+    >
       <div className="flex flex-row mx-auto items-center justify-between  max-w-screen-xl px-12">
         <div className="w-48">
           <Link to="/">
@@ -62,40 +64,46 @@ const NavBar = () => {
                 //   isActive ? "#b8cc08" : "text-black"
                 // }
                 style={({ isActive }) =>
-                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                  isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-xl font-bold">Home</span>
+                <span className="text-2xl font-bold font-redressed ">Home</span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/about-us"
                 style={({ isActive }) =>
-                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                  isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-xl font-bold">About Us</span>
+                <span className="text-2xl font-bold font-redressed">
+                  About Us
+                </span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/products"
                 style={({ isActive }) =>
-                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                  isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-xl font-bold">Products</span>
+                <span className="text-2xl font-bold font-redressed ">
+                  Products
+                </span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/contact-us"
                 style={({ isActive }) =>
-                  isActive ? { color: "#b8cc08" } : { color: "text-black" }
+                  isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-xl font-bold">Contact Us</span>
+                <span className="text-2xl font-bold font-redressed hover:text-[#042a2b]">
+                  Contact Us
+                </span>
               </NavLink>
             </li>
           </ul>

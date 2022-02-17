@@ -4,7 +4,7 @@ const ProductCards = () => {
       {/* single card */}
       <div className="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 mb-4 ">
         <img
-          className="object-cover w-full h-56"
+          className="object-cover w-full h-56 hover:scale-110 transition duration-300 ease-in-out"
           src={require("../../../assets/img/products/protuct-1.jpg")}
           alt="avatar"
         />

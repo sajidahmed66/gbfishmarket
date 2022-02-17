@@ -13,7 +13,9 @@ interface ILocalMapProps {
 const LocalMap = ({ location, zoomLevel }: ILocalMapProps) => {
   return (
     <div>
-      <h2 className="block h-20 w-full">Our Locations</h2>
+      <h2 className="flex h-28 w-full items-center justify-center font-dancingScript text-6xl font-bold my-20 ">
+        Our Locations
+      </h2>
       <div className="h-screen max-h-[80vh] w-full border-2 border-black">
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}

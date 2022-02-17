@@ -2,7 +2,7 @@ const IntroAbout = () => {
   return (
     <>
       {/* about section with a side image */}
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="py-6 sm:py-8 lg:py-12">
         <div className="max-w-screen-lg flex md:flex-row flex-wrap px-4 py-4 md:px-8 mx-auto ">
           {/* about intro */}
           <div className="w-full pr-4 md:w-1/2 ">

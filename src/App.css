@@ -1,3 +1,16 @@
+/* imported font */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playball&family=Redressed&family=Roboto:wght@300;400;500&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Shizuru&display=swap");
+
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+.some-class {
+  background: linear-gradient(
+    45deg,
+    rgba(29, 236, 197, 0.7),
+    rgba(91, 14, 214, 0.7) 100%
+  );
+}

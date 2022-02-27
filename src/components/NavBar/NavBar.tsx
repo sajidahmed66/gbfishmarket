@@ -67,7 +67,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-redressed ">Home</span>
+                <span className="text-2xl font-bold font-skModernistBold ">Home</span>
               </NavLink>
             </li>
             <li>
@@ -77,7 +77,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-redressed">
+                <span className="text-2xl font-bold font-skModernistBold">
                   About Us
                 </span>
               </NavLink>
@@ -89,7 +89,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-redressed ">
+                <span className="text-2xl font-bold font-skModernistBold ">
                   Products
                 </span>
               </NavLink>
@@ -101,7 +101,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-redressed hover:text-[#042a2b]">
+                <span className="text-2xl font-bold font-skModernistBold hover:text-[#042a2b]">
                   Contact Us
                 </span>
               </NavLink>

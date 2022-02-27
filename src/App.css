@@ -14,3 +14,11 @@
     rgba(91, 14, 214, 0.7) 100%
   );
 }
+@font-face {
+  font-family: "Sk-Modernist";
+  src: url("../src/assets/fonts/Sk-Modernist-Regular.otf");
+  font-family: "Sk-Modernist-bold";
+  src: url("../src/assets/fonts/Sk-Modernist-Bold.otf");
+  font-family: "Sk-Modernist-mono";
+  src: url("../src/assets/fonts/Sk-Modernist-Mono.otf");
+}

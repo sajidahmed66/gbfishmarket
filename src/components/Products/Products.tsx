@@ -66,6 +66,34 @@ const Products = () => {
             </div>
           </div>
         </div>
+
+        {/* sigle fish products */}
+        <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
+          <div className="w-1/2 px-4 flex flec-col items-start justify-end pt-8 mr-12">
+            <img
+              className="w-full rounded-lg object-cover md:w-64 "
+              src="https://fishmart.com.bd/wp-content/uploads/2019/10/Deshi-Katol-1.5kg-2kg-450tk-per-kg-1-600x582.jpg"
+              alt="mugil-cephalus"
+            />
+          </div>
+          <div className="w-1/2">
+            <div className="flex flex-col justify-center items-center">
+              <h2 className="w-full text-2xl font-roboto font-bold py-4">
+                Fish name title
+              </h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Doloremque iure quidem fuga magnam molestias placeat quisquam
+                itaque vitae minus tenetur, unde possimus sapiente vel cumque
+                rerum quae ea iusto impedit. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Nobis, harum. Ea sunt nemo
+                corrupti repellendus, quidem officiis placeat nam, commodi
+                libero obcaecati totam at ipsa cupiditate soluta numquam
+                mollitia quos.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

@@ -12,16 +12,16 @@ const NavBar = () => {
   const [makeSticky, setMakeSticky] = useState("");
   const [isToggle, setIsToggle] = useState(false);
   const [toggleClass, setToggleClass] = useState(
-    "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden"
+    "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden md:hidden"
   );
   const toggleMenuHandler = () => {
     if (!isToggle) {
       setToggleClass(
-        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none"
+        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none md:hidden"
       );
     } else {
       setToggleClass(
-        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden"
+        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden md:hidden"
       );
     }
     setIsToggle(!isToggle);
@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`bg-white drop-shadow-md h-20 top-0 z-20 hover:opacity-100 ${makeSticky}`}
+      className={`bg-white drop-shadow-md h-20 top-0 z-50 hover:opacity-100 ${makeSticky}`}
     >
       <div className="flex flex-row mx-auto items-center justify-between  max-w-screen-xl px-12">
         <div className="w-48">
@@ -119,7 +119,7 @@ const NavBar = () => {
                 ) : (
                   <GiHamburgerMenu
                     className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
-                    style={{ color: "#FFEAEC" }}
+                    style={{ color: "#b8cc08" }}
                     onClick={toggleMenuHandler}
                   />
                 )}

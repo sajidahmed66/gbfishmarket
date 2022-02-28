@@ -13,9 +13,20 @@ interface ILocalMapProps {
 const LocalMap = ({ location, zoomLevel }: ILocalMapProps) => {
   return (
     <div>
-      <h2 className="flex h-28 w-full items-center justify-center font-dancingScript text-6xl font-bold my-20 ">
+      <h2 className="flex w-full items-center justify-center font-skModernistBold text-[#b8cc08] text-5xl font-bold pt-20">
         Our Locations
       </h2>
+      <div className=" flex items-center justify-center pt-4">
+        <img src={require("../../../assets/img/divider.png")} alt="divider" />
+      </div>
+      <div className="container mx-auto py-4 text-center max-w-screen-md">
+        <p className="font-skModernistBold text-lg leading-8">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed
+          odio sit amet nibh vulputate cursus. Nullam accumsan, nulla sed dictum
+          eleifend, nunc risus consectetur purus, at elementum risus nulla et
+          nunc.
+        </p>
+      </div>
       <div className="h-screen max-h-[80vh] w-full border-2 border-black">
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}

@@ -1,6 +1,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import sliderData from "../../../data/sliderData";
+
 const Carosal = () => {
   const settings = {
     dots: true,
@@ -13,44 +15,19 @@ const Carosal = () => {
   };
   return (
     <>
-      <div>
-        <Slider {...settings}>
-          <div className="h-auto md:h-auto lg:h-[28rem] w-screen">
-            <h3>
-              <img
-                className="object-cover w-full h-full"
-                src={require("../../../assets/img/banner/car-1.jpg")}
-                alt="imag"
-              />
-            </h3>
-          </div>
-          <div className="h-auto md:h-auto lg:h-[28rem] w-screen ">
-            <h3>
-              <img
-                className="object-cover w-full h-full"
-                src={require("../../../assets/img/banner/car-2.jpg")}
-                alt="imag"
-              />
-            </h3>
-          </div>
-          <div className="h-auto md:h-auto lg:h-[28rem] w-screen">
-            <h3>
-              <img
-                className="object-cover w-full h-full"
-                src={require("../../../assets/img/banner/car-3.jpg")}
-                alt="imag"
-              />
-            </h3>
-          </div>
-          <div className="h-auto md:h-auto lg:h-[28rem] w-screen">
-            <h3>
-              <img
-                className="object-cover w-full h-full"
-                src={require("../../../assets/img/banner/car-4.jpg")}
-                alt="imag"
-              />
-            </h3>
-          </div>
+      <div className="container max-w-fit max-h-fit">
+        <Slider {...settings} className="-z-10">
+          {sliderData.map((slide, index) => {
+            return (
+              <div key={index} className="h-[22rem] md:h-[24rem] lg:h-[28rem] ">
+                <img
+                  className="object-cover w-full h-[22rem] md:h-full"
+                  src={slide.url}
+                  alt="imag"
+                />
+              </div>
+            );
+          })}
         </Slider>
       </div>
     </>

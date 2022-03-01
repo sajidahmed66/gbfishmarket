@@ -15,6 +15,7 @@ const Carosal = () => {
   };
   return (
     <>
+    {console.log(sliderData)}
       <div className="container max-w-fit max-h-fit">
         <Slider {...settings} className="-z-10">
           {sliderData.map((slide, index) => {

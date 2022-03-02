@@ -4,6 +4,7 @@ import Products from "./Products/Products";
 import Home from ".//Home/Home";
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
+import Login from "./admin/LogIn";
 import "tw-elements";
 
 const Main = () => {
@@ -13,7 +14,7 @@ const Main = () => {
       <Route path="about-us" element={<AboutUs />} />
       <Route path="products" element={<Products />} />
       <Route path="contact-us" element={<ContactUs />} />
-
+      <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound404 />} />
     </Routes>
   );

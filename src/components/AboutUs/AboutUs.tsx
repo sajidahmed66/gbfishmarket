@@ -1,34 +1,33 @@
 import Layout from "../Common/Layout";
+import Teams from "./components/Teams";
 const AboutUs = () => {
   return (
     <Layout title="About Us">
-      <div>
+      <div className="flex flex-col items-center justify-center">
+        {/* about us slider */}
         <div>
           <img
             src={require("../../assets/img/fish-2.jpg")}
-            className="w-full h-72"
+            className="w-screen h-72"
             alt="aboutimg"
           />
         </div>
+        {/* end of about us slider */}
+
         {/* about us */}
-        <div className="max-w-screen-lg flex md:flex-row flex-wrap px-4 py-4 md:px-8 mx-auto max-w-screen-xl">
+        <div className="flex flex-wrap max-w-screen-xl p-6 mx-auto md:flex-row md:px-8">
           {/* about intro */}
           <div className="w-full pr-4 md:w-1/2 ">
             <div className="text-left">
               <h4 className="font-bold font-skModernist text-2xl leading-8 py-4 px-1 text-[#b8cc08]">
                 About us
               </h4>
-              {/* <div className="px-6 pb-4">
-                <img
-                  src={require("../../../assets/img/divider.png")}
-                  alt="divider"
-                />
-              </div> */}
-              <h1 className="font-bold text-gray-800 font-skModernistBold text-4xl pb-5">
+
+              <h1 className="pb-5 text-4xl font-bold text-gray-800 font-skModernistBold">
                 Golden Bough Aquaculture Ltd.
               </h1>
 
-              <p className="text-gray-600 text-left mb-4 font-skModernist text-lg leading-8">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 sed odio sit amet nibh vulputate cursus. Nullam accumsan, nulla
                 sed dictum eleifend, nunc risus consectetur purus, at elementum
@@ -37,7 +36,7 @@ const AboutUs = () => {
                 Eum ea quibusdam delectus earum, itaque unde, sunt dolor totam,
                 deleniti cum est laboriosam repellat similique!
               </p>
-              <p className="text-gray-600 text-left mb-4 font-skModernist text-lg leading-8">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 sed odio sit amet nibh vulputate cursus. Nullam accumsan, nulla
                 sed dictum eleifend, nunc risus consectetur purus, at elementum
@@ -49,7 +48,7 @@ const AboutUs = () => {
             </div>
           </div>
           {/* about image */}
-          <div className="w-5/6 h-full md:w-1/2 py-6 pl-2">
+          <div className="w-5/6 h-full py-6 pl-2 md:w-1/2">
             <div className="flex justify-end">
               <img
                 src={require("../../assets/img/Carp-fishing.jpg")}
@@ -60,23 +59,23 @@ const AboutUs = () => {
           </div>
           {/* end of about image */}
         </div>
-        {/* history */}
 
-        <div className="container mx-auto w-full flex flex-col items-center justify-center pt-4 pb-2 max-w-screen-xl">
+        {/* history */}
+        {/* heading */}
+        <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pt-4 pb-2 mx-auto">
           <h2 className="text-5xl font-bold text-[#b8cc08] font-skModernistBold ">
             History
           </h2>
-          <div className=" flex items-center justify-center pt-4">
-            <img
-              src={require("../../assets/img/divider.png")}
-              alt="divider"
-            />
+          <div className="flex items-center justify-center pt-4 ">
+            <img src={require("../../assets/img/divider.png")} alt="divider" />
           </div>
         </div>
+        {/* end of heading */}
 
-        <div className="max-w-screen-lg flex md:flex-row flex-wrap px-4 py-4 md:px-8 mx-auto max-w-screen-xl">
-          {/* about image */}
-          <div className="w-5/6 h-full md:w-1/2 py-6 ">
+        {/* history content */}
+        <div className="flex flex-col items-center w-full max-w-screen-xl p-6 justify-items-center md:flex-row md:items-start md:justify-center md:mx-auto">
+          {/* history image */}
+          <div className="w-5/6 h-full py-6 mx-auto md:w-1/2 ">
             <div className="flex justify-start">
               <img
                 src={require("../../assets/img/Carp-fishing.jpg")}
@@ -85,20 +84,15 @@ const AboutUs = () => {
               />
             </div>
           </div>
-          {/* about intro */}
-          <div className="w-full pr-4 md:w-1/2 pl-2">
+          {/* end of history image */}
+          {/* history bok bok */}
+          <div className="w-full pl-2 pr-4 md:w-1/2">
             <div className="text-left">
-              {/* <div className="px-6 pb-4">
-                <img
-                  src={require("../../../assets/img/divider.png")}
-                  alt="divider"
-                />
-              </div> */}
-              <h1 className="font-bold text-gray-800 font-skModernistBold text-4xl pb-5">
+              <h1 className="pb-5 text-4xl font-bold text-gray-800 font-skModernistBold">
                 Golden Bough Aquaculture Ltd.
               </h1>
 
-              <p className="text-gray-600 text-left mb-4 font-skModernist text-lg leading-8">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 sed odio sit amet nibh vulputate cursus. Nullam accumsan, nulla
                 sed dictum eleifend, nunc risus consectetur purus, at elementum
@@ -107,7 +101,7 @@ const AboutUs = () => {
                 Eum ea quibusdam delectus earum, itaque unde, sunt dolor totam,
                 deleniti cum est laboriosam repellat similique!
               </p>
-              <p className="text-gray-600 text-left mb-4 font-skModernist text-lg leading-8">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 sed odio sit amet nibh vulputate cursus. Nullam accumsan, nulla
                 sed dictum eleifend, nunc risus consectetur purus, at elementum
@@ -118,9 +112,10 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
-
-          {/* end of about image */}
+          {/* end of history bok bok */}
         </div>
+        {/* team */}
+        <Teams />
       </div>
     </Layout>
   );

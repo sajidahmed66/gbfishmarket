@@ -4,7 +4,7 @@ leaving it as it is now
 */
 
   return (
-    <div className="flex flex-col items-center p-4 border-2 border-black justify-items-center md:flex-row md:flex-wrap">
+    <div className="flex flex-col items-center p-4 justify-items-center md:flex-row md:flex-wrap">
       {/* single card */}
       {[1, 2, 3, 4, 5, 6].map((item, index) => (
         <div className="max-w-sm md:max-w-sm lg:max-w-[18rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 mb-4 ml-3.5">

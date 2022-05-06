@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { auth } from "../../api/apiAuth";
+import { authenticate, isAuthenticated } from "../../utils/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,15 +10,32 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const navigate = useNavigate();
   const handleSubmit = () => {
     setLoading(true);
     setError("");
-    setTimeout(() => {
-      setLoading(false);
-      setError("Invalid email or password");
-      console.log({ email, password, error, rememberMe });
-    }, 1000);
+
+    auth({ email, password })
+      .then((res) =>
+        authenticate(res.data.token, () => {
+          setLoading(false);
+          setError("");
+          navigate("/admin");
+        })
+      )
+      .catch((err) => {
+        setLoading(false);
+        // pass to setError err.response.data.error
+        setError(err);
+      });
   };
+
+  useEffect(() => {
+    const authstatus = isAuthenticated();
+    if (authstatus) {
+      navigate("/admin");
+    }
+  }, []);
   return (
     <section className="w-screen h-screen bg-gray-50">
       <div className="px-4 py-20 mx-auto max-w-7xl">

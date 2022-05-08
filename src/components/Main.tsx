@@ -6,6 +6,7 @@ import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
 import Login from "./admin/LogIn";
 import AdminDashBoard from "./admin/AdminDashboard";
+import ProtectedRoute from "./ProtectedRoutes/ProtectedRoutes";
 import "tw-elements";
 
 const Main = () => {
@@ -16,7 +17,14 @@ const Main = () => {
       <Route path="products" element={<Products />} />
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="login" element={<Login />} />
-      <Route path="admin" element={<AdminDashBoard />} />
+      <Route
+        path="admin"
+        element={
+          <ProtectedRoute>
+            <AdminDashBoard />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<NotFound404 />} />
     </Routes>
   );

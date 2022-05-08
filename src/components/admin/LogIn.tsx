@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../../api/apiAuth";
 import { authenticate, isAuthenticated } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,11 @@ const Login = () => {
       .catch((err) => {
         setLoading(false);
         // pass to setError err.response.data.error
-        setError(err);
+        setError(err.response.data);
+        console.log(err.response.data);
+        setTimeout(() => {
+          setError("");
+        }, 1500);
       });
   };
 

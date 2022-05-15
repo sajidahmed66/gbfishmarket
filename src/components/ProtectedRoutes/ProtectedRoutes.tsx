@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Route, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/auth";
 
 interface IProtectedRouteProps {
@@ -7,8 +7,6 @@ interface IProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, ...rest }: IProtectedRouteProps) => {
-  const location = useLocation();
-  console.log("Protected Route", location);
   if (isAuthenticated()) {
     return children;
   }

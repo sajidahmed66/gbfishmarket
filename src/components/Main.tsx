@@ -11,6 +11,14 @@ import Login from "./admin/LogIn";
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoutes";
 import "tw-elements";
 import AdminProducts from "./admin/AdminProducts";
+import AdminClients from "./admin/AdminClients";
+import AdminCompany from "./admin/AdminCompany";
+import AdminContactInbox from "./admin/AdminContactInbox";
+import LogoChange from "./admin/nestedComponents/LogoChange";
+import AdminBanner from "./admin/nestedComponents/AdminBanner";
+import AdminAboutUs from "./admin/nestedComponents/AdminAboutUs";
+import AdminAnnouncement from "./admin/nestedComponents/AdminAnnouncement";
+import AdminAdvance from "./admin/nestedComponents/AdminAdvance";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -33,14 +41,23 @@ const Main = () => {
         }
       >
         <Route
-          index
+          // path="/admin"
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <LazyAdminDashboard />
             </Suspense>
           }
-        />
-        <Route path="product-customization" element={<AdminProducts />} />
+        >
+          <Route index element={<LogoChange />} />
+          <Route path="banner" element={<AdminBanner />} />
+          <Route path="about-us" element={<AdminAboutUs />} />
+          <Route path="announcement" element={<AdminAnnouncement />} />
+          <Route path="advanced-setteing" element={<AdminAdvance />} />
+        </Route>
+        <Route path="products" element={<AdminProducts />} />
+        <Route path="clients" element={<AdminClients />} />
+        <Route path="company" element={<AdminCompany />} />
+        <Route path="inbox" element={<AdminContactInbox />} />
       </Route>
       <Route path="*" element={<NotFound404 />} />
     </Routes>

@@ -8,12 +8,15 @@ import CategoryIcon from "@mui/icons-material/Category";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import List from "@mui/material/List";
-function DrawerLists() {
+import { useNavigate, useLocation } from "react-router-dom";
+import { signOut } from "../../utils/auth";
+const DrawerLists = () => {
+  const navigate = useNavigate();
   return (
     <List>
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          navigate("/admin");
         }}
       >
         <ListItemIcon>
@@ -27,7 +30,7 @@ function DrawerLists() {
       </ListItemButton>
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          navigate("/admin/inbox");
         }}
       >
         <ListItemIcon>
@@ -41,7 +44,7 @@ function DrawerLists() {
       </ListItemButton>
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          navigate("/admin/products");
         }}
       >
         <ListItemIcon>
@@ -51,7 +54,7 @@ function DrawerLists() {
       </ListItemButton>
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          navigate("/admin/company");
         }}
       >
         <ListItemIcon>
@@ -61,7 +64,7 @@ function DrawerLists() {
       </ListItemButton>
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          navigate("/admin/clients");
         }}
       >
         <ListItemIcon>
@@ -72,7 +75,9 @@ function DrawerLists() {
       <Divider />
       <ListItemButton
         onClick={() => {
-          console.log("inbox clicked");
+          signOut(() => {
+            navigate("/");
+          });
         }}
       >
         <ListItemIcon>
@@ -82,6 +87,6 @@ function DrawerLists() {
       </ListItemButton>
     </List>
   );
-}
+};
 
 export default DrawerLists;

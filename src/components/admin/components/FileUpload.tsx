@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -81,8 +81,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onChange,
   onDrop,
 }) => {
+  console.log(url);
   const classes = useStyles();
-  const [imageUrl, setImageUrl] = useState(url);
+  const [imageUrl, setImageUrl] = useState<string>(url);
   const [labelText, setLabelText] = useState<string>(hoverLabel);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
@@ -90,7 +91,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
     e.stopPropagation();
     e.preventDefault();
   };
-
+  useEffect(() => {
+    setImageUrl(url);
+  }, [url]);
   const dragEvents = {
     onMouseEnter: () => {
       setIsMouseOver(true);
@@ -127,6 +130,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       }
       console.log(URL.createObjectURL(e.target.files[0]));
     }
+    console.log(e);
     onChange(e);
   };
 

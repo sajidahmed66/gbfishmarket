@@ -1,14 +1,37 @@
-import { API_URL } from "../../../utils/config";
-import axios from "axios";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import FileUpload, { FileUploadProps } from "../components/FileUpload";
+import { useState, useEffect } from "react";
+import { createUseStyles } from "react-jss";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import FileUpload, { FileUploadProps } from "../components/FileUpload";
+import axios from "axios";
+import { API_URL } from "../../../utils/config";
+import { getLogo, addLogo, updateLogo } from "../../../api/apiAdminDashboard";
+
+const useStyles = createUseStyles({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+});
 
 const LogoChange = () => {
+  const classes = useStyles();
   const [logoUrl, setLogoUrl] = useState<string>("");
   const [isButtonDisable, setIsButtonDisable] = useState<boolean>(true);
+  console.log(logoUrl);
+  useEffect((): void => {
+    getLogo()
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data.data);
+        setLogoUrl(data.data.file_link);
+      })
+      .catch((err) => console.log(err.data.message));
+  }, []);
 
   let file: File | null;
   const fileUploadProp: FileUploadProps = {
@@ -44,20 +67,12 @@ const LogoChange = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-      }}
-    >
+    <Box className={classes.root}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: "50px",
+          // height: "50px",
           alignItems: "flex-start",
           justifyContent: "flex-start",
           width: "100%",
@@ -66,11 +81,18 @@ const LogoChange = () => {
           // border: "1px solid #ccc",
         }}
       >
-        <Typography variant="h5" className="skModernistBold">
+        <Typography variant="h5" className="py-4 skModernistBold">
           Change Your Logo here{" "}
         </Typography>
+        <Typography variant="body1" className="py-4 skModernistRegular">
+          Drag and drop your logo here or click to upload
+        </Typography>
       </Box>
-      <FileUpload {...fileUploadProp} imageButton />
+      <FileUpload
+        {...fileUploadProp}
+        imageButton
+        image={{ url: `http://localhost:5000/${logoUrl}` }}
+      />
       <Box
         sx={{
           display: "flex",

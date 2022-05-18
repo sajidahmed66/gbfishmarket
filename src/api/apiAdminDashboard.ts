@@ -5,8 +5,22 @@ interface ILogoData {
   data: FormData;
 }
 
-const getLogo = () => {
+export const getLogo = () => {
   return axios.get(`${API_URL}/admin/home/logo`);
 };
 
-// const updatelogo =({data, token})
+export const addLogo = (data: ILogoData) => {
+  return axios.post(`${API_URL}/admin/home/logo`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const updateLogo = (data: ILogoData) => {
+  return axios.put(`${API_URL}/admin/home/logo`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};

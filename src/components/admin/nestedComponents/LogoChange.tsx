@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import FileUpload, { FileUploadProps } from "../components/FileUpload";
-import axios from "axios";
-import { API_URL } from "../../../utils/config";
 import { getLogo, addLogo, updateLogo } from "../../../api/apiAdminDashboard";
+import { userInfo } from "../../../utils/auth";
 
 const useStyles = createUseStyles({
   root: {
@@ -33,6 +33,7 @@ const LogoChange = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
+  const [token, setToken] = useState<string>("");
 
   useEffect((): void => {
     getLogo()
@@ -42,16 +43,18 @@ const LogoChange = () => {
         setLogoData(data.data);
       })
       .catch((err) => console.log(err.data.message));
+    const user = userInfo();
+    setToken(user.token);
   }, []);
 
   const fileUploadProp: FileUploadProps = {
     accept: "image/*",
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.files !== null && event.target?.files?.length > 0) {
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
         // console.log(`Saving ${event.target.value}`);
         setFile(event.target.files[0]);
-        console.log(file);
+        // console.log(file);
         setIsButtonDisable(false);
       }
     },
@@ -67,31 +70,24 @@ const LogoChange = () => {
 
   const handleSubmit = async (file: File | null) => {
     const fileData = new FormData();
-    // console.log(file);
-    // console.log(logoData);
     if (file !== null) {
       console.log("ifblock", file);
       fileData.append("file", file, file.name);
       fileData.append("name", file.name);
     }
 
-    // const res = await axios.post(`${API_URL}/admin/home/logo`, fileData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
     if (logoData) {
       setIsLoading(true);
       console.log(fileData);
-      updateLogo(fileData, logoData.id)
+      updateLogo(fileData, logoData.id, token)
         .then((res) => res.data)
         .then((data) => {
           setSuccessMessage(data.message);
           setIsButtonDisable(true);
           setIsLoading(false);
           setLogoData(data.result);
-          console.log(data.result);
-          console.log(data.message);
+          // console.log(data.result);
+          // console.log(data.message);
         })
         .catch((err) => {
           setErrorMessage(err.data.message);
@@ -100,14 +96,14 @@ const LogoChange = () => {
         });
     } else {
       setIsLoading(true);
-      addLogo(fileData)
+      addLogo(fileData, token)
         .then((res) => res.data)
         .then((data) => {
           setSuccessMessage(data.message);
           setIsButtonDisable(true);
           setIsLoading(false);
-          // setLogoData(data.result);
-          console.log(data.result);
+          setLogoData(data.result);
+          // console.log(data.result);
         })
         .catch((err) => {
           console.log(err.data.message);
@@ -152,7 +148,20 @@ const LogoChange = () => {
           Drag and drop your logo here or click to upload
         </Typography>
       </Box>
-
+      <Box
+        sx={{
+          width: "100%",
+          height: "50px",
+          marginBottom: "16px",
+        }}
+      >
+        {successMessage !== "" ? (
+          <Alert severity="success">{successMessage}</Alert>
+        ) : null}
+        {errorMessage !== "" ? (
+          <Alert severity="error">{errorMessage}</Alert>
+        ) : null}
+      </Box>
       {renderFileUploadComponent()}
       <Box
         sx={{
@@ -163,20 +172,27 @@ const LogoChange = () => {
           justifyContent: "flex-end",
         }}
       >
-        <Button
-          variant="contained"
-          disabled={isButtonDisable}
-          onClick={() => handleSubmit(file)}
-        >
-          Submit
-        </Button>
+        {!isLoading ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              handleSubmit(file);
+            }}
+            disabled={isButtonDisable}
+          >
+            Update
+          </button>
+        ) : (
+          <button className="btn btn-outline-dark btn-loading">
+            <span
+              className="w-4 h-4 spinner"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span className="pl-1">Loading...</span>
+          </button>
+        )}
       </Box>
-      {/* <img
-        src={`http://localhost:5000/${logoUrl}`}
-        alt="current-logo"
-        width="600px"
-        height="100px"
-      /> */}
     </Box>
   );
 };

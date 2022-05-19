@@ -81,7 +81,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onChange,
   onDrop,
 }) => {
-  console.log(url);
+  // console.log(url);
   const classes = useStyles();
   const [imageUrl, setImageUrl] = useState<string>(url);
   const [labelText, setLabelText] = useState<string>(hoverLabel);
@@ -128,9 +128,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
       if (imageButton && e.target.files[0]) {
         setImageUrl(URL.createObjectURL(e.target.files[0]));
       }
-      console.log(URL.createObjectURL(e.target.files[0]));
+      // console.log(URL.createObjectURL(e.target.files[0]));
     }
-    console.log(e);
+    // console.log(e);
     onChange(e);
   };
 

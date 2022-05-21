@@ -19,6 +19,11 @@ import AdminBanner from "./admin/nestedComponents/AdminBanner";
 import AdminAboutUs from "./admin/nestedComponents/AdminAboutUs";
 import AdminAnnouncement from "./admin/nestedComponents/AdminAnnouncement";
 import AdminAdvance from "./admin/nestedComponents/AdminAdvance";
+import DetailsProducts from "./admin/nestedComponents/Products/DetailsProducts";
+import AllProducts from "./admin/nestedComponents/Products/AllProducts";
+import AddProduct from "./admin/nestedComponents/Products/AddProduct";
+import EditProduct from "./admin/nestedComponents/Products/EditProduct";
+import FeatureProduct from "./admin/nestedComponents/Products/FeatureProduct";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -54,7 +59,13 @@ const Main = () => {
           <Route path="announcement" element={<AdminAnnouncement />} />
           <Route path="advanced-setteing" element={<AdminAdvance />} />
         </Route>
-        <Route path="products" element={<AdminProducts />} />
+        <Route path="products" element={<AdminProducts />}>
+          <Route index element={<AllProducts />} />
+          <Route path="add" element={<AddProduct />} />
+          <Route path="feature-in-discover" element={<FeatureProduct />} />
+        </Route>
+        <Route path="products/edit" element={<EditProduct />} />
+        <Route path="products/details/:id" element={<DetailsProducts />} />
         <Route path="clients" element={<AdminClients />} />
         <Route path="company" element={<AdminCompany />} />
         <Route path="inbox" element={<AdminContactInbox />} />

@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { getAllProducts } from "../../../../api/apiAdminProducts";
 import { BASE_URL } from "../../../../utils/config";
+import { useNavigate } from "react-router-dom";
 
 interface IProduct {
   id: number;
@@ -25,7 +26,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const navigation = useNavigate();
   useEffect((): void => {
     setLoading(true);
     getAllProducts()
@@ -57,7 +58,14 @@ const AllProducts = () => {
                   do eiusmod.
                 </div>
                 <div className="card-footer">
-                  <button className="btn btn-link btn-sm">View details</button>
+                  <button
+                    className="btn btn-link btn-sm"
+                    // onClick={() => {
+                    //   navigation(`details/${item.id}`);
+                    // }}
+                  >
+                    View details
+                  </button>
                   <button className="btn btn-light-primary btn-sm">Edit</button>
                 </div>
               </div>

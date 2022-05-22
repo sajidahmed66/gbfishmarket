@@ -17,11 +17,11 @@ const NavBar = () => {
   const toggleMenuHandler = () => {
     if (!isToggle) {
       setToggleClass(
-        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none md:hidden"
+        "min-w-max absolute bg-white text-base z-50 top-8 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none md:hidden"
       );
     } else {
       setToggleClass(
-        "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden md:hidden"
+        "min-w-max absolute bg-white text-base z-50 top-8 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden md:hidden"
       );
     }
     setIsToggle(!isToggle);
@@ -45,29 +45,30 @@ const NavBar = () => {
     <nav
       className={`bg-white drop-shadow-md h-20 top-0 z-50 hover:opacity-100 ${makeSticky}`}
     >
-      <div className="flex flex-row mx-auto items-center justify-between  max-w-screen-xl px-12">
+      <div className="container flex flex-row items-center justify-between max-w-screen-xl px-12 mx-auto">
+        {/* LOGO */}
         <div className="w-48">
           <Link to="/">
             <img
               src={require("../../assets/img/gbicon.PNG")}
               alt="LOGO"
-              className="py-3 h-20"
+              className="h-20 py-3"
             />
           </Link>
         </div>
+        {/* nav links */}
         <div className="flex">
           <ul className="hidden md:flex md:flex-row md:items-center md:space-x-6 md:justify-end">
             <li>
               <NavLink
                 to="/"
-                // className={({ isActive }) =>
-                //   isActive ? "#b8cc08" : "text-black"
-                // }
                 style={({ isActive }) =>
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-skModernistBold ">Home</span>
+                <span className="text-2xl font-bold font-skModernistBold ">
+                  Home
+                </span>
               </NavLink>
             </li>
             <li>
@@ -107,22 +108,24 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
+          {/* icon with dropdown menu */}
           <div className="flex justify-center">
             <div>
               <div className="relative">
                 {isToggle ? (
                   <AiFillCloseCircle
-                    className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
-                    style={{ color: "#FFEAEC" }}
+                    className="w-8 h-8 cursor-pointer hover:fill-indigo-500 md:hidden"
+                    style={{ color: "#b8cc08" }}
                     onClick={toggleMenuHandler}
                   />
                 ) : (
                   <GiHamburgerMenu
-                    className="h-6 w-6 cursor-pointer hover:fill-indigo-500 md:hidden"
+                    className="w-6 h-6 cursor-pointer hover:fill-indigo-500 md:hidden"
                     style={{ color: "#b8cc08" }}
                     onClick={toggleMenuHandler}
                   />
                 )}
+                {/* dropdown menu */}
                 <ul
                   className={toggleClass}
                   aria-labelledby="dropdownMenuButton1s"
@@ -130,7 +133,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/"
-                      className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist whitespace-nowrap hover:bg-gray-100"
                     >
                       Home
                     </Link>
@@ -138,7 +141,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/about-us"
-                      className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist whitespace-nowrap hover:bg-gray-100"
                     >
                       About Us
                     </Link>
@@ -146,7 +149,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/products"
-                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Products
                     </Link>
@@ -154,15 +157,17 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/contact-us"
-                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Contact Us
                     </Link>
                   </li>
                 </ul>
+                {/* end dropdown menu */}
               </div>
             </div>
           </div>
+          {/* end pf icon with dropdown menu  */}
         </div>
       </div>
     </nav>

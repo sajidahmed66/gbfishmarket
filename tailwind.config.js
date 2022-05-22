@@ -14,6 +14,6 @@ module.exports = {
       skModernistMono: ["Sk-Modernist-mono"],
     },
   },
- 
-  plugins: [require("tw-elements/dist/plugin")],
+
+  plugins: [require("kutty")],
 };

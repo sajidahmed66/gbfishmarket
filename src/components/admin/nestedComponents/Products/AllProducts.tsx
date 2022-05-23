@@ -8,7 +8,7 @@ import { getAllProducts } from "../../../../api/apiAdminProducts";
 import { BASE_URL } from "../../../../utils/config";
 import { useNavigate } from "react-router-dom";
 
-interface IProduct {
+export interface IProduct {
   id: number;
   title: string;
   subtitle: string;
@@ -17,8 +17,8 @@ interface IProduct {
   image_name: string;
   image_link: string;
   show_on_home: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 /* grid layout that has 5 column  */
@@ -60,13 +60,20 @@ const AllProducts = () => {
                 <div className="card-footer">
                   <button
                     className="btn btn-link btn-sm"
-                    // onClick={() => {
-                    //   navigation(`details/${item.id}`);
-                    // }}
+                    onClick={() => {
+                      navigation(`details/${item.id}`);
+                    }}
                   >
                     View details
                   </button>
-                  <button className="btn btn-light-primary btn-sm">Edit</button>
+                  <button
+                    className="btn btn-light-primary btn-sm"
+                    onClick={() => {
+                      navigation(`edit/${item.id}`);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </div>
               </div>
             </Paper>

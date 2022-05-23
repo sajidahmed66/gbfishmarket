@@ -64,7 +64,7 @@ const Main = () => {
           <Route path="add" element={<AddProduct />} />
           <Route path="feature-in-discover" element={<FeatureProduct />} />
         </Route>
-        <Route path="products/edit" element={<EditProduct />} />
+        <Route path="products/edit/:id" element={<EditProduct />} />
         <Route path="products/details/:id" element={<DetailsProducts />} />
         <Route path="clients" element={<AdminClients />} />
         <Route path="company" element={<AdminCompany />} />

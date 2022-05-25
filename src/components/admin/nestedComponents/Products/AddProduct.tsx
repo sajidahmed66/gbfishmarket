@@ -32,7 +32,6 @@ const AddProduct = () => {
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setIsLoading] = useState<boolean>(false);
-  const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
 
   const getFormData = (object: FormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
@@ -67,12 +66,12 @@ const AddProduct = () => {
   return (
     <Container maxWidth="lg">
       {success && (
-        <div className="text-green-800 bg-green-100 alert" role="alert">
+        <div className="my-4 text-green-800 bg-green-100 alert" role="alert">
           {success}
         </div>
       )}
       {error && (
-        <div className="text-red-700 bg-red-100 alert" role="alert">
+        <div className="my-4 text-red-700 bg-red-100 alert " role="alert">
           {error}
         </div>
       )}

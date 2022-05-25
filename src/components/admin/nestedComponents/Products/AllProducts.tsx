@@ -1,12 +1,12 @@
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
-import { getAllProducts } from "../../../../api/apiAdminProducts";
-import { BASE_URL } from "../../../../utils/config";
-import { useNavigate } from "react-router-dom";
+import {
+  getAllProducts,
+  deleteProduct,
+} from "../../../../api/apiAdminProducts";
+
+import ProductCard from "../../components/ProductCard";
 
 export interface IProduct {
   id: number;
@@ -26,7 +26,20 @@ const AllProducts = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const navigation = useNavigate();
+  const [refrase, setRefrase] = useState({});
+
+  const handleDelete = (id: number) => {
+    deleteProduct(id)
+      .then((res) => res.data)
+      .then((data) => {
+        console.log("api returned", data.message);
+        setRefrase({});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect((): void => {
     setLoading(true);
     getAllProducts()
@@ -36,49 +49,25 @@ const AllProducts = () => {
         setLoading(false);
         console.log(data);
       });
-  }, []);
+  }, [refrase]);
   return (
     <Container
       maxWidth="lg"
       className="p-4 border-2 border-gray-300 rounded-lg "
     >
       <Grid container spacing={2}>
-        {products.map((item, index) => (
-          <Grid key={item.id} item xs={12} md={6} lg={4}>
-            <Paper>
-              <div className="card">
-                <div className="card-header">{item.title}</div>
-                <div className="card-body">
-                  <img
-                    src={`${BASE_URL}/${item.image_link}`}
-                    alt=""
-                    className="w-full h-48"
-                  />
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod.
-                </div>
-                <div className="card-footer">
-                  <button
-                    className="btn btn-link btn-sm"
-                    onClick={() => {
-                      navigation(`details/${item.id}`);
-                    }}
-                  >
-                    View details
-                  </button>
-                  <button
-                    className="btn btn-light-primary btn-sm"
-                    onClick={() => {
-                      navigation(`edit/${item.id}`);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </Paper>
-          </Grid>
-        ))}
+        {products.map((item, index) => {
+          // console.log(item.id, item.show_on_home);
+          // const [product, setProduct] = useState<IProduct>({} as IProduct);
+          return (
+            <ProductCard
+              item={item}
+              deleteProduct={(id: number) => {
+                handleDelete(id);
+              }}
+            />
+          );
+        })}
       </Grid>
     </Container>
   );

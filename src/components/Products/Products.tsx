@@ -1,7 +1,10 @@
 import Layout from "../Common/Layout";
+import Card from "./components/Card";
+import { productsData } from "../../data/produtsData";
 const Products = () => {
   return (
     <Layout title="Our Products">
+      {/* page banner */}
       <div>
         <img
           src={require("../../assets/img/product-fish.jpg")}
@@ -9,17 +12,20 @@ const Products = () => {
           alt="aboutimg"
         />
       </div>
-      <div className="container flex flex-col justify-start items-center mx-auto px-8 max-w-screen-xl">
-        <span className="block py-8 text-lg font-bold font-roboto">
+      {/* end of page banner */}
+      {/* products section */}
+      <div className="container flex flex-col items-center justify-start max-w-screen-xl px-8 mx-auto">
+        {/* Product page intro */}
+        <span className="block py-8 text-xl font-bold font-skModernistBold">
           For all our fishes, we can curate it to you preference.
           <p>Styles:</p>
           <p>
-            Whole, cleaned and gutted, butterfly cut (For Seabass & Red Snapper
-            Only), fillet, portion cut, fresh or frozen)
+            {`Whole, cleaned and gutted, butterfly cut (For Seabass & Red Snapper
+            Only), fillet, portion cut, fresh or frozen)`}
           </p>
         </span>
         {/* sigle fish products */}
-        <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
+        {/* <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
           <div className="w-1/3 px-4 flex flex-col items-start justify-end pt-6 ">
             <img
               className="w-full rounded-lg object-cover md:w-64 "
@@ -54,10 +60,10 @@ const Products = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* end of single fish products */}
         {/* sigle fish products */}
-        <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
+        {/* <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
           <div className="w-1/3 px-4 flex flex-col items-start justify-end pt-6">
             <img
               className="w-full rounded-lg object-cover md:w-64 "
@@ -92,9 +98,9 @@ const Products = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* sigle fish products */}
-        <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
+        {/* <div className="max-w-7xl flex flex-row items-start justify-items-start py-8 ">
           <div className="w-1/3 px-4 flex flex-col items-start justify-end pt-6">
             <img
               className="w-full rounded-lg object-cover md:w-64 "
@@ -129,9 +135,9 @@ const Products = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* sigle fish products */}
-        <div className="max-w-7xl flex flex-row items-start  justify-items-start py-8 ">
+        {/* <div className="max-w-7xl flex flex-row items-start  justify-items-start py-8 ">
           <div className="w-1/3 px-4 flex flex-col items-start justify-end pt-6">
             <img
               className="w-full rounded-lg object-cover md:w-64 "
@@ -166,9 +172,15 @@ const Products = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
+        {/* end of Product page intro */}
+        {/* products section */}
+        {productsData.map((product, index) => (
+          <Card product={product} />
+        ))}
       </div>
+      {/* end of product section */}
     </Layout>
   );
 };

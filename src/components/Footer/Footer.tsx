@@ -4,35 +4,25 @@ import { Link } from "react-router-dom";
 // Language: typescript
 // Path: src\components\Footer\Footer.tsx
 
-const Footer = () => {
-  return (
-    // <footer className="flex flex-col items-center h-screen max-h-[40vh] bg-gray-700">
-    //   <div className="container flex flex-row flex-wrap h-3/4 width-full p-4">
-    //     <div className="h-1/2 w-{30} items-center justify-center flex">
-    //       <img src={require("../../assets/img/gbicon.PNG")} alt="LOGO" />
-    //     </div>
+/*
+Todo:
+break the footer into multiple components
 
-    //     <div className="h-1/2 w-{30} flex p-4 flex-col items-center justify-center ">
-    //       <h2 className="text-base text-white">About Us</h2>
-    //       <p className="text-sm text-white whitespace-normal w-full">
-    //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
-    //         ratione!
-    //       </p>
-    //     </div>
-    //     <div></div>
-    //     <div></div>
-    //   </div>
-    // </footer>
+*/
+
+const Footer = () => {
+  const yearDate = new Date();
+  return (
     <div className="bg-gray-900">
-      <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 lg:gap-8 pt-10 lg:pt-12 mb-16">
+      <footer className="px-4 mx-auto max-w-screen-2xl md:px-8">
+        <div className="grid grid-cols-2 gap-12 pt-10 mb-16 md:grid-cols-4 lg:grid-cols-6 lg:gap-8 lg:pt-12">
           {/* start of first column */}
           <div className="col-span-full lg:col-span-2">
             {/* <!-- logo - start --> */}
-            <div className="lg:-mt-2 mb-4">
+            <div className="mb-4 lg:-mt-2">
               <Link
                 to="/"
-                className="inline-flex items-center text-gray-100 text-xl md:text-2xl font-bold gap-2"
+                className="inline-flex items-center gap-2 text-xl font-bold text-gray-100 md:text-2xl"
                 aria-label="logo"
               >
                 {/* <svg
@@ -51,7 +41,7 @@ const Footer = () => {
             </div>
             {/* <!-- logo - end --> */}
             {/* about company */}
-            <p className="text-gray-400 sm:pr-8 mb-6">
+            <p className="mb-6 text-gray-400 sm:pr-8">
               Filler text is dummy text which has no meaning however looks very
               similar to real text.
             </p>
@@ -61,7 +51,7 @@ const Footer = () => {
             <div className="flex gap-4">
               {/* imsta logo */}
               <div
-                className="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100"
+                className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
                 onClick={() => window.open("https://www.instagram.com/?hl=en")}
               >
                 <svg
@@ -80,7 +70,7 @@ const Footer = () => {
               {/* facebook logo */}
 
               <div
-                className="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100"
+                className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
                 onClick={() => window.open("https://www.facebook.com/")}
               >
                 <svg
@@ -97,7 +87,7 @@ const Footer = () => {
               {/* facebook logo ends */}
 
               <div
-                className="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100"
+                className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
                 onClick={() => window.open("https://twitter.com/")}
               >
                 <svg
@@ -113,7 +103,7 @@ const Footer = () => {
               </div>
 
               <div
-                className="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100"
+                className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
                 onClick={() => window.open("https://www.linkedin.com/")}
               >
                 <svg
@@ -133,45 +123,45 @@ const Footer = () => {
           {/* end of first column */}
           {/* <!-- nav - start --> */}
           <div>
-            <div className="text-gray-100 font-bold tracking-widest uppercase mb-4">
+            <div className="mb-4 font-bold tracking-widest text-gray-100 uppercase">
               Products
             </div>
 
             <nav className="flex flex-col gap-4">
               <div>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                <Link
+                  to="/products"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Overview
-                </a>
+                </Link>
               </div>
 
-              <div>
+              {/* <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Solutions
                 </a>
-              </div>
+              </div> */}
 
               <div>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                <Link
+                  to="/products"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Pricing
-                </a>
+                </Link>
               </div>
 
               <div>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                <Link
+                  to="/products"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Customers
-                </a>
+                </Link>
               </div>
             </nav>
           </div>
@@ -179,51 +169,51 @@ const Footer = () => {
 
           {/* <!-- nav - start --> */}
           <div>
-            <div className="text-gray-100 font-bold tracking-widest uppercase mb-4">
+            <div className="mb-4 font-bold tracking-widest text-gray-100 uppercase">
               Company
             </div>
 
             <nav className="flex flex-col gap-4">
               <div>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                <Link
+                  to="/about-us"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   About
-                </a>
+                </Link>
               </div>
 
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Investor Relations
                 </a>
               </div>
 
-              <div>
+              {/* <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Jobs
                 </a>
-              </div>
+              </div> */}
 
-              <div>
+              {/* <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Press
                 </a>
-              </div>
+              </div> */}
 
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Blog
                 </a>
@@ -234,7 +224,7 @@ const Footer = () => {
 
           {/* <!-- nav - start --> */}
           <div>
-            <div className="text-gray-100 font-bold tracking-widest uppercase mb-4">
+            <div className="mb-4 font-bold tracking-widest text-gray-100 uppercase">
               Support
             </div>
 
@@ -242,25 +232,25 @@ const Footer = () => {
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Contact
                 </a>
               </div>
 
-              <div>
+              {/* <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Documentation
                 </a>
-              </div>
+              </div> */}
 
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Chat
                 </a>
@@ -269,7 +259,7 @@ const Footer = () => {
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   FAQ
                 </a>
@@ -280,7 +270,7 @@ const Footer = () => {
 
           {/* <!-- nav - start --> */}
           <div>
-            <div className="text-gray-100 font-bold tracking-widest uppercase mb-4">
+            <div className="mb-4 font-bold tracking-widest text-gray-100 uppercase">
               Legal
             </div>
 
@@ -288,7 +278,7 @@ const Footer = () => {
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Terms of Service
                 </a>
@@ -297,27 +287,27 @@ const Footer = () => {
               <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Privacy Policy
                 </a>
               </div>
 
-              <div>
+              {/* <div>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-indigo-500 active:text-indigo-600 transition duration-100"
+                  className="text-gray-400 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
                 >
                   Cookie settings
                 </a>
-              </div>
+              </div> */}
             </nav>
           </div>
           {/* <!-- nav - end --> */}
         </div>
 
-        <div className="text-gray-400 text-sm text-center border-t border-gray-800 py-8">
-          © 2021 - Present Flowrift. All rights reserved.
+        <div className="py-8 text-sm text-center text-gray-400 border-t border-gray-800">
+          {`© ${yearDate.getFullYear()} - Golden Bourgh Aquaculture Ltd. All rights reserved.`}
         </div>
       </footer>
     </div>

@@ -1,20 +1,76 @@
 import Layout from "../Common/Layout";
+import React, { useState } from "react";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import ReCAPTCHA from "react-google-recaptcha";
+
+import { GOOGLE_RECAPCHA_SITE_KEY } from "../../utils/config";
+import { postContactForm } from "../../api/apiContactUs";
+
+type IConatctFormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
 const ContactUs = () => {
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+  const [isVarified, setIsVarified] = useState<boolean>(false);
+
+  let validationSchema = Yup.object({
+    name: Yup.string()
+      .min(3, "too short")
+      .max(120, "too long")
+      .required("Name is required"),
+    email: Yup.string().email().required("Email is required"),
+    message: Yup.string()
+      .min(10, "too short")
+      .max(250, "too long")
+      .required("Message is required"),
+    phone: Yup.number()
+      .min(11, "must be 11 digit")
+      // .max(11, "must be 11 digit")
+      .required("Phone is required"),
+  });
+
+  const getFormData = (object: IConatctFormValues): FormData =>
+    Object.keys(object).reduce((formData, key) => {
+      formData.append(key, object[key as keyof object]);
+      return formData;
+    }, new FormData());
+
+  const handleSubmit = (values: IConatctFormValues) => {
+    postContactForm(values)
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data);
+        setSuccess(data.message);
+        setTimeout(() => {
+          setSuccess("");
+        }, 6000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Layout title="Contact Us">
-      <div className="container mx-auto pt-16 pb-16">
+      <div className="container pt-16 pb-16 mx-auto">
         <div className="lg:flex">
-          <div className="xl:w-2/5 lg:w-2/5 bg-indigo-700 py-16 xl:rounded-bl rounded-tl rounded-tr xl:rounded-tr-none">
-            <div className="xl:w-5/6 xl:px-0 px-8 mx-auto">
-              <h1 className="xl:text-4xl text-3xl pb-4 text-white font-bold">
+          <div className="py-16 bg-indigo-700 rounded-tl rounded-tr xl:w-2/5 lg:w-2/5 xl:rounded-bl xl:rounded-tr-none">
+            <div className="px-8 mx-auto xl:w-5/6 xl:px-0">
+              <h1 className="pb-4 text-3xl font-bold text-white xl:text-4xl">
                 Get in touch
               </h1>
-              <p className="text-xl text-white pb-8 leading-relaxed font-normal lg:pr-4">
+              <p className="pb-8 text-xl font-normal leading-relaxed text-white lg:pr-4">
                 Got a question about us? Are you interested in partnering with
                 us? Have some suggestions or just want to say Hi? Just contact
                 us. We are here to asset you.
               </p>
-              <div className="flex pb-4 items-center">
+              <div className="flex items-center pb-4">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +90,7 @@ const ContactUs = () => {
                     <path d="M15 3a6 6 0 0 1 6 6" />
                   </svg>
                 </div>
-                <p className="pl-4 text-white text-base">+880 1711223344</p>
+                <p className="pl-4 text-base text-white">+880 1711223344</p>
               </div>
               <div className="flex items-center">
                 <div>
@@ -55,117 +111,232 @@ const ContactUs = () => {
                     <polyline points="3 7 12 13 21 7" />
                   </svg>
                 </div>
-                <p className="pl-4 text-white text-base">
+                <p className="pl-4 text-base text-white">
                   goldenfish@gmail.com
                 </p>
               </div>
-              <p className="text-lg text-white pt-10 tracking-wide">
+              <p className="pt-10 text-lg tracking-wide text-white">
                 Fullbari mor <br />
                 Khulna, Bangladesh
               </p>
               {/* <a href="javascript:void(0)">
-                <p className="text-white pt-16 font-bold tracking-wide underline">
+                <p className="pt-16 font-bold tracking-wide text-white underline">
                   View Job Openings
                 </p>
               </a> */}
             </div>
           </div>
-          <div className="xl:w-3/5 lg:w-3/5 bg-gray-200 h-full pt-5 pb-5 xl:pr-5 xl:pl-0 rounded-tr rounded-br">
-            <form
-              id="contact"
-              className="bg-white py-4 px-8 rounded-tr rounded-br"
-            >
-              <h1 className="text-4xl text-gray-800 font-extrabold mb-6">
-                Enter Details
-              </h1>
-              {/* full name and email */}
-              <div className="block xl:flex xl:flex-col w-full flex-wrap justify-between mb-6">
-                {/* full name */}
-                <div className="w-2/4 max-w-xs mb-6 xl:mb-0">
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="full_name"
-                      className="text-gray-800 text-sm font-semibold leading-tight tracking-normal mb-2"
-                    >
-                      Full Name
-                    </label>
-                    <input
-                      required
-                      id="full_name"
-                      name="full_name"
-                      type="text"
-                      className="focus:outline-none focus:border focus:border-indigo-700 font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-                {/* email */}
-                <div className="w-2/4 max-w-xs xl:flex xl:justify-start">
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="email"
-                      className="text-gray-800 text-sm font-semibold leading-tight tracking-normal my-2"
-                    >
-                      Email
-                    </label>
-                    <input
-                      required
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="focus:outline-none focus:border focus:border-indigo-700 font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex w-full flex-wrap">
-                <div className="w-2/4 max-w-xs">
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="phone"
-                      className="text-gray-800 text-sm font-semibold leading-tight tracking-normal mb-2"
-                    >
-                      Phone
-                    </label>
-                    <input
-                      required
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      className="focus:outline-none focus:border focus:border-indigo-700 font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                      placeholder=""
-                    />
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              message: "",
+              phone: "",
+            }}
+            onSubmit={(
+              values: IConatctFormValues,
+              { setSubmitting, resetForm }
+            ) => {
+              handleSubmit(values);
+              resetForm();
+            }}
+            validationSchema={validationSchema}
+          >
+            {({
+              values,
+              setValues,
+              isSubmitting,
+              touched,
+              errors,
+              setFieldValue,
+              handleSubmit,
+              handleChange,
+              handleBlur,
+            }) => {
+              return (
+                <div className="h-full pt-5 pb-5 bg-gray-200 rounded-tr rounded-br xl:w-3/5 lg:w-3/5 xl:pr-5 xl:pl-0">
+                  <div
+                    id="contact"
+                    className="px-8 py-4 bg-white rounded-tr rounded-br"
+                  >
+                    <h1 className="mb-6 text-4xl font-extrabold text-gray-800">
+                      Enter Details
+                    </h1>
+                    {success && (
+                      <div
+                        className="my-4 text-green-800 bg-green-100 alert"
+                        role="alert"
+                      >
+                        {success}
+                      </div>
+                    )}
+                    {error && (
+                      <div
+                        className="my-4 text-red-700 bg-red-100 alert "
+                        role="alert"
+                      >
+                        {error}
+                      </div>
+                    )}
+                    {/* full name and email */}
+                    <div className="flex-wrap justify-between block w-full mb-6 xl:flex xl:flex-col">
+                      {/* full name */}
+                      <div className="w-2/4 max-w-xs mb-6 xl:mb-0">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="full_name"
+                            className="mb-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
+                          >
+                            Full Name
+                          </label>
+                          <input
+                            required
+                            id="name"
+                            name="name"
+                            type="text"
+                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder=""
+                            value={values.name}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                              console.log(values.name);
+                              setValues({ ...values, name: e.target.value });
+                            }}
+                            onBlur={handleBlur}
+                          />
+                          {touched.name && errors.name ? (
+                            <div className="text-sm text-red-500">
+                              {errors.name}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                      {/* email */}
+                      <div className="w-2/4 max-w-xs xl:flex xl:justify-start">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="email"
+                            className="my-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
+                          >
+                            Email
+                          </label>
+                          <input
+                            required
+                            id="email"
+                            name="email"
+                            type="email"
+                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder=""
+                            value={values.email}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              setValues({ ...values, email: e.target.value })
+                            }
+                            onBlur={handleBlur}
+                          />
+
+                          {touched.email && errors.email ? (
+                            <div className="text-sm text-red-500">
+                              {errors.email}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+                    {/* phone Number */}
+                    <div className="flex flex-wrap w-full">
+                      <div className="w-2/4 max-w-xs">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="phone"
+                            className="mb-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
+                          >
+                            Phone
+                          </label>
+                          <input
+                            required
+                            id="phone"
+                            name="phone"
+                            type="number"
+                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder=""
+                            value={values.phone}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              setValues({
+                                ...values,
+                                phone: e.target.value,
+                              })
+                            }
+                            onBlur={handleBlur}
+                          />
+                          {touched.phone && errors.phone ? (
+                            <div className="text-sm text-red-500">
+                              {errors.phone}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-full mt-6">
+                      <div className="flex flex-col">
+                        <label
+                          className="mb-2 text-sm font-semibold text-gray-800"
+                          htmlFor="message"
+                        >
+                          Message
+                        </label>
+                        <textarea
+                          placeholder=""
+                          name="message"
+                          className="px-3 py-2 mb-4 text-sm border border-gray-300 rounded outline-none resize-none focus:border focus:border-indigo-700"
+                          rows={8}
+                          id="message"
+                          defaultValue={""}
+                          value={values.message}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) =>
+                            setValues({ ...values, message: e.target.value })
+                          }
+                          onBlur={handleBlur}
+                        />
+                        {touched.message && errors.message ? (
+                          <div className="text-sm text-red-500">
+                            {errors.message}
+                          </div>
+                        ) : null}
+                      </div>
+                      <ReCAPTCHA
+                        sitekey={GOOGLE_RECAPCHA_SITE_KEY}
+                        onChange={(value) => {
+                          console.log("captcha changed", value);
+                          setIsVarified(true);
+                        }}
+                      />
+                      {isVarified ? (
+                        <button
+                          type="submit"
+                          className="px-8 py-3 mt-3 text-sm leading-6 text-white transition duration-150 ease-in-out bg-indigo-700 rounded focus:outline-none hover:bg-indigo-600"
+                          onClick={() => handleSubmit()}
+                        >
+                          Submit
+                        </button>
+                      ) : (
+                        <button className="mt-3 btn btn-primary" disabled>
+                          Submit
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="w-full mt-6">
-                <div className="flex flex-col">
-                  <label
-                    className="text-sm font-semibold text-gray-800 mb-2"
-                    htmlFor="message"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    placeholder=""
-                    name="message"
-                    className="border-gray-300 border mb-4 rounded py-2 text-sm outline-none resize-none px-3 focus:border focus:border-indigo-700"
-                    rows={8}
-                    id="message"
-                    defaultValue={""}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="focus:outline-none bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-3 text-sm leading-6"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+              );
+            }}
+          </Formik>
         </div>
       </div>
     </Layout>

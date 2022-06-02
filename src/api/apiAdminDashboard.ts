@@ -9,6 +9,8 @@ interface IPutLogoData {
   id: number;
 }
 
+//Logo section
+
 export const getLogo = () => {
   return axios.get(`${API_URL}/admin/home/logo`);
 };
@@ -27,6 +29,33 @@ export const updateLogo = (data: FormData, id: number, token: string) => {
     headers: {
       "Content-Type": "multipart/form-data",
       authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+//Banner Section or Slider Section
+
+export const getBanner = () => {
+  return axios.get(`${API_URL}/admin/home/slider-image`);
+};
+
+export const addBanner = (data: FormData) => {
+  return axios.post(`${API_URL}/admin/home/slider-image`, data, {
+  // return axios.post('http://localhost:5000/api/admin/home/slider-image', data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const getBannerById = (sliderId: number) => {
+  return axios.get(`${API_URL}/admin/home/slider-image/${sliderId}`);
+}
+
+export const updateBanner = (data: FormData, sliderId: number) => {
+  return axios.put(`${API_URL}/admin/home/slider-image/${sliderId}`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
     },
   });
 };

@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 const Carosal = () => {
   const settings = {
     dots: true,
@@ -20,7 +21,7 @@ const Carosal = () => {
           <div className="h-[22rem] md:h-[24rem] lg:h-[28rem] relative bg-black">
             <img
               className="object-cover w-full h-[22rem] md:h-full"
-              src={require("../../../assets/img/banner/car-1.jpg")}
+              src={require("../../../assets/img/banner/car-3.jpg")}
               alt="imag"
             />
             <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>

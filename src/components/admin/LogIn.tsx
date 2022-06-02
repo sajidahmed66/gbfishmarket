@@ -27,6 +27,7 @@ const Login = () => {
       .catch((err) => {
         setLoading(false);
         // pass to setError err.response.data.error
+        console.log(err.response);
         setError(err.response.data);
         console.log(err.response.data);
         setTimeout(() => {

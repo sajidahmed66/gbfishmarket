@@ -34,25 +34,33 @@ const AdminContactInbox = () => {
         </Typography>
         <Divider />
         <Box className="p-4">
-          {contactData.map((contact) => (
-            <Paper
-              key={contact.id}
-              className="flex flex-row items-center justify-around p-4 my-2 "
-            >
-              <Typography variant="h6" component="h2">
-                {contact.name}
-              </Typography>
+          {contactData.length > 0 ? (
+            contactData.map((contact) => (
+              <Paper
+                key={contact.id}
+                className="flex flex-row items-center justify-around p-4 my-2 "
+              >
+                <Typography variant="h6" component="h2">
+                  {contact.name}
+                </Typography>
+                <Typography variant="body1" component="p">
+                  {contact.message}
+                </Typography>
+                <Typography variant="body1" component="p">
+                  {contact.email}
+                </Typography>
+                <Typography variant="body1" component="p">
+                  {contact.phone}
+                </Typography>
+              </Paper>
+            ))
+          ) : (
+            <Paper>
               <Typography variant="body1" component="p">
-                {contact.message}
-              </Typography>
-              <Typography variant="body1" component="p">
-                {contact.email}
-              </Typography>
-              <Typography variant="body1" component="p">
-                {contact.phone}
+                No Contacts
               </Typography>
             </Paper>
-          ))}
+          )}
         </Box>
       </Box>
     </Container>

@@ -41,7 +41,7 @@ const EditProduct = () => {
           console.log(err);
           setIsLoading(false);
         });
-  }, [id]);
+  }, []);
 
   const getFormData = (object: FormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
@@ -58,8 +58,8 @@ const EditProduct = () => {
         .then((res) => res.data)
         .then((data) => {
           setIsLoading(false);
-          setSuccess(data.message);
           setProduct(data.product);
+          setSuccess(data.message);
           // settimeout to clear the success message
           setTimeout(() => {
             setSuccess("");

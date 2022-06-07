@@ -19,8 +19,8 @@ export interface IClient {
   company_description: string;
   logo_image_name: string;
   logo_image_link: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 const AllClients = () => {
@@ -66,6 +66,7 @@ const AllClients = () => {
         <Grid container spacing={2}>
           {clients.map((client) => (
             <ClientCard
+              key={client.id}
               item={client}
               deleteClient={(id: number) => handeleDeleteClient(id)}
             />

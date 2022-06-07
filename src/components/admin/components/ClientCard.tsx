@@ -12,6 +12,7 @@ interface IProps {
 }
 
 const ClientCard = ({ item, deleteClient }: IProps) => {
+  const navigation = useNavigate();
   const [client, setClient] = useState<IClient>(item);
   // const [loading, setLoading] = useState<boolean>(false);
   return (
@@ -31,7 +32,7 @@ const ClientCard = ({ item, deleteClient }: IProps) => {
             <button
               className="btn btn-link btn-sm"
               onClick={() => {
-                // navigation(`details/${product.id}`);
+                navigation(`details/${client.id}`);
               }}
             >
               View details
@@ -39,7 +40,7 @@ const ClientCard = ({ item, deleteClient }: IProps) => {
             <button
               className="btn btn-light-primary btn-sm"
               onClick={() => {
-                // navigation(`edit/${product.id}`);
+                navigation(`edit/${client.id}`);
               }}
             >
               Edit

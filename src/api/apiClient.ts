@@ -13,9 +13,15 @@ export const getAllClients = () => {
   return axios.get(`${API_URL}/admin/client`);
 };
 
-export const getClientById = (id: string) => {};
+export const getClientById = (id: number) => {
+  return axios.get(`${API_URL}/admin/client/${id}`);
+};
 
-export const updateClient = (id: string, data: FormData, token: string) => {};
+export const updateClientById = (
+  id: number,
+  data: FormData,
+  token: string
+) => {};
 
 export const deleteClientById = (id: number, token: string) => {
   return axios.delete(`${API_URL}/admin/client/${id}`, {

@@ -18,3 +18,8 @@ color pallet link ::
     https://coolors.co/ed6a5a-424b54-b8cc08-afbfc0-5bc0be
 
 LogIn page thaken from kutty components
+
+
+lazy loading realated ::
+    1. https://www.robinwieruch.de/react-router-lazy-loading/ 
+    2. https://loadable-components.com/docs/code-splitting/ 

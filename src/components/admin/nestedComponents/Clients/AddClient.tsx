@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
   },
 });
 
-interface IClientFormValues {
+export interface IClientFormValues {
   name: string;
   company_name: string;
   location_lat: string;
@@ -37,11 +37,10 @@ interface IClientFormValues {
 }
 
 const AddClient: React.FC = () => {
-  const classes = useStyles();
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
-
+  const navigate = useNavigate();
   const getFormData = (object: IClientFormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
       formData.append(key, object[key as keyof object]);
@@ -78,18 +77,18 @@ const AddClient: React.FC = () => {
         setSuccess(data.message);
         setTimeout(() => {
           setSuccess("");
-        }, 6000);
+          navigate("/admin/clients");
+        }, 3000);
       })
       .catch((err) => {
         setError(err.response.data.message);
         // settimeout to clear the error message
         setTimeout(() => {
           setError("");
-        }, 6000);
+        }, 3000);
       });
   };
 
-  const navigate = useNavigate();
   return (
     <Box className="p-4 mt-4 border-2 border-gray-400 rounded-md">
       <div className="flex flex-row items-center justify-start p-2 ml-8 text-indigo-500">
@@ -114,12 +113,12 @@ const AddClient: React.FC = () => {
           {error}
         </div>
       )}
-      <Snackbar open={!!success} autoHideDuration={6000}>
+      <Snackbar open={!!success} autoHideDuration={3000}>
         <Alert variant="filled" severity="success" sx={{ width: "100%" }}>
           {success}
         </Alert>
       </Snackbar>
-      <Snackbar open={!!error} autoHideDuration={6000}>
+      <Snackbar open={!!error} autoHideDuration={3000}>
         <Alert variant="filled" severity="error" sx={{ width: "100%" }}>
           {error}
         </Alert>

@@ -28,6 +28,7 @@ import AllClients from "./admin/nestedComponents/Clients/AllClients";
 import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
 import AddClient from "./admin/nestedComponents/Clients/AddClient";
+import ClientDetails from "./admin/nestedComponents/Clients/ClientDetails";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -77,7 +78,7 @@ const Main = () => {
           <Route path="products-of-client" element={<ClientProducts />} />
         </Route>
         <Route path="clients/edit/:id" element={<EditClient />} />
-        {/* <Route path="clients/details/:id" element={<ClientDetails />} /> */}
+        <Route path="clients/details/:id" element={<ClientDetails />} />
         <Route path="company" element={<AdminCompany />} />
         <Route path="inbox" element={<AdminContactInbox />} />
       </Route>

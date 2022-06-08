@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Formik, FormikHelpers } from "formik";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { getClientById, updateClientById } from "../../../../api/apiClient";
@@ -18,6 +18,7 @@ import { BASE_URL } from "../../../../utils/config";
 
 const EditClients: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [client, setClient] = useState<IClient>({} as IClient);
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
@@ -35,8 +36,35 @@ const EditClients: React.FC = () => {
     logo_image_name,
   } = client;
 
+  const getFormData = (object: IClientFormValues): FormData =>
+    Object.keys(object).reduce((formData, key) => {
+      formData.append(key, object[key as keyof object]);
+      return formData;
+    }, new FormData());
+
   const handleClientSubmit = (values: IClientFormValues) => {
-    console.log(values);
+    const token: string = userInfo().token;
+    const clientFile = getFormData(values);
+    if (file) clientFile.append("file", file);
+    id &&
+      updateClientById(parseInt(id), clientFile, token)
+        .then((res) => res.data)
+        .then((data) => {
+          // setIsLoading(false);
+          setSuccess("Client updated successfully");
+          setTimeout(() => {
+            setSuccess("");
+            navigate("/admin/clients");
+          }, 3000);
+        })
+        .catch((err) => {
+          // console.log(err);
+          // setIsLoading(false);
+          setError(err.response.data.message);
+          setTimeout(() => {
+            setError("");
+          }, 3000);
+        });
   };
 
   useEffect((): void => {

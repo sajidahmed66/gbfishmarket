@@ -34,7 +34,7 @@ export const deleteClientById = (id: number, token: string) => {
 };
 
 export const getClientproducts = (id: number) => {
-  return axios.get(`${API_URL}/admin/client/${id}/product`);
+  return axios.get(`${API_URL}/admin/client/${id}/products`);
 };
 
 export const updateClientProducts = (

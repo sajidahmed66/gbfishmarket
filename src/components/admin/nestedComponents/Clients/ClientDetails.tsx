@@ -7,12 +7,14 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Loading from "../../components/Loading";
 import { useParams } from "react-router-dom";
-import { getClientById } from "../../../../api/apiClient";
+import { getClientById, getClientproducts } from "../../../../api/apiClient";
 import { IClient } from "./AllClients";
+import { IProduct } from "../Products/AllProducts";
 import { BASE_URL } from "../../../../utils/config";
 const ClientDetails = () => {
   const { id } = useParams();
   const [client, setClient] = useState<IClient>({} as IClient);
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   useEffect(() => {
@@ -30,6 +32,19 @@ const ClientDetails = () => {
           setLoading(false);
         });
     }
+    id &&
+      getClientproducts(parseInt(id))
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data);
+          setProducts(data.products);
+          // setLoading(false);
+        })
+        .catch((err) => {
+          setError(true);
+          // setLoading(false);
+          console.log(err);
+        });
   }, []);
   const {
     name,
@@ -103,6 +118,24 @@ const ClientDetails = () => {
                       </Typography>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="block mt-4">
+            <div className="w-full border rounded-b-lg h-96">
+              <div className="flex flex-col justify-start p-5">
+                <div className="mb-1 ">
+                  <Typography variant="body1" className="text-black ">
+                    Products
+                  </Typography>
+                </div>
+                <div className="flex flex-row flex-wrap w-full">
+                  {products.map((product, index) => (
+                    <div key={index} className="border rounded-b-md">
+                      {product.title}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

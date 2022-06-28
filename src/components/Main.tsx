@@ -24,6 +24,11 @@ import AllProducts from "./admin/nestedComponents/Products/AllProducts";
 import AddProduct from "./admin/nestedComponents/Products/AddProduct";
 import EditProduct from "./admin/nestedComponents/Products/EditProduct";
 import FeatureProduct from "./admin/nestedComponents/Products/FeatureProduct";
+import AllClients from "./admin/nestedComponents/Clients/AllClients";
+import EditClient from "./admin/nestedComponents/Clients/EditClients";
+import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
+import AddClient from "./admin/nestedComponents/Clients/AddClient";
+import ClientDetails from "./admin/nestedComponents/Clients/ClientDetails";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -35,6 +40,7 @@ const Main = () => {
       <Route path="products" element={<Products />} />
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="login" element={<Login />} />
+      {/* admin routes */}
       <Route
         path="admin"
         element={
@@ -66,7 +72,13 @@ const Main = () => {
         </Route>
         <Route path="products/edit/:id" element={<EditProduct />} />
         <Route path="products/details/:id" element={<DetailsProducts />} />
-        <Route path="clients" element={<AdminClients />} />
+        <Route path="clients" element={<AdminClients />}>
+          <Route index element={<AllClients />} />
+          <Route path="add-client" element={<AddClient />} />
+          <Route path="products-of-client" element={<ClientProducts />} />
+        </Route>
+        <Route path="clients/edit/:id" element={<EditClient />} />
+        <Route path="clients/details/:id" element={<ClientDetails />} />
         <Route path="company" element={<AdminCompany />} />
         <Route path="inbox" element={<AdminContactInbox />} />
       </Route>

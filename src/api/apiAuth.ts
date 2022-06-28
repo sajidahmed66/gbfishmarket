@@ -26,6 +26,6 @@ export const createUser = ({ token, data }: IcreateUser) => {
 };
 
 export const auth = (data: AuthData) => {
-  // return axios.post(`${API_URL}/users/login`, data);
-  return axios.post('http://localhost:5000/api/users/login', data);
+  return axios.post(`${API_URL}/users/login`, data);
+  // return axios.post('http://localhost:5000/api/users/login', data);
 };

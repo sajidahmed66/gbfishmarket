@@ -46,13 +46,13 @@ const AdminProducts = () => {
 
             <NavLink
               className={
-                location.pathname === "/admin/products/edit"
+                location.pathname === "/admin/products/feature-in-discover"
                   ? "tab-link active"
                   : "tab-link "
               }
-              to="/admin/products/edit"
+              to="/admin/products/feature-in-discover"
             >
-              Edit Product
+              Feature a product on Homepage
             </NavLink>
 
             {/* <NavLink

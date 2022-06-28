@@ -19,10 +19,10 @@ export const addProduct = (product: FormData) => {
   });
 };
 
-// export const updateProduct = (product: IProductsData) => {
-//     return axios.put(`${API_URL}/admin/products/${product.id}`, product);
-//     }
+export const updateProduct = (product: FormData | IProduct, id: number) => {
+  return axios.put(`${API_URL}/admin/products/${id}`, product);
+};
 
-// export const deleteProduct = (id: number) => {
-//     return axios.delete(`${API_URL}/admin/products/${id}`);
-//     }
+export const deleteProduct = (id: number) => {
+  return axios.delete(`${API_URL}/admin/products/${id}`);
+};

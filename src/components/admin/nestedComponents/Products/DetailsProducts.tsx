@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../../../api/apiAdminProducts";
 import { IProduct } from "./AllProducts";
@@ -57,6 +59,27 @@ const DetailsProducts = () => {
                 className="w-full h-full"
               />
             </Box>
+            {/* <Box className="flex flex-row items-center justify-around w-full p-4">
+              <Button
+                size="large"
+                className="p-2"
+                variant="contained"
+                component="span"
+                startIcon={<ModeEditOutlineIcon />}
+              >
+                {" "}
+                Edit{" "}
+              </Button>
+              <Button
+                size="large"
+                component="span"
+                className="p-2 text-white bg-red-700"
+                variant="outlined"
+              >
+                {" "}
+                Delete
+              </Button>
+            </Box> */}
           </Grid>
           <Grid item xs={12} md={7}>
             {/* details */}

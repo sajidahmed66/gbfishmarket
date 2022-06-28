@@ -23,6 +23,7 @@
     "kutty": "^0.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.3.1",
     "react-jss": "^10.9.0",
     "react-router-dom": "^6.2.1",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-google-recaptcha": "^2.1.5",
     "@types/react-slick": "^0.23.8",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",

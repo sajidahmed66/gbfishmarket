@@ -71,7 +71,7 @@ const ClientDetails = () => {
                     {/* logoImage goes here */}
                     <img
                       className="w-full h-full"
-                      src={`${BASE_URL}/${logo_image_link}`}
+                      src={`${logo_image_link}`}
                       alt={`${logo_image_name}`}
                     />
                   </div>

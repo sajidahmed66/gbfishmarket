@@ -29,6 +29,9 @@ import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
 import AddClient from "./admin/nestedComponents/Clients/AddClient";
 import ClientDetails from "./admin/nestedComponents/Clients/ClientDetails";
+import AllAnncouncements from "./admin/nestedComponents/Announcements/AllAnncouncements";
+import AddAnnouncement from "./admin/nestedComponents/Announcements/AddAnnouncement";
+
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -62,7 +65,10 @@ const Main = () => {
           <Route index element={<LogoChange />} />
           <Route path="banner" element={<AdminBanner />} />
           <Route path="about-us" element={<AdminAboutUs />} />
-          <Route path="announcement" element={<AdminAnnouncement />} />
+          <Route path="announcement" element={<AdminAnnouncement />}>
+            <Route index element={<AllAnncouncements />} />
+            <Route path="add-announcement" element={<AddAnnouncement />} />
+          </Route>
           <Route path="advanced-setteing" element={<AdminAdvance />} />
         </Route>
         <Route path="products" element={<AdminProducts />}>

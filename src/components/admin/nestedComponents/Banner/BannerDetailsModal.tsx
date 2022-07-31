@@ -64,11 +64,11 @@ const BannerDetailsModal: React.FC<ModalProps> = (props) => {
             <Card>
               <CardMedia
                 component="img"
-                image={`${BASE_URL}/${bannerDetails?.file_link}`}
+                image={`${bannerDetails?.file_link}`}
                 alt="green iguana"
                 sx={{
-                    width: "100%",
-                    height: "50vh",
+                  width: "100%",
+                  height: "50vh",
                 }}
               />
               <CardContent>

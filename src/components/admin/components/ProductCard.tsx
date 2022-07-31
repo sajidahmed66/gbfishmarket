@@ -45,11 +45,7 @@ const ProductCard = ({ item, deleteProduct }: IProps) => {
         <div className="card">
           <div className="card-header">{product.title}</div>
           <div className="card-body">
-            <img
-              src={`${BASE_URL}/${product.image_link}`}
-              alt=""
-              className="w-full h-48"
-            />
+            <img src={`${product.image_link}`} alt="" className="w-full h-48" />
             {product.subtitle}
           </div>
           <div className="items-center justify-around card-footer">

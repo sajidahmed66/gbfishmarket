@@ -22,7 +22,7 @@ const ClientCard = ({ item, deleteClient }: IProps) => {
           <div className="card-header">{client.name}</div>
           <div className="card-body">
             <img
-              src={`${BASE_URL}/${client.logo_image_link}`}
+              src={`${client.logo_image_link}`}
               alt=""
               className="w-full h-48"
             />
@@ -45,14 +45,14 @@ const ClientCard = ({ item, deleteClient }: IProps) => {
             >
               Edit
             </button>
-            <button
+            {/* <button
               className="btn btn-link btn-outline-danger btn-sm"
               onClick={() => {
                 deleteClient(client.id);
               }}
             >
               Delete
-            </button>
+            </button> */}
             {/* <label className="flex flex-row items-center justify-between">
                   <span className="ml-2 mr-2">Featured</span>
                   <input

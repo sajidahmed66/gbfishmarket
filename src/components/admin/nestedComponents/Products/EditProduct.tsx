@@ -241,7 +241,7 @@ const EditProduct = () => {
                         imageButton
                         height="550px"
                         width="750px"
-                        image={{ url: `${BASE_URL}/${image_link}` }}
+                        image={{ url: `${image_link}` }}
                       />
                     )}
                   </Box>

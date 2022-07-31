@@ -129,11 +129,8 @@ const AddProduct = () => {
               }
             },
             onDrop: (event: React.DragEvent<HTMLElement>) => {
-              // console.log(`Drop ${event.dataTransfer.files[0].name}`);
-              // console.log(event.dataTransfer.files);
-              // file = event.dataTransfer.files[0];
+              setFieldValue("image_name", event.dataTransfer.files[0].name);
               setFile(event.dataTransfer.files[0]);
-              // setIsButtonDisable(false);
             },
           };
 

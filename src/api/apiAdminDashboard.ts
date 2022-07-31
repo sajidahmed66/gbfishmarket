@@ -41,7 +41,7 @@ export const getBanner = () => {
 
 export const addBanner = (data: FormData) => {
   return axios.post(`${API_URL}/admin/home/slider-image`, data, {
-  // return axios.post('http://localhost:5000/api/admin/home/slider-image', data, {
+    // return axios.post('http://localhost:5000/api/admin/home/slider-image', data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -50,12 +50,52 @@ export const addBanner = (data: FormData) => {
 
 export const getBannerById = (sliderId: number) => {
   return axios.get(`${API_URL}/admin/home/slider-image/${sliderId}`);
-}
+};
 
 export const updateBanner = (data: FormData, sliderId: number) => {
   return axios.put(`${API_URL}/admin/home/slider-image/${sliderId}`, data, {
     headers: {
       "Content-Type": "multipart/form-data",
+    },
+  });
+};
+// delete bannder not done;
+
+export const getAnnouncements = () => {
+  return axios.get(`${API_URL}/admin/announcement`);
+};
+
+export const addAnnouncements = (data: FormData, token: string) => {
+  return axios.post(`${API_URL}/admin/announcement`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getAnnouncementsById = (id: number) => {
+  return axios.get(`${API_URL}/admin/announcement/${id}`);
+};
+
+export const updateAnnouncementsById = (
+  id: number,
+  data: FormData,
+  token: string
+) => {
+  return axios.put(`${API_URL}/admin/announcement/${id}`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const deleteAnnouncementsById = (id: number, token: string) => {
+  return axios.delete(`${API_URL}/admin/announcements/${id}`, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      authorization: `Bearer ${token}`,
     },
   });
 };

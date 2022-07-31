@@ -37,7 +37,7 @@ const DashboardNavbar = () => {
         Announcement
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         className={
           location.pathname === "/admin/about-us"
             ? "tab-link active"
@@ -57,7 +57,7 @@ const DashboardNavbar = () => {
         to="/admin/advanced-setteing"
       >
         Advanced
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 };

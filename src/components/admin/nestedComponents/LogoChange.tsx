@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import FileUpload, { FileUploadProps } from "../components/FileUpload";
 import { getLogo, addLogo, updateLogo } from "../../../api/apiAdminDashboard";
 import { userInfo } from "../../../utils/auth";
+import { BASE_URL } from "../../../utils/config";
 
 const useStyles = createUseStyles({
   root: {
@@ -35,33 +36,31 @@ const LogoChange = () => {
   const [file, setFile] = useState<File | null>(null);
   const [token, setToken] = useState<string>("");
 
-  useEffect((): void => {
+  useEffect(() => {
     getLogo()
       .then((res) => res.data)
       .then((data) => {
-        setLogoUrl(`http://localhost:5000/${data.data.file_link}`);
+        setLogoUrl(`${data.data.file_link}`);
         setLogoData(data.data);
       })
-      .catch((err) => console.log(err.data.message));
+      .catch((err) => setErrorMessage("no logo found"));
     const user = userInfo();
     setToken(user.token);
+    return () => {
+      setLogoUrl("");
+      setToken("");
+    };
   }, []);
 
   const fileUploadProp: FileUploadProps = {
     accept: "image/*",
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.files !== null && event.target?.files?.length > 0) {
-        // console.log(event.target.files[0]);
-        // console.log(`Saving ${event.target.value}`);
         setFile(event.target.files[0]);
-        // console.log(file);
         setIsButtonDisable(false);
       }
     },
     onDrop: (event: React.DragEvent<HTMLElement>) => {
-      // console.log(`Drop ${event.dataTransfer.files[0].name}`);
-      // console.log(event.dataTransfer.files);
-      // file = event.dataTransfer.files[0];
       setFile(event.dataTransfer.files[0]);
 
       setIsButtonDisable(false);
@@ -71,14 +70,12 @@ const LogoChange = () => {
   const handleSubmit = async (file: File | null) => {
     const fileData = new FormData();
     if (file !== null) {
-      console.log("ifblock", file);
       fileData.append("file", file, file.name);
       fileData.append("name", file.name);
     }
 
     if (logoData) {
       setIsLoading(true);
-      console.log(fileData);
       updateLogo(fileData, logoData.id, token)
         .then((res) => res.data)
         .then((data) => {
@@ -90,7 +87,7 @@ const LogoChange = () => {
           // console.log(data.message);
         })
         .catch((err) => {
-          setErrorMessage(err.data.message);
+          setErrorMessage(err.response.data.message);
           setIsButtonDisable(true);
           setIsLoading(false);
         });
@@ -106,15 +103,12 @@ const LogoChange = () => {
           // console.log(data.result);
         })
         .catch((err) => {
-          console.log(err.data.message);
-          setErrorMessage(err.data.message);
+          setErrorMessage(err.response.data.message);
           setIsButtonDisable(true);
           setIsLoading(false);
         });
     }
   };
-
-  // console.log(logoUrl);
 
   const renderFileUploadComponent = () => {
     if (logoData !== undefined) {

@@ -32,7 +32,7 @@ const Login = () => {
         console.log(err.response.data);
         setTimeout(() => {
           setError("");
-        }, 1500);
+        }, 2500);
       });
   };
 

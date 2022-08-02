@@ -12,7 +12,6 @@ import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { addProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
 import { Formik, FormikHelpers } from "formik";
-import { IProduct } from "./AllProducts";
 
 export type FormValues = {
   title: string;
@@ -42,6 +41,7 @@ const AddProduct = () => {
   const handleProductSubmit = (values: FormValues) => {
     setIsLoading(true);
     const productFile = getFormData(values);
+    const token = userInfo().token as string;
     if (file) productFile.append("file", file);
     addProduct(productFile)
       .then((res) => res.data)
@@ -120,20 +120,12 @@ const AddProduct = () => {
                 event.target.files !== null &&
                 event.target?.files?.length > 0
               ) {
-                // console.log(event.target.files[0]);
-                // console.log(`Saving ${event.target.value}`);
                 setFieldValue("image_name", event.target.files[0].name);
                 setFile(event.target.files[0]);
-                // console.log(file);
-                // setIsButtonDisable(false);
               }
             },
             onDrop: (event: React.DragEvent<HTMLElement>) => {
-              // console.log(`Drop ${event.dataTransfer.files[0].name}`);
-              // console.log(event.dataTransfer.files);
-              // file = event.dataTransfer.files[0];
               setFile(event.dataTransfer.files[0]);
-              // setIsButtonDisable(false);
             },
           };
 

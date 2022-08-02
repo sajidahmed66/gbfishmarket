@@ -2,6 +2,7 @@ import * as React from "react";
 import { Box, Tab, Typography } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import AddCompany from "./nestedComponents/Company/AddCompany";
+import AboutUs from "./nestedComponents/Company/AboutUs";
 
 const AdminCompany = () => {
   const [value, setValue] = React.useState("1");
@@ -27,7 +28,7 @@ const AdminCompany = () => {
             </TabList>
           </Box>
           <TabPanel value="1"><AddCompany/></TabPanel>
-          <TabPanel value="2">About Us</TabPanel>
+          <TabPanel value="2"><AboutUs/></TabPanel>
           <TabPanel value="3">History</TabPanel>
           <TabPanel value="4">Teams</TabPanel>
         </TabContext>

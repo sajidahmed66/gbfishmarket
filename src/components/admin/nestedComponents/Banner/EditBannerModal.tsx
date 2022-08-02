@@ -76,7 +76,6 @@ const EditBannerModal: React.FC<ModalProps> = (props) => {
 
   const handleSubmit = (values: FormValues) => {
     setIsLoading(true);
-    console.log(values);
     const productFile = getFormData(values);
     if (file) productFile.append("file", file);
     updateBanner(productFile, values?.id)
@@ -153,7 +152,6 @@ const EditBannerModal: React.FC<ModalProps> = (props) => {
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <Formik
-                // initialValues={updatedValues ? updatedValues : initialValues}
                 initialValues={{
                   id: editRecord?.id!,
                   name: editRecord?.name!,
@@ -197,11 +195,7 @@ const EditBannerModal: React.FC<ModalProps> = (props) => {
                       }
                     },
                     onDrop: (event: React.DragEvent<HTMLElement>) => {
-                      // console.log(`Drop ${event.dataTransfer.files[0].name}`);
-                      // console.log(event.dataTransfer.files);
-                      // file = event.dataTransfer.files[0];
                       setFile(event.dataTransfer.files[0]);
-                      // setIsButtonDisable(false);
                     },
                   };
 

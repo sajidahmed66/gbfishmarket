@@ -2,6 +2,15 @@ import React from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import * as Yup from "yup";
 import { Formik, useFormik } from "formik";
+import { addCompanyInfo } from "../../../../api/apiAdminCompany";
+import { userInfo } from "../../../../utils/auth";
+
+export type FormValues = {
+  short_description: string;
+  address: string;
+  email: string;
+  phone: string;
+};
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -16,13 +25,29 @@ const schema = Yup.object().shape({
 });
 
 const AddCompany = () => {
+  const getFormData = (object: FormValues): FormData =>
+    Object.keys(object).reduce((formData, key) => {
+      formData.append(key, object[key as keyof object]);
+      return formData;
+    }, new FormData());
+
   const formik = useFormik({
     initialValues: { phone: "", address: "", email: "", short_description: "" },
-    onSubmit: (values) => {
-      console.log("Logging in ", values);
+    onSubmit: (values: FormValues,{resetForm}) => {
+      const finalValues = getFormData(values);
+      const token = userInfo().token as string;
+      addCompanyInfo(finalValues, token)
+        .then((res) => {
+          console.log(res);
+          resetForm();
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
     },
     validationSchema: schema,
   });
+
   return (
     <Box>
       <Box className="w-full p-4 ">
@@ -82,9 +107,6 @@ const AddCompany = () => {
                 className="h-12 py-4 w-28"
                 type="submit"
                 variant="contained"
-                // onClick={() => {
-                //   handleSubmit();
-                // }}
               >
                 Submit
               </Button>

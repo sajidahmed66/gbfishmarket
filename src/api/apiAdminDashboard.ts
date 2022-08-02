@@ -92,9 +92,8 @@ export const updateAnnouncementsById = (
 };
 
 export const deleteAnnouncementsById = (id: number, token: string) => {
-  return axios.delete(`${API_URL}/admin/announcements/${id}`, {
+  return axios.delete(`${API_URL}/admin/announcement/${id}`, {
     headers: {
-      "Content-Type": "multipart/form-data",
       authorization: `Bearer ${token}`,
     },
   });

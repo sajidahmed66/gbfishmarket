@@ -12,7 +12,7 @@ import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { addProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
 import { Formik, FormikHelpers } from "formik";
-import { IProduct } from "./AllProducts";
+import { useNavigate } from "react-router-dom";
 
 export type FormValues = {
   title: string;
@@ -33,6 +33,7 @@ const AddProduct = () => {
   const [error, setError] = useState<string>("");
   const [loading, setIsLoading] = useState<boolean>(false);
 
+  const navigate = useNavigate();
   const getFormData = (object: FormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
       formData.append(key, object[key as keyof object]);
@@ -41,9 +42,10 @@ const AddProduct = () => {
 
   const handleProductSubmit = (values: FormValues) => {
     setIsLoading(true);
+    const token = userInfo().token as string;
     const productFile = getFormData(values);
     if (file) productFile.append("file", file);
-    addProduct(productFile)
+    addProduct(productFile, token)
       .then((res) => res.data)
       .then((data) => {
         setIsLoading(false);
@@ -51,7 +53,8 @@ const AddProduct = () => {
         // settimeout to clear the success message
         setTimeout(() => {
           setSuccess("");
-        }, 6000);
+          navigate("/admin/products");
+        }, 2500);
       })
       .catch((err) => {
         setIsLoading(false);

@@ -77,7 +77,6 @@ const Main = () => {
         <Route path="products" element={<AdminProducts />}>
           <Route index element={<AllProducts />} />
           <Route path="add" element={<AddProduct />} />
-          <Route path="feature-in-discover" element={<FeatureProduct />} />
         </Route>
         <Route path="products/edit/:id" element={<EditProduct />} />
         <Route path="products/details/:id" element={<DetailsProducts />} />

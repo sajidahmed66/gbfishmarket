@@ -9,15 +9,15 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { useParams } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { useParams, useNavigate } from "react-router-dom";
 import { Formik, FormikHelpers } from "formik";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { getProduct, updateProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
 import { IProduct } from "./AllProducts";
 import { FormValues } from "./AddProduct";
-import { BASE_URL } from "../../../../utils/config";
-
 const EditProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
@@ -25,22 +25,25 @@ const EditProduct = () => {
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect((): void => {
+  const navigate = useNavigate();
+  useEffect(() => {
     setIsLoading(true);
-    console.log("here");
     id &&
       getProduct(parseInt(id))
         .then((res) => res.data)
         .then((data) => {
           setProduct(data);
           setIsLoading(false);
-          console.log(data);
+          // console.log(data);
         })
         .catch((err) => {
           console.log(err);
           setIsLoading(false);
         });
+    return () => {
+      setProduct({} as IProduct);
+      setIsLoading(false);
+    };
   }, []);
 
   const getFormData = (object: FormValues): FormData =>
@@ -51,19 +54,21 @@ const EditProduct = () => {
 
   const handleProductSubmit = (values: FormValues) => {
     setIsLoading(true);
+    const token = userInfo().token as string;
     const productFile = getFormData(values);
     if (file) productFile.append("file", file);
     id &&
-      updateProduct(productFile, parseInt(id))
+      updateProduct(productFile, parseInt(id), token)
         .then((res) => res.data)
         .then((data) => {
           setIsLoading(false);
-          setProduct(data.product);
+          // setProduct(data.result);
           setSuccess(data.message);
           // settimeout to clear the success message
           setTimeout(() => {
             setSuccess("");
-          }, 6000);
+            navigate("/admin/products");
+          }, 3000);
         })
         .catch((err) => {
           setIsLoading(false);
@@ -71,7 +76,7 @@ const EditProduct = () => {
           // settimeout to clear the error message
           setTimeout(() => {
             setError("");
-          }, 6000);
+          }, 3000);
         });
   };
   const {
@@ -82,15 +87,6 @@ const EditProduct = () => {
     show_on_home,
     image_link,
   } = product;
-
-  console.log(
-    title,
-    subtitle,
-    long_description,
-    short_description,
-    show_on_home,
-    image_link
-  );
 
   return (
     <Container maxWidth="lg">
@@ -114,7 +110,29 @@ const EditProduct = () => {
           {error}
         </Alert>
       </Snackbar>
-      {!isLoading && (
+      <div className="flex flex-col items-start justify-center w-full p-4 ">
+        <div className="flex flex-row items-center justify-between w-full my-4 text-indigo-500 ">
+          <div className="w-1/4">
+            <button
+              className=" btn btn-light-secondary btn-sm mr-28"
+              onClick={() => navigate("/admin/products")}
+            >
+              <ArrowBackIosNewOutlinedIcon /> Go back
+            </button>
+          </div>
+          <div className="flex items-center justify-around w-1/2">
+            <Typography
+              variant="h6"
+              className="font-skModernistBold"
+              gutterBottom
+            >
+              Edit Product
+            </Typography>
+          </div>
+          <div className="w-1/4 h-4"></div>
+        </div>
+      </div>
+      {!isLoading ? (
         <Formik
           initialValues={{
             title: title,
@@ -262,6 +280,11 @@ const EditProduct = () => {
             );
           }}
         </Formik>
+      ) : (
+        // loading spinner
+        <div className="flex flex-col items-center justify-center w-full py-8">
+          <CircularProgress />
+        </div>
       )}
     </Container>
   );

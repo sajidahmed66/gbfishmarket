@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -25,8 +24,8 @@ const AdminProducts = () => {
             <NavLink
               className={
                 location.pathname === "/admin/products"
-                  ? "tab-link active"
-                  : "tab-link "
+                  ? "tab-link active ring-transparent"
+                  : "tab-link ring-transparent"
               }
               to="/admin/products/"
             >
@@ -36,35 +35,13 @@ const AdminProducts = () => {
             <NavLink
               className={
                 location.pathname === "/admin/products/add"
-                  ? "tab-link active"
-                  : "tab-link "
+                  ? "tab-link active ring-transparent"
+                  : "tab-link ring-transparent"
               }
               to="/admin/products/add"
             >
               Add New Product
             </NavLink>
-
-            <NavLink
-              className={
-                location.pathname === "/admin/products/feature-in-discover"
-                  ? "tab-link active"
-                  : "tab-link "
-              }
-              to="/admin/products/feature-in-discover"
-            >
-              Feature a product on Homepage
-            </NavLink>
-
-            {/* <NavLink
-              className={
-                location.pathname === "/admin/about-us"
-                  ? "tab-link active"
-                  : "tab-link "
-              }
-              to="/admin/about-us"
-            >
-              Feature Product to Discover Section
-            </NavLink> */}
           </nav>
         </Box>
       </Box>

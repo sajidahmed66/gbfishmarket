@@ -24,7 +24,6 @@ import { addBanner, getBanner } from "../../../api/apiAdminDashboard";
 import AddBannerModal from "./Banner/AddBannerModal";
 import BannerDetailsModal from "./Banner/BannerDetailsModal";
 import { IBanner } from "./Banner/data";
-import { BASE_URL } from "../../../utils/config";
 import EditBannerModal from "./Banner/EditBannerModal";
 
 const AdminBanner = () => {
@@ -71,7 +70,7 @@ const AdminBanner = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image={`${BASE_URL}/${item.file_link}`}
+                    image={`${item.file_link}`}
                     alt="green iguana"
                     sx={{ height: "140px" }}
                   />

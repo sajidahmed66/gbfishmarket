@@ -125,6 +125,7 @@ const AddProduct = () => {
               }
             },
             onDrop: (event: React.DragEvent<HTMLElement>) => {
+              setFieldValue("image_name", event.dataTransfer.files[0].name);
               setFile(event.dataTransfer.files[0]);
             },
           };

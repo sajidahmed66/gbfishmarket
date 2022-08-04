@@ -182,7 +182,7 @@ const EditBannerModal: React.FC<ModalProps> = (props) => {
                     accept: "image/*",
                     image: {
                       url: editRecord?.file_link
-                        ? `${BASE_URL}/${editRecord.file_link}`
+                        ? `${editRecord.file_link}`
                         : values.file_link,
                     },
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {

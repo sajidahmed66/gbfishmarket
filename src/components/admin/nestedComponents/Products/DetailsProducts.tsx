@@ -54,7 +54,7 @@ const DetailsProducts = () => {
             {/* image */}
             <Box className="w-full p-4 border-2 border-gray-300 rounded-lg h-72">
               <img
-                src={`${BASE_URL}/${image_link}`}
+                src={`${image_link}`}
                 alt={image_name}
                 className="w-full h-full"
               />

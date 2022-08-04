@@ -205,7 +205,7 @@ const EditClients: React.FC = () => {
                       imageButton
                       height="150px"
                       width="600px"
-                      image={{ url: `${BASE_URL}/${logo_image_link}` }}
+                      image={{ url: `${logo_image_link}` }}
                     />
                   </Box>
                 </Stack>

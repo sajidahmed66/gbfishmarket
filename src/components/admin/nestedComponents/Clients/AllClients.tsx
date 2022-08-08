@@ -4,7 +4,10 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getAllClients, deleteClientById } from "../../../../api/apiClient";
+import {
+  getAllClients,
+  deleteClientById,
+} from "../../../../api/apiAdminClient";
 import ClientCard from "../../components/ClientCard";
 import { userInfo } from "../../../../utils/auth";
 import { CircularProgress } from "@mui/material";

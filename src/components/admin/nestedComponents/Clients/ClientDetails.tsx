@@ -9,7 +9,10 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Loading from "../../components/Loading";
 import { useParams, useNavigate } from "react-router-dom";
-import { getClientById, getClientproducts } from "../../../../api/apiClient";
+import {
+  getClientById,
+  getClientproducts,
+} from "../../../../api/apiAdminClient";
 import { IClient } from "./AllClients";
 import { IProduct } from "../Products/AllProducts";
 

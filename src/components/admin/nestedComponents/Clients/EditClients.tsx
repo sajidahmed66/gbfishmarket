@@ -10,7 +10,10 @@ import Alert from "@mui/material/Alert";
 import { useParams, useNavigate } from "react-router-dom";
 import { Formik, FormikHelpers } from "formik";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
-import { getClientById, updateClientById } from "../../../../api/apiClient";
+import {
+  getClientById,
+  updateClientById,
+} from "../../../../api/apiAdminClient";
 import { userInfo } from "../../../../utils/auth";
 import { IClient } from "./AllClients";
 import { IClientFormValues } from "./AddClient";

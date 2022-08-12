@@ -23,3 +23,15 @@ LogIn page thaken from kutty components
 lazy loading realated ::
     1. https://www.robinwieruch.de/react-router-lazy-loading/ 
     2. https://loadable-components.com/docs/code-splitting/ 
+
+
+
+## work_update: 12-08-2022;
+    
+    1.client asked to change total view of front-end design.
+    2. working on those problems now and rework issues are listed below and to be resolved as soon as possiable.
+
+    -ContactUs page
+    1.a new field added to the form, needs adjustment in backend api and test(manually);
+    2.Google recapta rework needed.
+    

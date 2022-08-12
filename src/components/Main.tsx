@@ -18,7 +18,7 @@ import NotFound404 from "./404/NotFound404";
 import Login from "./admin/LogIn";
 
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoutes";
-import "tw-elements"; // remove this and check if it has ant breacking changes in the app.
+import "tw-elements"; // remove this and check if it has ant breaking changes in the app.
 import AdminProducts from "./admin/AdminProducts";
 import AdminClients from "./admin/AdminClients";
 import AdminCompany from "./admin/AdminCompany";

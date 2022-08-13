@@ -4,20 +4,19 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../../../api/apiAdminProducts";
 import { IProduct } from "./AllProducts";
 import { Paper } from "@mui/material";
-import { BASE_URL } from "../../../../utils/config";
+import { useNavigate } from "react-router-dom";
 
 const DetailsProducts = () => {
   let { id } = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   useEffect((): void => {
     if (id) {
       getProduct(parseInt(id))
@@ -48,6 +47,26 @@ const DetailsProducts = () => {
       maxWidth="lg"
       className="flex flex-col items-center justify-center"
     >
+      <div className="flex flex-row items-center justify-between w-full my-4 text-indigo-500 ">
+        <div className="w-1/4">
+          <button
+            className=" btn btn-light-secondary btn-sm mr-28"
+            onClick={() => navigate("/admin/products")}
+          >
+            <ArrowBackIosNewOutlinedIcon /> Go back
+          </button>
+        </div>
+        <div className="flex items-center justify-around w-1/2">
+          <Typography
+            variant="h6"
+            className="font-skModernistBold"
+            gutterBottom
+          >
+            Edit Product
+          </Typography>
+        </div>
+        <div className="w-1/4 h-4"></div>
+      </div>
       {(loading && <div>Loading...</div>) || (
         <Grid container spacing={2}>
           <Grid item xs={12} md={5}>
@@ -59,27 +78,6 @@ const DetailsProducts = () => {
                 className="w-full h-full"
               />
             </Box>
-            {/* <Box className="flex flex-row items-center justify-around w-full p-4">
-              <Button
-                size="large"
-                className="p-2"
-                variant="contained"
-                component="span"
-                startIcon={<ModeEditOutlineIcon />}
-              >
-                {" "}
-                Edit{" "}
-              </Button>
-              <Button
-                size="large"
-                component="span"
-                className="p-2 text-white bg-red-700"
-                variant="outlined"
-              >
-                {" "}
-                Delete
-              </Button>
-            </Box> */}
           </Grid>
           <Grid item xs={12} md={7}>
             {/* details */}

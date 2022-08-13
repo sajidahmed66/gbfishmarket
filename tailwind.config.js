@@ -8,6 +8,7 @@ module.exports = {
       skModernist: ["Sk-Modernist"],
       skModernistBold: ["Sk-Modernist-bold"],
       skModernistMono: ["Sk-Modernist-mono"],
+      Caveat: ["Caveat"],
     },
   },
 

@@ -30,10 +30,10 @@ const NavBar = () => {
   const handleStickyNav = () => {
     const currentScrollY = window.scrollY;
     if (pervScrollY.current > currentScrollY) {
-      setMakeSticky("");
+      setMakeSticky(" h-20");
     }
     if (pervScrollY.current < currentScrollY) {
-      setMakeSticky("sticky opacity-80 ");
+      setMakeSticky("sticky h-16 ");
     }
   };
   useEffect(() => {
@@ -43,10 +43,10 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`bg-white drop-shadow-md h-20 top-0 z-50 hover:opacity-100 ${makeSticky}`}
+      className={`bg-[#2c3941] items-center drop-shadow-md top-0 z-50   ${makeSticky}`}
     >
-      <div className="container flex flex-row items-center justify-between max-w-screen-xl px-12 mx-auto">
-        {/* LOGO */}
+      <div className= {`flex flex-row mx-auto  justify-between  max-w-screen-xl px-8 xl:px-32 lg:px-24 md:px-12 sm:px-8 ${makeSticky}`}>
+        {/* LOGO #2c3941*/}
         <div className="w-48">
           <Link to="/">
             <img
@@ -66,7 +66,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-skModernistBold ">
+                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase ">
                   Home
                 </span>
               </NavLink>
@@ -78,7 +78,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-skModernistBold">
+                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
                   About Us
                 </span>
               </NavLink>
@@ -90,7 +90,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-skModernistBold ">
+                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
                   Products
                 </span>
               </NavLink>
@@ -102,14 +102,14 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-2xl font-bold font-skModernistBold hover:text-[#042a2b]">
+                <span className="text-sm font-bold font-skModernistBold hover:text-[#042a2b] text-transform: uppercase">
                   Contact Us
                 </span>
               </NavLink>
             </li>
           </ul>
           {/* icon with dropdown menu */}
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center">
             <div>
               <div className="relative">
                 {isToggle ? (

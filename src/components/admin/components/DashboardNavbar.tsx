@@ -8,7 +8,9 @@ const DashboardNavbar = () => {
 
       <NavLink
         className={
-          location.pathname === "/admin" ? "tab-link active" : "tab-link "
+          location.pathname === "/admin"
+            ? "tab-link active ring-transparent"
+            : "tab-link ring-transparent"
         }
         to="/admin/"
       >
@@ -18,8 +20,8 @@ const DashboardNavbar = () => {
       <NavLink
         className={
           location.pathname === "/admin/banner"
-            ? "tab-link active"
-            : "tab-link "
+            ? "tab-link active ring-transparent"
+            : "tab-link ring-transparent"
         }
         to="/admin/banner"
       >
@@ -29,35 +31,13 @@ const DashboardNavbar = () => {
       <NavLink
         className={
           location.pathname === "/admin/announcement"
-            ? "tab-link active"
-            : "tab-link "
+            ? "tab-link active ring-transparent"
+            : "tab-link ring-transparent"
         }
         to="/admin/announcement"
       >
         Announcement
       </NavLink>
-
-      {/* <NavLink
-        className={
-          location.pathname === "/admin/about-us"
-            ? "tab-link active"
-            : "tab-link "
-        }
-        to="/admin/about-us"
-      >
-        About Us
-      </NavLink>
-
-      <NavLink
-        className={
-          location.pathname === "/admin/advanced-setteing"
-            ? "tab-link active"
-            : "tab-link "
-        }
-        to="/admin/advanced-setteing"
-      >
-        Advanced
-      </NavLink> */}
     </nav>
   );
 };

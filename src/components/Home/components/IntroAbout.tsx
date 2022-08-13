@@ -5,8 +5,8 @@ const IntroAbout = () => {
   return (
     <>
       {/* about section with a side image */}
-      <div className="p-6 mt-1 sm:py-8 lg:py-12">
-        <div className="container flex flex-col flex-wrap items-center px-4 py-4 mx-auto lg:container md:flex-row md:items-center md:justify-start md:px-8 ">
+      <div className="p-6 mt-1 lg:py-12 px-8 xl:px-64 lg:px-24 md:px-12 sm:px-8 py-8">
+        <div className="container flex flex-col flex-wrap items-center py-4 mx-auto lg:container md:flex-row md:items-center md:justify-start ">
           {/* about intro  div*/}
           <div className="w-full pr-4 md:w-1/2">
             <div className="text-left">
@@ -41,7 +41,7 @@ const IntroAbout = () => {
             </div>
           </div>
           {/* about image */}
-          <div className="flex flex-col items-center justify-center w-5/6 h-full pt-8 pl-4 md:w-1/2 md:pl-12 md:justify-start">
+          <div className="flex flex-col items-center justify-center  w-full md:w-1/2  sm:w-full h-full pt-8 md:pl-12 md:justify-start">
             <img
               src={require("../../../assets/img/Carp-fishing.jpg")}
               className="w-full rounded-2xl"

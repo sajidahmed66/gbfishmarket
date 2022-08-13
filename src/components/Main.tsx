@@ -1,15 +1,24 @@
 import React, { Suspense, lazy } from "react";
 
 import { Routes, Route } from "react-router-dom";
-import AboutUs from "./AboutUs/AboutUs";
-import Products from "./Products/Products";
+
 import Home from ".//Home/Home";
+
+import AboutUs from "./AboutUs/AboutUs";
+// about-us nested route components
+import AboutDetails from "./AboutUs/components/Deatils";
+import History from "./AboutUs/components/History";
+import MessageFromCEO from "./AboutUs/components/MessageFromCEO";
+import CompanyPhilosophy from "./AboutUs/components/CompanyPhilosophy";
+import Teams from "./AboutUs/components/Teams";
+
+import Products from "./Products/Products";
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
 import Login from "./admin/LogIn";
 
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoutes";
-import "tw-elements";
+import "tw-elements"; // remove this and check if it has ant breaking changes in the app.
 import AdminProducts from "./admin/AdminProducts";
 import AdminClients from "./admin/AdminClients";
 import AdminCompany from "./admin/AdminCompany";
@@ -40,7 +49,13 @@ const Main = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="about-us" element={<AboutUs />} />
+      <Route path="about-us" element={<AboutUs />}>
+        <Route index element={<AboutDetails />} />
+        <Route path="history" element={<History />} />
+        <Route path="message-from-ceo" element={<MessageFromCEO />} />
+        <Route path="company-philosophy" element={<CompanyPhilosophy />} />
+        <Route path="teams" element={<Teams />} />
+      </Route>
       <Route path="products" element={<Products />} />
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="login" element={<Login />} />
@@ -96,3 +111,30 @@ const Main = () => {
 };
 
 export default Main;
+
+/*
+          
+           I’m Vengeance
+            |\_|\
+            | a_a\
+            | | "]
+        ____| '-\___
+        /.----.___.-'\
+        //        _    \
+    //   .-. (~v~) /|
+    |'|  /\:  .--  / \
+    // |-/  \_/____/\/~|
+    |/  \ |  []_|_|_] \ |
+    | \  | \ |___   _\ ]_}
+    | |  '-' /   '.'  |
+    | |     /    /|:  | 
+    | |     |   / |:  /\
+    | |     /  /  |  /  \
+    | |    |  /  /  |    \
+    \ |    |/\/  |/|/\    \
+    \|\ |\|  |  | / /\/\__\
+    \ \| | /   | |__
+        / |   |____)
+        |_/ -->
+
+*/

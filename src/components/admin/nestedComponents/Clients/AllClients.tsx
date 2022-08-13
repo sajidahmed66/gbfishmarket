@@ -4,9 +4,13 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getAllClients, deleteClientById } from "../../../../api/apiClient";
+import {
+  getAllClients,
+  deleteClientById,
+} from "../../../../api/apiAdminClient";
 import ClientCard from "../../components/ClientCard";
 import { userInfo } from "../../../../utils/auth";
+import { CircularProgress } from "@mui/material";
 //component import
 
 export interface IClient {
@@ -26,7 +30,9 @@ export interface IClient {
 const AllClients = () => {
   const navigation = useNavigate();
   const [clients, setClients] = useState<IClient[]>([]);
+  const [loadingData, setLoadingData] = useState<boolean>(false);
   const [reload, setReload] = useState({});
+  const [error, setError] = useState<string>("");
   const handeleDeleteClient = (id: number) => {
     console.log("delete client", id);
     const token: string = userInfo().token;
@@ -42,10 +48,21 @@ const AllClients = () => {
   };
 
   useEffect(() => {
+    setLoadingData(true);
     getAllClients()
       .then((res) => res.data)
-      .then((data) => setClients(data.clients))
-      .catch((err) => console.log(err));
+      .then((data) => {
+        setClients(data.clients);
+        setLoadingData(false);
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+        setLoadingData(false);
+      });
+    return () => {
+      setClients([]);
+      setLoadingData(false);
+    };
   }, [reload]);
   return (
     <div className="bg-slate-50">
@@ -61,17 +78,32 @@ const AllClients = () => {
         </button>
       </div>
       <Divider />
-      <div className="w-full mt-4">
-        <p>List of clients</p>
-        <Grid container spacing={2}>
-          {clients.map((client) => (
-            <ClientCard
-              key={client.id}
-              item={client}
-              deleteClient={(id: number) => handeleDeleteClient(id)}
-            />
+      <div className="w-full p-4 mt-4">
+        <div className="flex flex-row items-center justify-start pl-4 mb-4">
+          <Typography variant="h6" className="font-skModernist">
+            List of clients{" "}
+          </Typography>
+        </div>
+        {(loadingData && (
+          <div className="flex flex-col items-center justify-center w-full py-8">
+            <CircularProgress />
+          </div>
+        )) ||
+          (clients.length !== 0 ? (
+            <Grid container spacing={2}>
+              {clients.map((client) => (
+                <ClientCard
+                  key={client.id}
+                  item={client}
+                  deleteClient={(id: number) => handeleDeleteClient(id)}
+                />
+              ))}
+            </Grid>
+          ) : (
+            <div className="flex flex-row items-center justify-start pl-4 mb-4">
+              noclients found
+            </div>
           ))}
-        </Grid>
       </div>
     </div>
   );

@@ -3,15 +3,21 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
-
+import LocalPhoneSharpIcon from "@mui/icons-material/LocalPhoneSharp";
+import MarkunreadSharpIcon from "@mui/icons-material/MarkunreadSharp";
+import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import { GOOGLE_RECAPCHA_SITE_KEY } from "../../utils/config";
 import { postContactForm } from "../../api/apiContactUs";
+import { Container } from "@mui/material";
+import WarningAmberSharpIcon from "@mui/icons-material/WarningAmberSharp";
+import { AxiosError } from "axios";
 
 type IConatctFormValues = {
   name: string;
   email: string;
   phone: string;
   message: string;
+  quereAbout: string;
 };
 
 const ContactUs = () => {
@@ -49,90 +55,85 @@ const ContactUs = () => {
         setSuccess(data.message);
         setTimeout(() => {
           setSuccess("");
-        }, 6000);
+        }, 3000);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        // setError(err.response.data.message);
+        setError("Something went wrong");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
       });
   };
 
   return (
     <Layout title="Contact Us">
-      <div className="container pt-16 pb-16 mx-auto">
-        <div className="lg:flex">
-          <div className="py-16 bg-indigo-700 rounded-tl rounded-tr xl:w-2/5 lg:w-2/5 xl:rounded-bl xl:rounded-tr-none">
-            <div className="px-8 mx-auto xl:w-5/6 xl:px-0">
-              <h1 className="pb-4 text-3xl font-bold text-white xl:text-4xl">
-                Get in touch
-              </h1>
-              <p className="pb-8 text-xl font-normal leading-relaxed text-white lg:pr-4">
-                Got a question about us? Are you interested in partnering with
-                us? Have some suggestions or just want to say Hi? Just contact
-                us. We are here to asset you.
+      <Container maxWidth="lg">
+        <div className="flex flex-col items-center justify-center w-full mx-auto mt-20 ">
+          <p className="text-xl md:text-xl font-kawshan text-[#b8cc08]">
+            contact us
+          </p>
+          <p className="p-2 text-2xl font-bold text-gray-800 md:text-3xl font-skModernistBold">
+            DROP US A MESSAGE
+          </p>
+        </div>
+        <div className="flex flex-row w-full lg:mx-8">
+          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
+            <div className="flex flex-col items-center justify-center w-full h-1/3">
+              <LocalPhoneSharpIcon
+                fontSize="large"
+                sx={{
+                  color: "#b8cc08",
+                }}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-start w-full h-2/3">
+              <p className="w-full text-xs break-words md:text-center md:text-base">
+                +880 1711 111 111
               </p>
-              <div className="flex items-center pb-4">
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-phone-call"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#ffffff"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path d="M4 4h5l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v5a1 1 0 0 1 -1 1a16 16 0 0 1 -16 -16a1 1 0 0 1 1 -1" />
-                    <path d="M15 7a2 2 0 0 1 2 2" />
-                    <path d="M15 3a6 6 0 0 1 6 6" />
-                  </svg>
-                </div>
-                <p className="pl-4 text-base text-white">+880 1711223344</p>
-              </div>
-              <div className="flex items-center">
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-mail"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#FFFFFF"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <rect x={3} y={5} width={18} height={14} rx={2} />
-                    <polyline points="3 7 12 13 21 7" />
-                  </svg>
-                </div>
-                <p className="pl-4 text-base text-white">
-                  goldenfish@gmail.com
-                </p>
-              </div>
-              <p className="pt-10 text-lg tracking-wide text-white">
-                Fullbari mor <br />
-                Khulna, Bangladesh
-              </p>
-              {/* <a href="javascript:void(0)">
-                <p className="pt-16 font-bold tracking-wide text-white underline">
-                  View Job Openings
-                </p>
-              </a> */}
             </div>
           </div>
-
+          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
+            <div className="flex flex-col items-center justify-center w-full h-1/3">
+              <MarkunreadSharpIcon
+                fontSize="large"
+                sx={{
+                  color: "#b8cc08",
+                }}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-start w-full h-2/3">
+              <p className="w-full text-xs break-words md:text-center md:text-base ">
+                goldenbough@info.com
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
+            <div className="flex flex-col items-center justify-center w-full h-1/3">
+              <HomeSharpIcon
+                fontSize="large"
+                sx={{
+                  color: "#b8cc08",
+                }}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-start w-full h-2/3">
+              <p className="text-xs break-word md:text-center md:text-base">
+                khulna bangladesh
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* form div */}
+        <div>
           <Formik
             initialValues={{
               name: "",
               email: "",
               message: "",
               phone: "",
+              quereAbout: "blue",
             }}
             onSubmit={(
               values: IConatctFormValues,
@@ -155,14 +156,11 @@ const ContactUs = () => {
               handleBlur,
             }) => {
               return (
-                <div className="h-full pt-5 pb-5 bg-gray-200 rounded-tr rounded-br xl:w-3/5 lg:w-3/5 xl:pr-5 xl:pl-0">
+                <div className="w-full h-full p-5 ">
                   <div
                     id="contact"
                     className="px-8 py-4 bg-white rounded-tr rounded-br"
                   >
-                    <h1 className="mb-6 text-4xl font-extrabold text-gray-800">
-                      Enter Details
-                    </h1>
                     {success && (
                       <div
                         className="my-4 text-green-800 bg-green-100 alert"
@@ -180,23 +178,17 @@ const ContactUs = () => {
                       </div>
                     )}
                     {/* full name and email */}
-                    <div className="flex-wrap justify-between block w-full mb-6 xl:flex xl:flex-col">
+                    <div className="flex-col flex-wrap justify-between block w-full mb-6 md:flex md:flex-row">
                       {/* full name */}
-                      <div className="w-2/4 max-w-xs mb-6 xl:mb-0">
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="full_name"
-                            className="mb-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
-                          >
-                            Full Name
-                          </label>
+                      <div className="w-full pr-4 my-4 md:w-1/2">
+                        <div className="flex flex-col ">
                           <input
                             required
                             id="name"
                             name="name"
                             type="text"
-                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
-                            placeholder=""
+                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder="Enter your name"
                             value={values.name}
                             onChange={(
                               e: React.ChangeEvent<HTMLInputElement>
@@ -207,28 +199,26 @@ const ContactUs = () => {
                             onBlur={handleBlur}
                           />
                           {touched.name && errors.name ? (
-                            <div className="text-sm text-red-500">
-                              {errors.name}
+                            <div className="flex flex-row items-center justify-start mt-1 text-sm text-red-500">
+                              <WarningAmberSharpIcon
+                                fontSize="inherit"
+                                className="mr-1"
+                              />
+                              <span>{errors.name}</span>
                             </div>
                           ) : null}
                         </div>
                       </div>
                       {/* email */}
-                      <div className="w-2/4 max-w-xs xl:flex xl:justify-start">
+                      <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col">
-                          <label
-                            htmlFor="email"
-                            className="my-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
-                          >
-                            Email
-                          </label>
                           <input
                             required
                             id="email"
                             name="email"
                             type="email"
-                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
-                            placeholder=""
+                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder="Enter your email"
                             value={values.email}
                             onChange={(
                               e: React.ChangeEvent<HTMLInputElement>
@@ -239,30 +229,35 @@ const ContactUs = () => {
                           />
 
                           {touched.email && errors.email ? (
-                            <div className="text-sm text-red-500">
+                            <div className="flex flex-row items-center justify-start mt-1 text-sm text-red-500">
+                              <WarningAmberSharpIcon
+                                fontSize="inherit"
+                                className="mr-1"
+                              />
                               {errors.email}
                             </div>
                           ) : null}
                         </div>
                       </div>
                     </div>
-                    {/* phone Number */}
-                    <div className="flex flex-wrap w-full">
-                      <div className="w-2/4 max-w-xs">
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="phone"
+                    {/* phone Number and genaral quere selection */}
+
+                    <div className="flex-col flex-wrap justify-between block w-full mb-6 md:flex md:flex-row">
+                      <div className="w-full pr-4 my-4 md:w-1/2">
+                        <div className="flex flex-col ">
+                          {/* <label
+                            htmlFor="full_name"
                             className="mb-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
                           >
-                            Phone
-                          </label>
+                            Full Name
+                          </label> */}
                           <input
                             required
                             id="phone"
                             name="phone"
                             type="number"
-                            className="flex items-center w-64 h-10 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
-                            placeholder=""
+                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            placeholder="Enter your phone number"
                             value={values.phone}
                             onChange={(
                               e: React.ChangeEvent<HTMLInputElement>
@@ -275,10 +270,45 @@ const ContactUs = () => {
                             onBlur={handleBlur}
                           />
                           {touched.phone && errors.phone ? (
-                            <div className="text-sm text-red-500">
+                            <div className="flex flex-row items-center justify-start mt-1 text-sm text-red-500">
+                              <WarningAmberSharpIcon
+                                fontSize="inherit"
+                                className="mr-1"
+                              />
                               {errors.phone}
                             </div>
                           ) : null}
+                        </div>
+                      </div>
+                      <div className="w-full pr-4 my-4 md:w-1/2">
+                        <div className="flex flex-col">
+                          <select
+                            required
+                            id="genaral_quere"
+                            name="quereAbout"
+                            value={values.quereAbout}
+                            placeholder="select one"
+                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded form-select focus:outline-none focus:border focus:border-indigo-700"
+                            onChange={(e) => {
+                              setValues({
+                                ...values,
+                                quereAbout: e.target.value,
+                              });
+                              console.log(e.target.value);
+                            }}
+                          >
+                            <option value="genarel_quere">Genarel Quere</option>
+                            <option value="business">Bussiness</option>
+                            <option value="career_opportunities">
+                              Career Opportunity
+                            </option>
+                          </select>
+
+                          {/* {touched.email && errors.email ? (
+                            <div className="text-sm text-red-500">
+                              {errors.email}
+                            </div>
+                          ) : null} */}
                         </div>
                       </div>
                     </div>
@@ -306,7 +336,11 @@ const ContactUs = () => {
                           onBlur={handleBlur}
                         />
                         {touched.message && errors.message ? (
-                          <div className="text-sm text-red-500">
+                          <div className="flex flex-row items-center justify-start mt-1 text-sm text-red-500">
+                            <WarningAmberSharpIcon
+                              fontSize="inherit"
+                              className="mr-1"
+                            />
                             {errors.message}
                           </div>
                         ) : null}
@@ -314,8 +348,12 @@ const ContactUs = () => {
                       <ReCAPTCHA
                         sitekey={GOOGLE_RECAPCHA_SITE_KEY}
                         onChange={(value) => {
-                          console.log("captcha changed", value);
+                          // console.log("captcha changed", value);
                           setIsVarified(true);
+                        }}
+                        onExpired={() => {
+                          console.log("captcha expired");
+                          setIsVarified(false);
                         }}
                       />
                       {isVarified ? (
@@ -338,9 +376,14 @@ const ContactUs = () => {
             }}
           </Formik>
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 };
 
 export default ContactUs;
+
+/* 
+
+
+*/

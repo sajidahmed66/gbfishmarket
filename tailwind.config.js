@@ -9,6 +9,7 @@ module.exports = {
       skModernistBold: ["Sk-Modernist-bold"],
       skModernistMono: ["Sk-Modernist-mono"],
       Caveat: ["Caveat"],
+      kawshan: ["kaushanScript-Regular"],
     },
   },
 

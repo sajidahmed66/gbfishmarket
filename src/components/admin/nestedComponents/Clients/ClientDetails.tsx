@@ -3,16 +3,28 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Loading from "../../components/Loading";
-import { useParams } from "react-router-dom";
-import { getClientById, getClientproducts } from "../../../../api/apiClient";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  getClientById,
+  getClientproducts,
+} from "../../../../api/apiAdminClient";
 import { IClient } from "./AllClients";
 import { IProduct } from "../Products/AllProducts";
-import { BASE_URL } from "../../../../utils/config";
+
+interface column {
+  id: number;
+  title: string;
+  render: (item: any) => JSX.Element;
+}
+
 const ClientDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [client, setClient] = useState<IClient>({} as IClient);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -65,6 +77,17 @@ const ClientDetails = () => {
               <div className="w-full">
                 <div className="w-full h-48 bg-blue-600 rounded-t-lg">
                   {/* banner Images here */}
+                  <div className="absolute mt-3 ml-3">
+                    <IconButton
+                      onClick={() => {
+                        navigate("/admin/clients");
+                      }}
+                    >
+                      <div className="text-white ">
+                        <ArrowBackIcon color="inherit" fontSize="large" />
+                      </div>
+                    </IconButton>
+                  </div>
                 </div>
                 <div className="absolute ml-5 -mt-20">
                   <div className="w-40 bg-gray-200 border border-b border-gray-300 rounded-lg shadow-md h-36">

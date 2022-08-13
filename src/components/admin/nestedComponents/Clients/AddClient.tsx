@@ -11,7 +11,7 @@ import Alert from "@mui/material/Alert";
 import * as Yup from "yup";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { useNavigate } from "react-router-dom";
-import { createClient } from "../../../../api/apiClient";
+import { createClient } from "../../../../api/apiAdminClient";
 import { userInfo } from "../../../../utils/auth";
 const useStyles = createUseStyles({
   modal: {

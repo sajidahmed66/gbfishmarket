@@ -18,6 +18,7 @@
     "@types/react-dom": "^17.0.11",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
+    "framer-motion": "^6.5.1",
     "google-map-react": "^2.1.10",
     "jwt-decode": "^3.1.2",
     "kutty": "^0.6.0",

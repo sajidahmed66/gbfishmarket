@@ -11,8 +11,12 @@ import History from "./AboutUs/components/History";
 import MessageFromCEO from "./AboutUs/components/MessageFromCEO";
 import CompanyPhilosophy from "./AboutUs/components/CompanyPhilosophy";
 import Teams from "./AboutUs/components/Teams";
-
+//products nested route components
 import Products from "./Products/Products";
+import ProductList from "./Products/nestedComponent/ProductList";
+import ProductDetails from "./Products/nestedComponent/ProductsDetails";
+import FilteredProducts from "./Products/nestedComponent/FilteredProducts";
+// import FilteredProducts
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
 import Login from "./admin/LogIn";
@@ -56,7 +60,11 @@ const Main = () => {
         <Route path="company-philosophy" element={<CompanyPhilosophy />} />
         <Route path="teams" element={<Teams />} />
       </Route>
-      <Route path="products" element={<Products />} />
+      <Route path="products" element={<Products />}>
+        <Route index element={<ProductList />} />
+        <Route path="category/:categoryId" element={<FilteredProducts />} />
+        <Route path="product-details/:id" element={<ProductDetails />} />
+      </Route>
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="login" element={<Login />} />
       {/* admin routes */}

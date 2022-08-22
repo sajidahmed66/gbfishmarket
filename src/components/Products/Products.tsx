@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react";
 import Layout from "../Common/Layout";
-import Card from "./components/Card";
 import { productsData, productsCategoryData } from "../../data/produtsData";
 import Container from "@mui/material/Container";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 const Products = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location.pathname);
-  console.log(location);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  let pathnamearry = location.pathname.split("/");
   return (
     <Layout title="Our Products">
       {/* page banner */}
@@ -20,7 +21,39 @@ const Products = () => {
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
             <p className="text-5xl text-white">Products</p>
-            <p className="text-3xl">home / products</p>
+            <div className="flex flex-row my-2 text-3xl hover:text-orange-400">
+              <p>home</p> {"|"}
+              <p> products</p>
+              {pathnamearry.length === 4 && pathnamearry[2] === "category" ? (
+                <>
+                  {"|"}
+                  <p>
+                    {
+                      productsCategoryData.find(
+                        (item) => item.id === parseInt(pathnamearry[3])
+                      )?.name
+                    }
+                  </p>
+                </>
+              ) : (
+                <></>
+              )}
+              {pathnamearry.length === 4 &&
+              pathnamearry[2] === "product-details" ? (
+                <>
+                  {"|"}
+                  <p>
+                    {
+                      productsCategoryData.find(
+                        (item) => item.id === parseInt(pathnamearry[3])
+                      )?.name
+                    }
+                  </p>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
       </div>

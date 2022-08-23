@@ -70,3 +70,31 @@ export const productsData: IProductsData[] = [
       "https://images.pexels.com/photos/3731945/pexels-photo-3731945.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=256&w=256",
   },
 ];
+
+export const productsCategoryData = [
+  {
+    id: 1,
+    name: "Chilian Seabass",
+    image: require("../assets/img/productCategory/Seabass-1.jpg"),
+  },
+  {
+    id: 2,
+    name: "Fish",
+    image: require("../assets/img/productCategory/Fish-2.jpg"),
+  },
+  {
+    id: 3,
+    name: "Fish",
+    image: require("../assets/img/productCategory/Fish-3.jpg"),
+  },
+  {
+    id: 4,
+    name: "Fish",
+    image: require("../assets/img/productCategory/Fish-4.jpg"),
+  },
+  {
+    id: 5,
+    name: "Fish",
+    image: require("../assets/img/productCategory/Fish-5.jpg"),
+  },
+];

@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 
 import { Routes, Route } from "react-router-dom";
-
+import ScrollToTop from "./Common/ScrollToTop";
 import Home from ".//Home/Home";
 
 import AboutUs from "./AboutUs/AboutUs";
@@ -11,8 +11,12 @@ import History from "./AboutUs/components/History";
 import MessageFromCEO from "./AboutUs/components/MessageFromCEO";
 import CompanyPhilosophy from "./AboutUs/components/CompanyPhilosophy";
 import Teams from "./AboutUs/components/Teams";
-
+//products nested route components
 import Products from "./Products/Products";
+import ProductList from "./Products/nestedComponent/ProductList";
+import ProductDetails from "./Products/nestedComponent/ProductsDetails";
+import FilteredProducts from "./Products/nestedComponent/FilteredProducts";
+// import FilteredProducts
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
 import Login from "./admin/LogIn";
@@ -47,66 +51,72 @@ const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
 const Main = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="about-us" element={<AboutUs />}>
-        <Route index element={<AboutDetails />} />
-        <Route path="history" element={<History />} />
-        <Route path="message-from-ceo" element={<MessageFromCEO />} />
-        <Route path="company-philosophy" element={<CompanyPhilosophy />} />
-        <Route path="teams" element={<Teams />} />
-      </Route>
-      <Route path="products" element={<Products />} />
-      <Route path="contact-us" element={<ContactUs />} />
-      <Route path="login" element={<Login />} />
-      {/* admin routes */}
-      <Route
-        path="admin"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <LazyAdminLayout />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      >
+    <ScrollToTop>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about-us" element={<AboutUs />}>
+          <Route index element={<AboutDetails />} />
+          <Route path="history" element={<History />} />
+          <Route path="message-from-ceo" element={<MessageFromCEO />} />
+          <Route path="company-philosophy" element={<CompanyPhilosophy />} />
+          <Route path="teams" element={<Teams />} />
+        </Route>
+        <Route path="products" element={<Products />}>
+          <Route index element={<ProductList />} />
+          <Route path="category/:categoryId" element={<FilteredProducts />} />
+          <Route path="product-details/:id" element={<ProductDetails />} />
+        </Route>
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="login" element={<Login />} />
+        {/* admin routes */}
         <Route
-          // path="/admin"
+          path="admin"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <LazyAdminDashboard />
-            </Suspense>
+            <ProtectedRoute>
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyAdminLayout />
+              </Suspense>
+            </ProtectedRoute>
           }
         >
-          <Route index element={<LogoChange />} />
-          <Route path="banner" element={<AdminBanner />} />
-          {/* <Route path="about-us" element={<AdminAboutUs />} /> */}
-          <Route path="announcement" element={<AdminAnnouncement />}>
-            <Route index element={<AllAnncouncements />} />
-            <Route path="add-announcement" element={<AddAnnouncement />} />
-            <Route path="details/:id" element={<AnnouncementDetails />} />
-            <Route path="edit/:id" element={<EditAnnouncement />} />
+          <Route
+            // path="/admin"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyAdminDashboard />
+              </Suspense>
+            }
+          >
+            <Route index element={<LogoChange />} />
+            <Route path="banner" element={<AdminBanner />} />
+            {/* <Route path="about-us" element={<AdminAboutUs />} /> */}
+            <Route path="announcement" element={<AdminAnnouncement />}>
+              <Route index element={<AllAnncouncements />} />
+              <Route path="add-announcement" element={<AddAnnouncement />} />
+              <Route path="details/:id" element={<AnnouncementDetails />} />
+              <Route path="edit/:id" element={<EditAnnouncement />} />
+            </Route>
+            {/* <Route path="advanced-setteing" element={<AdminAdvance />} /> */}
           </Route>
-          {/* <Route path="advanced-setteing" element={<AdminAdvance />} /> */}
+          <Route path="products" element={<AdminProducts />}>
+            <Route index element={<AllProducts />} />
+            <Route path="add" element={<AddProduct />} />
+          </Route>
+          <Route path="products/edit/:id" element={<EditProduct />} />
+          <Route path="products/details/:id" element={<DetailsProducts />} />
+          <Route path="clients" element={<AdminClients />}>
+            <Route index element={<AllClients />} />
+            <Route path="add-client" element={<AddClient />} />
+            <Route path="products-of-client" element={<ClientProducts />} />
+          </Route>
+          <Route path="clients/edit/:id" element={<EditClient />} />
+          <Route path="clients/details/:id" element={<ClientDetails />} />
+          <Route path="company" element={<AdminCompany />} />
+          <Route path="inbox" element={<AdminContactInbox />} />
         </Route>
-        <Route path="products" element={<AdminProducts />}>
-          <Route index element={<AllProducts />} />
-          <Route path="add" element={<AddProduct />} />
-        </Route>
-        <Route path="products/edit/:id" element={<EditProduct />} />
-        <Route path="products/details/:id" element={<DetailsProducts />} />
-        <Route path="clients" element={<AdminClients />}>
-          <Route index element={<AllClients />} />
-          <Route path="add-client" element={<AddClient />} />
-          <Route path="products-of-client" element={<ClientProducts />} />
-        </Route>
-        <Route path="clients/edit/:id" element={<EditClient />} />
-        <Route path="clients/details/:id" element={<ClientDetails />} />
-        <Route path="company" element={<AdminCompany />} />
-        <Route path="inbox" element={<AdminContactInbox />} />
-      </Route>
-      <Route path="*" element={<NotFound404 />} />
-    </Routes>
+        <Route path="*" element={<NotFound404 />} />
+      </Routes>
+    </ScrollToTop>
   );
 };
 

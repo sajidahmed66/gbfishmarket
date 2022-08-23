@@ -20,14 +20,14 @@ const AboutUs = () => {
           <div className="flex flex-row flex-wrap items-center justify-start flex-1 flex-grow w-full md:flex-col md:w-1/4 ">
             {[
               { title: "About Us", path: "/about-us" },
-              { title: "Message from CEO", path: "/about-us/message-from-ceo" },
               { title: "History", path: "/about-us/history" },
-              { title: "Teams", path: "/about-us/teams" },
-
+              { title: "Message from CEO", path: "/about-us/message-from-ceo" },
               {
                 title: "Company Philosophy",
                 path: "/about-us/company-philosophy",
               },
+              { title: "Teams", path: "/about-us/teams" },
+
             ].map((item, index) => (
               <NavLink
                 key={index}

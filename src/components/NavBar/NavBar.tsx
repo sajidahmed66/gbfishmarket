@@ -52,7 +52,7 @@ const NavBar = () => {
             <img
               src={require("../../assets/img/gbicon.PNG")}
               alt="LOGO"
-              className="h-20 py-3"
+              className={`h-20 py-3  ${makeSticky}`}
             />
           </Link>
         </div>

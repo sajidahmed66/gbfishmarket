@@ -11,6 +11,8 @@ import { postContactForm } from "../../api/apiContactUs";
 import { Container } from "@mui/material";
 import WarningAmberSharpIcon from "@mui/icons-material/WarningAmberSharp";
 import { AxiosError } from "axios";
+import { getAllCompanyInfo } from "../../api/apiAdminCompany";
+import { CircularProgress } from "@mui/material";
 
 type IConatctFormValues = {
   name: string;
@@ -24,6 +26,23 @@ const ContactUs = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [isVarified, setIsVarified] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [companyDetails, setCompanyDetails] = React.useState<any>(null);
+  const [companyId, setCompanyId] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    getAllCompanyInfo()
+      .then((res) => {
+        setCompanyDetails(res.data.data);
+        setCompanyId(res.data.data.id);
+        setIsLoading(false);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, [companyId]);
+
 
   let validationSchema = Yup.object({
     name: Yup.string()
@@ -78,53 +97,71 @@ const ContactUs = () => {
             DROP US A MESSAGE
           </p>
         </div>
-        <div className="flex flex-row w-full lg:mx-8">
-          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
-            <div className="flex flex-col items-center justify-center w-full h-1/3">
-              <LocalPhoneSharpIcon
-                fontSize="large"
-                sx={{
-                  color: "#b8cc08",
-                }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start w-full h-2/3">
-              <p className="w-full text-xs break-words md:text-center md:text-base">
-                +880 1711 111 111
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
-            <div className="flex flex-col items-center justify-center w-full h-1/3">
-              <MarkunreadSharpIcon
-                fontSize="large"
-                sx={{
-                  color: "#b8cc08",
-                }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start w-full h-2/3">
-              <p className="w-full text-xs break-words md:text-center md:text-base ">
-                goldenbough@info.com
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-start w-1/3 h-40 p-4 m-2 bg-slate-100 ">
-            <div className="flex flex-col items-center justify-center w-full h-1/3">
-              <HomeSharpIcon
-                fontSize="large"
-                sx={{
-                  color: "#b8cc08",
-                }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start w-full h-2/3">
-              <p className="text-xs break-word md:text-center md:text-base">
-                khulna bangladesh
-              </p>
-            </div>
-          </div>
+        {!isLoading ? (
+
+        <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pl-8 md:pl-20 pr-8 pt-4 pb-6 mx-auto">
+          <ul className="flex flex-row flex-wrap items-center w-full justify-items-center md:flex-row md:flex-wrap">
+            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
+              <div className="flex flex-col items-center justify-center w-full h-1/3">
+                <LocalPhoneSharpIcon
+                  fontSize="large"
+                  sx={{
+                    color: "#b8cc08",
+                  }}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center w-full h-2/3">
+                Phone
+              </div>
+              <div className="flex flex-col items-center justify-center w-full h-2/3">
+                <div className="w-full text-xs break-words text-center md:text-base">
+                  {companyDetails ? companyDetails.phone : "+880 1711-111-111"}
+                </div>
+              </div>
+            </li>
+            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
+              <div className="flex flex-col items-center justify-center w-full h-1/3">
+                <MarkunreadSharpIcon
+                  fontSize="large"
+                  sx={{
+                    color: "#b8cc08",
+                  }}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center w-full h-2/3">
+                Email
+              </div>
+              <div className="flex flex-col items-center justify-start w-full h-2/3">
+                <p className="w-full text-xs break-words md:text-center md:text-base ">
+                  {companyDetails ? companyDetails.email : "goldenbough.bd@gmail.com"}
+                </p>
+              </div>
+            </li>
+            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
+              <div className="flex flex-col items-center justify-center w-full h-1/3">
+                <HomeSharpIcon
+                  fontSize="large"
+                  sx={{
+                    color: "#b8cc08",
+                  }}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center w-full h-2/3">
+                Address
+              </div>
+              <div className="flex flex-col items-center justify-start w-full h-2/3">
+                <p className="text-xs break-word md:text-center md:text-base">
+                  {companyDetails ? companyDetails.address : "Khulna, Bangladesh"}
+                </p>
+              </div>
+            </li>
+          </ul>
         </div>
+        ):(
+          <div className="flex flex-col items-center justify-center w-full py-8">
+          <CircularProgress />
+        </div>
+        )}
         {/* form div */}
         <div>
           <Formik
@@ -156,10 +193,10 @@ const ContactUs = () => {
               handleBlur,
             }) => {
               return (
-                <div className="w-full h-full p-5 ">
+                <div className="w-full justify-center h-full md:p-12 ">
                   <div
                     id="contact"
-                    className="px-8 py-4 bg-white rounded-tr rounded-br"
+                    className="px-8 py-4 bg-white rounded-tr rounded-br md:w-2/3 mx-auto justify-center item-center"
                   >
                     {success && (
                       <div
@@ -178,7 +215,7 @@ const ContactUs = () => {
                       </div>
                     )}
                     {/* full name and email */}
-                    <div className="flex-col flex-wrap justify-between block w-full mb-6 md:flex md:flex-row">
+                    <div className="flex-col flex-wrap justify-between block w-full  md:flex md:flex-row">
                       {/* full name */}
                       <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col ">
@@ -242,7 +279,7 @@ const ContactUs = () => {
                     </div>
                     {/* phone Number and genaral quere selection */}
 
-                    <div className="flex-col flex-wrap justify-between block w-full mb-6 md:flex md:flex-row">
+                    <div className="flex-col flex-wrap justify-between block w-full  md:flex md:flex-row">
                       <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col ">
                           {/* <label

@@ -167,20 +167,12 @@ const EditProduct = () => {
                   event.target.files !== null &&
                   event.target?.files?.length > 0
                 ) {
-                  // console.log(event.target.files[0]);
-                  // console.log(`Saving ${event.target.value}`);
                   setFieldValue("image_name", event.target.files[0].name);
                   setFile(event.target.files[0]);
-                  // console.log(file);
-                  // setIsButtonDisable(false);
                 }
               },
               onDrop: (event: React.DragEvent<HTMLElement>) => {
-                // console.log(`Drop ${event.dataTransfer.files[0].name}`);
-                // console.log(event.dataTransfer.files);
-                // file = event.dataTransfer.files[0];
                 setFile(event.dataTransfer.files[0]);
-                // setIsButtonDisable(false);
               },
             };
 

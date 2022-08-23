@@ -3,6 +3,9 @@ import { Box, Tab, Typography } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import AddCompany from "./nestedComponents/Company/AddCompany";
 import AboutUs from "./nestedComponents/Company/AboutUs";
+import History from "./nestedComponents/Company/AddHistory";
+import CEOMessage from "./nestedComponents/Company/CEOMessage";
+import Mission from "./nestedComponents/Company/Mission";
 
 const AdminCompany = () => {
   const [value, setValue] = React.useState("1");
@@ -24,13 +27,15 @@ const AdminCompany = () => {
               <Tab label="Company Profile" value="1" />
               <Tab label="About Us" value="2" />
               <Tab label="History" value="3" />
-              <Tab label="Teams" value="4" />
+              <Tab label="Message From CEO" value="4" />
+              <Tab label="Mission & Vision" value="5" />
             </TabList>
           </Box>
           <TabPanel value="1"><AddCompany/></TabPanel>
           <TabPanel value="2"><AboutUs/></TabPanel>
-          <TabPanel value="3">History</TabPanel>
-          <TabPanel value="4">Teams</TabPanel>
+          <TabPanel value="3"><History/></TabPanel>
+          <TabPanel value="4"><CEOMessage/></TabPanel>
+          <TabPanel value="5"><Mission/></TabPanel>
         </TabContext>
       </Box>
     </Box>

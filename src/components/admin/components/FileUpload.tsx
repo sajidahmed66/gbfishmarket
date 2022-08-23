@@ -128,9 +128,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       if (imageButton && e.target.files[0]) {
         setImageUrl(URL.createObjectURL(e.target.files[0]));
       }
-      // console.log(URL.createObjectURL(e.target.files[0]));
     }
-    // console.log(e);
     onChange(e);
   };
 
@@ -154,7 +152,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
           bgcolor={backgroundColor}
           className={classes.noMouseEvent}
         >
-          {imageButton && (
+          {imageButton && imageUrl && (
             <Box position="absolute" height={height} width={width}>
               <img alt="file upload" src={imageUrl} style={imageStyle} />
             </Box>

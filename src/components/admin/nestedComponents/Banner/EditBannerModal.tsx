@@ -94,24 +94,6 @@ const EditBannerModal: React.FC<ModalProps> = (props) => {
       });
   };
 
-  const initialValues = {
-    id: bannerDetails?.id,
-    name: "",
-    title: "",
-    description: "",
-    file_link: "",
-    show_on_home: false,
-  };
-
-  const updatedValues = {
-    id: bannerDetails?.id!,
-    name: bannerDetails?.name || "",
-    title: bannerDetails?.title || "",
-    description: bannerDetails?.description || "",
-    file_link: bannerDetails?.file_link || "",
-    show_on_home: bannerDetails?.show_on_home || false,
-  };
-
   return (
     <Modal
       open={editBannerShow}

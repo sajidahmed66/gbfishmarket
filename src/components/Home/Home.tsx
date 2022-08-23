@@ -19,7 +19,7 @@ const Home = () => {
         <IntroAbout />
         <DiscoverProducts />
         <Announcement />
-        {/* <LocalMap location={locationStatic} zoomLevel={8.5} /> */}
+        <LocalMap location={locationStatic} zoomLevel={8.5} />
       </div>
     </Layout>
   );

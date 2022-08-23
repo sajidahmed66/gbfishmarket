@@ -11,10 +11,8 @@ import { userInfo } from "../../../../utils/auth";
 import { ICompany } from "./data";
 
 export type FormValues = {
-  short_description: string;
-  address: string;
-  email: string;
-  phone: string;
+    mission_title: string;
+    mission_description: string;
 };
 
 const schema = Yup.object().shape({
@@ -29,7 +27,7 @@ const schema = Yup.object().shape({
   short_description: Yup.string().min(3).max(2000),
 });
 
-const AddCompany = () => {
+const Mission = () => {
   const [loading, setIsLoading] = React.useState<boolean>(false);
   
   const [companyId, setCompanyId] = React.useState<number>(0);
@@ -48,10 +46,8 @@ const AddCompany = () => {
       .then((res) => res.data)
       .then((res) => {
         formik.setValues({
-          short_description: res.data.short_description,
-          address: res.data.address,
-          email: res.data.email,
-          phone: res.data.phone,
+            mission_title: res.data.mission_title,
+            mission_description: res.data.mission_description,
         });
         setCompanyId(res.data.id);
         setIsLoading(false);
@@ -64,15 +60,12 @@ const AddCompany = () => {
 
   const formik = useFormik({
     initialValues: {
-      phone:  "",
-      address: "",
-      email:  "",
-      short_description: "",
+        mission_title:  "",
+        mission_description: "",
     },
     onSubmit: (values: FormValues, { resetForm }) => {
       const finalValues = getFormData(values);
       const token = userInfo().token as string;
-      if (companyId) {
         updateCompanyInfo(finalValues, companyId, token)
           .then((res) => {
             setIsLoading(false);
@@ -82,16 +75,7 @@ const AddCompany = () => {
             setIsLoading(false);
             setError(err.response.data.error);
           });
-      } else {
-        addCompanyInfo(finalValues, token)
-          .then((res) => {
-            console.log(res);
-            resetForm();
-          })
-          .catch((err: any) => {
-            console.log(err);
-          });
-      }
+      
     },
     validationSchema: schema,
   });
@@ -107,53 +91,26 @@ const AddCompany = () => {
           <Stack spacing={2}>
             <TextField
               fullWidth
-              id="email"
-              name="email"
-              label="Email"
-              value={formik.values.email}
+              id="mission_title"
+              name="mission_title"
+              label="Mission Title"
+              value={formik.values.mission_title}
               onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              error={formik.touched.mission_title && Boolean(formik.errors.mission_title)}
+              helperText={formik.touched.mission_title && formik.errors.mission_title}
             />
             <TextField
               fullWidth
-              id="phone"
-              name="phone"
-              label="Phone Number"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
-            />
-            <TextField
-              fullWidth
-              id="address"
-              name="address"
-              label="Company Address"
-              value={formik.values.address}
-              onChange={formik.handleChange}
-              error={formik.touched.address && Boolean(formik.errors.address)}
-              helperText={formik.touched.address && formik.errors.address}
-            />
-            <TextField
-              fullWidth
-              id="short_description"
-              name="short_description"
-              label="Company Short Description"
+              id="mission_description"
+              name="mission_description"
+              label="Mission Description"
               multiline
               rows={4}
-              value={formik.values.short_description}
+              value={formik.values.mission_description}
               onChange={formik.handleChange}
-              error={
-                formik.touched.short_description &&
-                Boolean(formik.errors.short_description)
-              }
-              helperText={
-                formik.touched.short_description &&
-                formik.errors.short_description
-              }
+              error={formik.touched.mission_description && Boolean(formik.errors.mission_description)}
+              helperText={formik.touched.mission_description && formik.errors.mission_description}
             />
-
             <Box className="flex items-center justify-start w-full mt-4">
               <Button
                 className="h-12 py-4 w-28"
@@ -175,4 +132,4 @@ const AddCompany = () => {
   );
 };
 
-export default AddCompany;
+export default Mission;

@@ -1,5 +1,12 @@
 import React from "react";
-import { Alert, Box, Container, Snackbar, Stack } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Container,
+  Snackbar,
+  Stack,
+} from "@mui/material";
 import { Formik, FormikHelpers, useFormik } from "formik";
 import * as Yup from "yup";
 import { TextField } from "@mui/material";
@@ -10,6 +17,7 @@ import {
   updateCompanyInfo,
 } from "../../../../api/apiAdminCompany";
 import { userInfo } from "../../../../utils/auth";
+import { ICompany } from "./data";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -27,6 +35,7 @@ export type FormValues = {
   title: string;
   description: string;
   image_name: string;
+  image_link: string;
 };
 
 const AboutUs = () => {
@@ -35,6 +44,9 @@ const AboutUs = () => {
   const [error, setError] = React.useState<string>("");
   const [loading, setIsLoading] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>();
+  const [companyDetails, setCompanyDetails] = React.useState<ICompany | null>(
+    null
+  );
 
   const getFormData = (object: FormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
@@ -44,21 +56,20 @@ const AboutUs = () => {
 
   React.useEffect(() => {
     setIsLoading(true);
-    getAllCompanyInfo().then((res) => res.data)
+    getAllCompanyInfo()
       .then((res) => {
-        setIsLoading(false);
-        console.log(res.data.id);
-        console.log(res);
-        if (res.data.id === null) {
-          console.log("No data");
+        if (res.data.data.id === null) {
+          setError("No data");
         } else {
-          setCompanyId(res.data.id);
+          setCompanyDetails(res.data.data);
+          setCompanyId(res.data.data.id);
+          setIsLoading(false);
         }
       })
       .catch((err: any) => {
         console.log(err);
       });
-  }, [companyId]);
+  }, []);
 
   const handleSubmit = (values: FormValues) => {
     setIsLoading(true);
@@ -75,14 +86,6 @@ const AboutUs = () => {
         setError(err.response.data.error);
       });
   };
-
-  const formik = useFormik({
-    initialValues: { phone: "", address: "", email: "", short_description: "" },
-    onSubmit: (values) => {
-      console.log("Logging in ", values);
-    },
-    validationSchema: schema,
-  });
 
   return (
     <Container maxWidth="lg">
@@ -111,103 +114,131 @@ const AboutUs = () => {
               {error}
             </Alert>
           </Snackbar>
-          <Formik
-            initialValues={{
-              title: "",
-              description: "",
-              image_name: "",
-            }}
-            onSubmit={(
-              values: FormValues,
-              { setSubmitting, resetForm }: FormikHelpers<FormValues>
-            ) => {
-              handleSubmit(values);
-              setSubmitting(false);
-              resetForm();
-            }}
-          >
-            {({
-              values,
-              setValues,
-              isSubmitting,
-              touched,
-              errors,
-              setFieldValue,
-              handleSubmit,
-            }) => {
-              const fileUploadProp: FileUploadProps = {
-                accept: "image/*",
-                onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-                  if (
-                    event.target.files !== null &&
-                    event.target?.files?.length > 0
-                  ) {
-                    setFieldValue("image_link", event.target.files[0].name);
-                    setFile(event.target.files[0]);
-                  }
-                },
-                onDrop: (event: React.DragEvent<HTMLElement>) => {
-                  setFile(event.dataTransfer.files[0]);
-                },
-              };
 
-              return (
-                <Box className="w-full p-4 ">
-                  <Stack spacing={2}>
-                    <TextField
-                      label="Title"
-                      name="title"
-                      value={values.title}
-                      onChange={(e) =>
-                        setValues({
-                          ...values,
-                          title: e.target.value,
-                        })
-                      }
-                      error={touched.title && !!errors.title}
-                      helperText={errors.title}
-                    />
-                    <TextField
-                      label="Description"
-                      name="description"
-                      multiline
-                      rows={8}
-                      value={values.description}
-                      onChange={(e) =>
-                        setValues({
-                          ...values,
-                          description: e.target.value,
-                        })
-                      }
-                      error={touched.description && !!errors.description}
-                      helperText={errors.description}
-                    />
+          {!loading && companyId ? (
+            <Formik
+              initialValues={{
+                title: companyDetails?.title ? companyDetails?.title : "",
+                description: companyDetails?.description
+                  ? companyDetails?.description
+                  : "",
+                image_name: "",
+                image_link: companyDetails?.image_link
+                  ? companyDetails?.image_link
+                  : "",
+              }}
+              onSubmit={(
+                values: FormValues,
+                { setSubmitting, resetForm }: FormikHelpers<FormValues>
+              ) => {
+                handleSubmit(values);
+                setSubmitting(false);
+                resetForm();
+              }}
+            >
+              {({
+                values,
+                setValues,
+                isSubmitting,
+                touched,
+                errors,
+                setFieldValue,
+                handleSubmit,
+              }) => {
+                const fileUploadProp: FileUploadProps = {
+                  accept: "image/*",
+                  // image: {
+                  //   url: companyDetails?.image_link
+                  //     ? `${companyDetails.image_link}`
+                  //     : values.image_link,
+                  // },
+                  onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                    if (
+                      event.target.files !== null &&
+                      event.target?.files?.length > 0
+                    ) {
+                      setFieldValue("image_link", event.target.files[0].name);
+                      setFile(event.target.files[0]);
+                    }
+                  },
+                  onDrop: (event: React.DragEvent<HTMLElement>) => {
+                    setFile(event.dataTransfer.files[0]);
+                  },
+                };
 
-                    <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
-                      <FileUpload
-                        {...fileUploadProp}
-                        imageButton
-                        height="100px"
-                        width="750px"
+                return (
+                  <Box className="w-full p-4 ">
+                    <Stack spacing={2}>
+                      {console.log(values)}
+                      <TextField
+                        label="Title"
+                        name="title"
+                        value={values.title}
+                        onChange={(e) =>
+                          setValues({
+                            ...values,
+                            title: e.target.value,
+                          })
+                        }
+                        error={touched.title && !!errors.title}
+                        helperText={errors.title}
                       />
+                      <TextField
+                        label="Description"
+                        name="description"
+                        multiline
+                        rows={8}
+                        value={values.description}
+                        onChange={(e) =>
+                          setValues({
+                            ...values,
+                            description: e.target.value,
+                          })
+                        }
+                        error={touched.description && !!errors.description}
+                        helperText={errors.description}
+                      />
+
+                      <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
+                        {companyDetails?.image_link ? (
+                          <FileUpload
+                            {...fileUploadProp}
+                            imageButton
+                            height="100px"
+                            width="750px"
+                            image={{ url: `${companyDetails?.image_link}` }}
+                          />
+                        ) : (
+                          <FileUpload
+                            {...fileUploadProp}
+                            imageButton
+                            height="100px"
+                            width="750px"
+                          />
+                        )}
+                      </Box>
+                    </Stack>
+                    <Box className="flex items-center justify-start w-full mt-4">
+                      <Button
+                        className="h-12 py-4 w-28"
+                        type="submit"
+                        variant="contained"
+                        onClick={() => {
+                          handleSubmit();
+                        }}
+                      >
+                        Submit
+                      </Button>
                     </Box>
-                  </Stack>
-                  <Box className="flex items-center justify-start w-full mt-4">
-                    <Button
-                      className="h-12 py-4 w-28"
-                      type="submit"
-                      variant="contained"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
-                    >
-                      Submit
-                    </Button>
                   </Box>
-                </Box>
-              );
-            }}
-          </Formik>
+                );
+              }}
+            </Formik>
+          ) : (
+            <div className="flex flex-col items-center justify-center w-full py-8">
+              <CircularProgress />
+            </div>
+          )}
         </Box>
       </Box>
     </Container>

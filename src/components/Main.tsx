@@ -16,6 +16,7 @@ import Products from "./Products/Products";
 import ProductList from "./Products/nestedComponent/ProductList";
 import ProductDetails from "./Products/nestedComponent/ProductsDetails";
 import FilteredProducts from "./Products/nestedComponent/FilteredProducts";
+import AddCategory from "./admin/nestedComponents/Products/AddCategoryProducts";
 // import FilteredProducts
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
@@ -37,6 +38,7 @@ import AllProducts from "./admin/nestedComponents/Products/AllProducts";
 import AddProduct from "./admin/nestedComponents/Products/AddProduct";
 import EditProduct from "./admin/nestedComponents/Products/EditProduct";
 import FeatureProduct from "./admin/nestedComponents/Products/FeatureProduct";
+import CategoryProducts from "./admin/nestedComponents/Products/CategoryProducts";
 import AllClients from "./admin/nestedComponents/Clients/AllClients";
 import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
@@ -101,6 +103,8 @@ const Main = () => {
           <Route path="products" element={<AdminProducts />}>
             <Route index element={<AllProducts />} />
             <Route path="add" element={<AddProduct />} />
+            <Route path="category" element={<CategoryProducts />} />
+            <Route path="category/add-category" element={<AddCategory />} />
           </Route>
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/details/:id" element={<DetailsProducts />} />

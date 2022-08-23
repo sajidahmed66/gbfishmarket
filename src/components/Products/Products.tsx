@@ -21,13 +21,29 @@ const Products = () => {
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
             <p className="text-5xl text-white">Products</p>
-            <div className="flex flex-row my-2 text-3xl hover:text-orange-400">
-              <p>home</p> {"|"}
-              <p> products</p>
+            <div className="flex flex-row my-2 text-3xl text-white capitalize transition-colors duration-500 font-skModernist ">
+              <p
+                className="px-1 cursor-pointer hover:text-orange-400 "
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                home
+              </p>{" "}
+              {"|"}
+              <p
+                className="px-1 cursor-pointer hover:text-orange-400"
+                onClick={() => {
+                  navigate("/products");
+                }}
+              >
+                {" "}
+                products
+              </p>
               {pathnamearry.length === 4 && pathnamearry[2] === "category" ? (
                 <>
                   {"|"}
-                  <p>
+                  <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
                       productsCategoryData.find(
                         (item) => item.id === parseInt(pathnamearry[3])
@@ -42,7 +58,7 @@ const Products = () => {
               pathnamearry[2] === "product-details" ? (
                 <>
                   {"|"}
-                  <p>
+                  <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
                       productsCategoryData.find(
                         (item) => item.id === parseInt(pathnamearry[3])

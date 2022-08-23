@@ -40,3 +40,29 @@ export const deleteProduct = (id: number, token: string) => {
     },
   });
 };
+
+//category related functions
+
+export const getProductCategories = () => {
+  return axios.get(`${API_URL}/admin/category-products`);
+};
+
+export const createProductCategory = (data: FormData, token: string) => {
+  return axios.post(`${API_URL}/admin/category-products`, data, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const updateProductCategory = (
+  data: FormData,
+  id: number,
+  token: string
+) => {
+  return axios.put(`${API_URL}/admin/category-products/${id}`, data, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};

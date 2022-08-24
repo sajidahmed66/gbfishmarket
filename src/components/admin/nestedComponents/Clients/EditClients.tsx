@@ -17,7 +17,6 @@ import {
 import { userInfo } from "../../../../utils/auth";
 import { IClient } from "./AllClients";
 import { IClientFormValues } from "./AddClient";
-import { BASE_URL } from "../../../../utils/config";
 
 const EditClients: React.FC = () => {
   const { id } = useParams();

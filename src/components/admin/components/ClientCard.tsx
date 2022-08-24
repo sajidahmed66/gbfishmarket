@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { IClient } from "../nestedComponents/Clients/AllClients";
-import { BASE_URL } from "../../../utils/config";
 import { useNavigate } from "react-router-dom";
 import { updateProduct } from "../../../api/apiAdminProducts";
 

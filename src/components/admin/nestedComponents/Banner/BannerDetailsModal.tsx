@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { IBanner } from "./data";
-import { BASE_URL } from "../../../../utils/config";
 
 const style = {
   position: "absolute" as "absolute",

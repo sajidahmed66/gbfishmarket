@@ -55,6 +55,10 @@ export const createProductCategory = (data: FormData, token: string) => {
   });
 };
 
+export const getProductsCategoryById = (id: number) => {
+  return axios.get(`${API_URL}/admin/category-products/${id}`);
+};
+
 export const updateProductCategory = (
   data: FormData,
   id: number,

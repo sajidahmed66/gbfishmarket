@@ -17,6 +17,7 @@ import ProductList from "./Products/nestedComponent/ProductList";
 import ProductDetails from "./Products/nestedComponent/ProductsDetails";
 import FilteredProducts from "./Products/nestedComponent/FilteredProducts";
 import AddCategory from "./admin/nestedComponents/Products/AddCategoryProducts";
+import EditCategory from "./admin/nestedComponents/Products/EditCategoryProducts";
 // import FilteredProducts
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
@@ -105,6 +106,10 @@ const Main = () => {
             <Route path="add" element={<AddProduct />} />
             <Route path="category" element={<CategoryProducts />} />
             <Route path="category/add-category" element={<AddCategory />} />
+            <Route
+              path="category/edit-category/:id"
+              element={<EditCategory />}
+            />
           </Route>
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/details/:id" element={<DetailsProducts />} />

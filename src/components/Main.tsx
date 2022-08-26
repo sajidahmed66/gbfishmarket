@@ -29,14 +29,11 @@ import AdminCompany from "./admin/AdminCompany";
 import AdminContactInbox from "./admin/AdminContactInbox";
 import LogoChange from "./admin/nestedComponents/LogoChange";
 import AdminBanner from "./admin/nestedComponents/AdminBanner";
-// import AdminAboutUs from "./admin/nestedComponents/AdminAboutUs";
 import AdminAnnouncement from "./admin/nestedComponents/AdminAnnouncement";
-// import AdminAdvance from "./admin/nestedComponents/AdminAdvance";
 import DetailsProducts from "./admin/nestedComponents/Products/DetailsProducts";
 import AllProducts from "./admin/nestedComponents/Products/AllProducts";
 import AddProduct from "./admin/nestedComponents/Products/AddProduct";
 import EditProduct from "./admin/nestedComponents/Products/EditProduct";
-import FeatureProduct from "./admin/nestedComponents/Products/FeatureProduct";
 import AllClients from "./admin/nestedComponents/Clients/AllClients";
 import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
@@ -46,6 +43,10 @@ import AllAnncouncements from "./admin/nestedComponents/Announcements/AllAnncoun
 import AddAnnouncement from "./admin/nestedComponents/Announcements/AddAnnouncement";
 import AnnouncementDetails from "./admin/nestedComponents/Announcements/AnnouncementDetails";
 import EditAnnouncement from "./admin/nestedComponents/Announcements/EditAnnouncement";
+import Announcements from "./Announcements/Announcements";
+import AnnouncementsList from "./Announcements/nestedComponent/AnnouncementsList";
+import FilteredAnnouncements from "./Announcements/nestedComponent/FilteredAnnouncements";
+import AnnouncementsDetails from "./Announcements/nestedComponent/AnnouncementsDetails";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -65,6 +66,11 @@ const Main = () => {
           <Route index element={<ProductList />} />
           <Route path="category/:categoryId" element={<FilteredProducts />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
+        </Route>
+        <Route path="announcements" element={<Announcements />}>
+          <Route index element={<AnnouncementsList />} />
+          <Route path="announcement-category/:categoryId" element={<FilteredAnnouncements />} />
+          <Route path="announcement-details/:id" element={<AnnouncementsDetails />} />
         </Route>
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="login" element={<Login />} />
@@ -89,14 +95,12 @@ const Main = () => {
           >
             <Route index element={<LogoChange />} />
             <Route path="banner" element={<AdminBanner />} />
-            {/* <Route path="about-us" element={<AdminAboutUs />} /> */}
             <Route path="announcement" element={<AdminAnnouncement />}>
               <Route index element={<AllAnncouncements />} />
               <Route path="add-announcement" element={<AddAnnouncement />} />
               <Route path="details/:id" element={<AnnouncementDetails />} />
               <Route path="edit/:id" element={<EditAnnouncement />} />
             </Route>
-            {/* <Route path="advanced-setteing" element={<AdminAdvance />} /> */}
           </Route>
           <Route path="products" element={<AdminProducts />}>
             <Route index element={<AllProducts />} />

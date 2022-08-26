@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { isTemplateExpression } from "typescript";
 import { productsCategoryData } from "../../../data/produtsData";
 
 interface Idata {
@@ -7,39 +8,40 @@ interface Idata {
   name: string;
   image: any;
 }
-const FilteredProducts = () => {
+const FilteredAnnouncements = () => {
   const { categoryId } = useParams();
+  console.log(categoryId);
   const navigate = useNavigate();
-  const [filteredProducts, setFilteredProducts] = useState<Idata[]>([]);
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState<Idata[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    let getproducts = categoryId
+    let getAnnouncements = categoryId
       ? productsCategoryData.filter((item) => item.id === parseInt(categoryId))
       : ([] as Idata[]);
-    setFilteredProducts(getproducts);
+    setFilteredAnnouncements(getAnnouncements);
     setIsLoading(false);
     return () => {
-      setFilteredProducts([]);
+      setFilteredAnnouncements([]);
     };
   }, [categoryId]);
 
-  // setFilteredProducts(getproducts);
+  // setFilteredAnnouncements(getAnnouncements);
   return (
     <div className="grid w-full grid-cols-3 gap-4 mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4">
-      {filteredProducts.map((item) => (
+      {filteredAnnouncements.map((item) => (
         <div className="flex flex-col items-center">
           <div className="w-full bg-white h-36 md:h-48 ">
             <img
               src={item.image}
               alt={item.name}
               className="object-cover w-full h-full hover:opacity-50"
-              onClick={() => navigate(`/products/product-details/${item.id}`)}
+              onClick={() => navigate(`/announcements/announcement-details/${item.id}`)}
             />
           </div>
           <div className="w-full h-12 ">
-            <p className="text-sm text-center text-gray-800 md:text-base">
+            <p className="text-base text-center text-gray-800 md:text-xl">
               {item.name}
             </p>
           </div>
@@ -49,4 +51,4 @@ const FilteredProducts = () => {
   );
 };
 
-export default FilteredProducts;
+export default FilteredAnnouncements;

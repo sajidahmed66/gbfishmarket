@@ -97,6 +97,18 @@ const NavBar = () => {
             </li>
             <li>
               <NavLink
+                to="/announcements"
+                style={({ isActive }) =>
+                  isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
+                }
+              >
+                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
+                  Announcements
+                </span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/contact-us"
                 style={({ isActive }) =>
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
@@ -152,6 +164,14 @@ const NavBar = () => {
                       className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/announcements"
+                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
+                    >
+                      Announcements
                     </Link>
                   </li>
                   <li>

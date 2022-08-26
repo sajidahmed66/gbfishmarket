@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import Layout from "../Common/Layout";
 import { productsData, productsCategoryData } from "../../data/produtsData";
 import Container from "@mui/material/Container";
-import { useLocation, useNavigate, Outlet, Link } from "react-router-dom";
-const Products = () => {
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
+const Announcements = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   let pathnamearry = location.pathname.split("/");
   return (
-    <Layout title="Our Products">
+    <Layout title="Our Announcements">
       {/* page banner */}
       <div className="w-full h-96">
         <div className="absolute w-full h-96">
@@ -20,11 +20,11 @@ const Products = () => {
             alt="aboutimg"
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
-            <p className="text-5xl text-white text-transform: uppercase">Products</p>
-            <div className="flex flex-row my-2 text-2xl text-white">
-              <Link to={'/'} className="" >home</Link> {"|"}
-              <Link to={'/products'}> products</Link>
-              {pathnamearry.length === 4 && pathnamearry[2] === "category" ? (
+            <p className="text-5xl text-white">Announcements</p>
+            <div className="flex flex-row my-2 text-3xl hover:text-orange-400">
+              <p>home</p> {"|"}
+              <p> Announcements</p>
+              {pathnamearry.length === 4 && pathnamearry[2] === "announcement-category" ? (
                 <>
                   {"|"}
                   <p>
@@ -39,7 +39,7 @@ const Products = () => {
                 <></>
               )}
               {pathnamearry.length === 4 &&
-              pathnamearry[2] === "product-details" ? (
+              pathnamearry[2] === "announcement-details" ? (
                 <>
                   {"|"}
                   <p>
@@ -58,21 +58,21 @@ const Products = () => {
         </div>
       </div>
       {/* end of page banner */}
-      {/* products section */}
-      <Container maxWidth="lg">
-        <div className="flex flex-col items-center justify-start w-full px-2 md:px-16 mt-24 md:flex-row md:items-start">
+      {/* Announcements section */}
+      <Container maxWidth="md">
+        <div className="flex flex-col items-center justify-start w-full px-16 mt-24 md:flex-row md:items-start">
           {/* category filter container  */}
-          <div className="flex flex-row items-center justify-start w-full px-4 py-8 md:flex-col md:w-1/4 lg:w-1/4 bg-slate-100">
-            <ul className="w-full">
-              <li className="flex flex-row items-center justify-start h-4 m-3 ">
+          <div className="flex flex-row items-center justify-start w-full px-4 py-12 md:flex-col md:w-1/4 lg:w-1/4 bg-slate-100">
+            <ul>
+              <li className="flex flex-row items-center justify-start h-4 m-2 ">
                 <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
                 <p
                   className={
-                    location.pathname === "/products"
-                      ? "pl-3 text-base text-[#3a6ea5] cursor-pointer"
-                      : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
+                    location.pathname === "/announcements"
+                      ? "pl-2 text-lg text-[#3a6ea5] cursor-pointer"
+                      : "pl-3 text-base hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
                   }
-                  onClick={() => navigate("/products")}
+                  onClick={() => navigate("/announcements")}
                 >
                   All Category
                 </p>
@@ -80,16 +80,16 @@ const Products = () => {
               {productsCategoryData.map((item, index) => (
                 <li
                   key={index}
-                  className="flex flex-row items-center justify-start h-4 m-3 "
+                  className="flex flex-row items-center justify-start h-4 m-2 "
                 >
                   <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
                   <p
                     className={
-                      location.pathname === `/products/category/${item.id}`
-                        ? "pl-3 text-base text-[#3a6ea5] cursor-pointer"
-                        : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
+                      location.pathname === `/announcements/announcement-category/${item.id}`
+                        ? "pl-2 text-lg text-[#3a6ea5] cursor-pointer"
+                        : "pl-3 text-base hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
                     }
-                    onClick={() => navigate(`/products/category/${item.id}`)}
+                    onClick={() => navigate(`/announcements/announcement-category/${item.id}`)}
                   >
                     {item.name}
                   </p>
@@ -109,4 +109,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Announcements;

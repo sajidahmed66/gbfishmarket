@@ -31,6 +31,16 @@ const AdminProducts = () => {
             >
               Browse All Product
             </NavLink>
+            <NavLink
+              className={
+                location.pathname === "/admin/products/category"
+                  ? "tab-link active ring-transparent"
+                  : "tab-link ring-transparent"
+              }
+              to="/admin/products/category"
+            >
+              Product Categories
+            </NavLink>
 
             <NavLink
               className={

@@ -16,6 +16,8 @@ import Products from "./Products/Products";
 import ProductList from "./Products/nestedComponent/ProductList";
 import ProductDetails from "./Products/nestedComponent/ProductsDetails";
 import FilteredProducts from "./Products/nestedComponent/FilteredProducts";
+import AddCategory from "./admin/nestedComponents/Products/AddCategoryProducts";
+import EditCategory from "./admin/nestedComponents/Products/EditCategoryProducts";
 // import FilteredProducts
 import ContactUs from "./ContactUs/ContactUS";
 import NotFound404 from "./404/NotFound404";
@@ -29,11 +31,13 @@ import AdminCompany from "./admin/AdminCompany";
 import AdminContactInbox from "./admin/AdminContactInbox";
 import LogoChange from "./admin/nestedComponents/LogoChange";
 import AdminBanner from "./admin/nestedComponents/AdminBanner";
-import AdminAnnouncement from "./admin/nestedComponents/AdminAnnouncement";
+import AdminAnnouncement from "./admin/AdminAnnouncement";
 import DetailsProducts from "./admin/nestedComponents/Products/DetailsProducts";
 import AllProducts from "./admin/nestedComponents/Products/AllProducts";
 import AddProduct from "./admin/nestedComponents/Products/AddProduct";
 import EditProduct from "./admin/nestedComponents/Products/EditProduct";
+import FeatureProduct from "./admin/nestedComponents/Products/FeatureProduct";
+import CategoryProducts from "./admin/nestedComponents/Products/CategoryProducts";
 import AllClients from "./admin/nestedComponents/Clients/AllClients";
 import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
@@ -69,8 +73,14 @@ const Main = () => {
         </Route>
         <Route path="announcements" element={<Announcements />}>
           <Route index element={<AnnouncementsList />} />
-          <Route path="announcement-category/:categoryId" element={<FilteredAnnouncements />} />
-          <Route path="announcement-details/:id" element={<AnnouncementsDetails />} />
+          <Route
+            path="announcement-category/:categoryId"
+            element={<FilteredAnnouncements />}
+          />
+          <Route
+            path="announcement-details/:id"
+            element={<AnnouncementsDetails />}
+          />
         </Route>
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="login" element={<Login />} />
@@ -95,16 +105,28 @@ const Main = () => {
           >
             <Route index element={<LogoChange />} />
             <Route path="banner" element={<AdminBanner />} />
-            <Route path="announcement" element={<AdminAnnouncement />}>
-              <Route index element={<AllAnncouncements />} />
-              <Route path="add-announcement" element={<AddAnnouncement />} />
-              <Route path="details/:id" element={<AnnouncementDetails />} />
-              <Route path="edit/:id" element={<EditAnnouncement />} />
-            </Route>
+          </Route>
+          <Route path="announcement" element={<AdminAnnouncement />}>
+            <Route index element={<AllAnncouncements />} />
+            <Route path="category" element={<CategoryProducts />} />
+            <Route path="category/add-category" element={<AddCategory />} />
+            <Route
+              path="category/edit-category/:id"
+              element={<EditCategory />}
+            />
+            <Route path="add-announcement" element={<AddAnnouncement />} />
+            <Route path="details/:id" element={<AnnouncementDetails />} />
+            <Route path="edit/:id" element={<EditAnnouncement />} />
           </Route>
           <Route path="products" element={<AdminProducts />}>
             <Route index element={<AllProducts />} />
             <Route path="add" element={<AddProduct />} />
+            <Route path="category" element={<CategoryProducts />} />
+            <Route path="category/add-category" element={<AddCategory />} />
+            <Route
+              path="category/edit-category/:id"
+              element={<EditCategory />}
+            />
           </Route>
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/details/:id" element={<DetailsProducts />} />

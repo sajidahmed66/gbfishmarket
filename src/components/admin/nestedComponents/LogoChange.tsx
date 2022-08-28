@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import FileUpload, { FileUploadProps } from "../components/FileUpload";
 import { getLogo, addLogo, updateLogo } from "../../../api/apiAdminDashboard";
 import { userInfo } from "../../../utils/auth";
-import { BASE_URL } from "../../../utils/config";
 
 const useStyles = createUseStyles({
   root: {

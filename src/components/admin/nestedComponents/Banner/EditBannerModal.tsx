@@ -19,7 +19,6 @@ import { getBannerById, updateBanner } from "../../../../api/apiAdminDashboard";
 import { IBanner } from "./data";
 import { Formik, FormikHelpers } from "formik";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
-import { BASE_URL } from "../../../../utils/config";
 
 const style = {
   position: "absolute" as "absolute",

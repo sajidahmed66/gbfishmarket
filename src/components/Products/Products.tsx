@@ -20,14 +20,35 @@ const Products = () => {
             alt="aboutimg"
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
-            <p className="text-5xl text-white text-transform: uppercase">Products</p>
+
+            {/* <p className="text-5xl text-white text-transform: uppercase">Products</p>
             <div className="flex flex-row my-2 text-2xl text-white">
               <Link to={'/'} className="" >home</Link> {"|"}
-              <Link to={'/products'}> products</Link>
+              <Link to={'/products'}> products</Link> */}
+            <p className="text-5xl text-white">Products</p>
+            <div className="flex flex-row my-2 text-3xl text-white capitalize transition-colors duration-500 font-skModernist ">
+              <p
+                className="px-1 cursor-pointer hover:text-orange-400 "
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                home
+              </p>{" "}
+              {"|"}
+              <p
+                className="px-1 cursor-pointer hover:text-orange-400"
+                onClick={() => {
+                  navigate("/products");
+                }}
+              >
+                {" "}
+                products
+              </p>
               {pathnamearry.length === 4 && pathnamearry[2] === "category" ? (
                 <>
                   {"|"}
-                  <p>
+                  <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
                       productsCategoryData.find(
                         (item) => item.id === parseInt(pathnamearry[3])
@@ -42,7 +63,7 @@ const Products = () => {
               pathnamearry[2] === "product-details" ? (
                 <>
                   {"|"}
-                  <p>
+                  <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
                       productsCategoryData.find(
                         (item) => item.id === parseInt(pathnamearry[3])
@@ -60,7 +81,7 @@ const Products = () => {
       {/* end of page banner */}
       {/* products section */}
       <Container maxWidth="lg">
-        <div className="flex flex-col items-center justify-start w-full px-2 md:px-16 mt-24 md:flex-row md:items-start">
+        <div className="flex flex-col items-center justify-start w-full px-2 md:px-16 mt-2 md:mt-24 md:flex-row md:items-start">
           {/* category filter container  */}
           <div className="flex flex-row items-center justify-start w-full px-4 py-8 md:flex-col md:w-1/4 lg:w-1/4 bg-slate-100">
             <ul className="w-full">

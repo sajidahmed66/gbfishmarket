@@ -5,7 +5,7 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { IAnnouncement } from "../AdminAnnouncement";
+import { IAnnouncement } from "../../AdminAnnouncement";
 import { useNavigate } from "react-router-dom";
 import AnnouncementCard from "../../components/AnnouncementCard";
 import {

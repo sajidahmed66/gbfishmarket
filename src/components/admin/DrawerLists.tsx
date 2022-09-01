@@ -54,6 +54,16 @@ const DrawerLists = () => {
       </ListItemButton>
       <ListItemButton
         onClick={() => {
+          navigate("/admin/announcement");
+        }}
+      >
+        <ListItemIcon>
+          <CategoryIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Announcements"} />
+      </ListItemButton>
+      <ListItemButton
+        onClick={() => {
           navigate("/admin/company");
         }}
       >

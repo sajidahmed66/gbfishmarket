@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
 import Layout from "../Common/Layout";
-import { productsData, productsCategoryData } from "../../data/produtsData";
+import { productsCategoryData } from "../../data/produtsData";
 import Container from "@mui/material/Container";
-import { useLocation, useNavigate, Outlet, Link } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 const Products = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   let pathnamearry = location.pathname.split("/");
   return (
     <Layout title="Our Products">
@@ -25,8 +22,8 @@ const Products = () => {
             <div className="flex flex-row my-2 text-2xl text-white">
               <Link to={'/'} className="" >home</Link> {"|"}
               <Link to={'/products'}> products</Link> */}
-            <p className="text-5xl text-white">Products</p>
-            <div className="flex flex-row my-2 text-3xl text-white capitalize transition-colors duration-500 font-skModernist ">
+            <p className="text-5xl text-white text-transform: uppercase">Products</p>
+            <div className="flex flex-row my-2 text-2xl text-white capitalize transition-colors duration-500 font-skModernist ">
               <p
                 className="px-1 cursor-pointer hover:text-orange-400 "
                 onClick={() => {

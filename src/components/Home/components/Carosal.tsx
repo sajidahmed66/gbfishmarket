@@ -35,7 +35,6 @@ const Carosal = () => {
         let displayedBanner = data.filter(
           (item: IBanner) => item?.show_on_home
         );
-        console.log(displayedBanner);
         setBanner(displayedBanner);
       })
       .catch((err) => console.log(err));

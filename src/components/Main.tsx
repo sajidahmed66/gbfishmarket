@@ -43,7 +43,7 @@ import EditClient from "./admin/nestedComponents/Clients/EditClients";
 import ClientProducts from "./admin/nestedComponents/Clients/ClientProducts";
 import AddClient from "./admin/nestedComponents/Clients/AddClient";
 import ClientDetails from "./admin/nestedComponents/Clients/ClientDetails";
-import AllAnncouncements from "./admin/nestedComponents/Announcements/AllAnncouncements";
+import AllAnnouncements from "./admin/nestedComponents/Announcements/AllAnncouncements";
 import AddAnnouncement from "./admin/nestedComponents/Announcements/AddAnnouncement";
 import AnnouncementDetails from "./admin/nestedComponents/Announcements/AnnouncementDetails";
 import EditAnnouncement from "./admin/nestedComponents/Announcements/EditAnnouncement";
@@ -51,6 +51,9 @@ import Announcements from "./Announcements/Announcements";
 import AnnouncementsList from "./Announcements/nestedComponent/AnnouncementsList";
 import FilteredAnnouncements from "./Announcements/nestedComponent/FilteredAnnouncements";
 import AnnouncementsDetails from "./Announcements/nestedComponent/AnnouncementsDetails";
+import CategoryAnnouncements from "./admin/nestedComponents/Announcements/CategoryAnnouncements";
+import AddAnnouncementCategory from "./admin/nestedComponents/Announcements/AddCategoryAnnouncements";
+import EditAnnouncementsCategory from "./admin/nestedComponents/Announcements/EditCategoryAnnouncements";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
@@ -107,12 +110,12 @@ const Main = () => {
             <Route path="banner" element={<AdminBanner />} />
           </Route>
           <Route path="announcement" element={<AdminAnnouncement />}>
-            <Route index element={<AllAnncouncements />} />
-            <Route path="category" element={<CategoryProducts />} />
-            <Route path="category/add-category" element={<AddCategory />} />
+            <Route index element={<AllAnnouncements />} />
+            <Route path="category" element={<CategoryAnnouncements />} />
+            <Route path="category/add-category" element={<AddAnnouncementCategory />} />
             <Route
               path="category/edit-category/:id"
-              element={<EditCategory />}
+              element={<EditAnnouncementsCategory />}
             />
             <Route path="add-announcement" element={<AddAnnouncement />} />
             <Route path="details/:id" element={<AnnouncementDetails />} />

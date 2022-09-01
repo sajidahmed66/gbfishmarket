@@ -28,16 +28,6 @@ const DashboardNavbar = () => {
         Banner Customaization
       </NavLink>
 
-      <NavLink
-        className={
-          location.pathname === "/admin/announcement"
-            ? "tab-link active ring-transparent"
-            : "tab-link ring-transparent"
-        }
-        to="/admin/announcement"
-      >
-        Announcement
-      </NavLink>
     </nav>
   );
 };

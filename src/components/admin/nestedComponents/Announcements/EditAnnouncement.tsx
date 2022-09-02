@@ -69,6 +69,7 @@ const EditAnnouncement = () => {
       getAnnouncementsById(parseInt(id))
         .then((res) => res.data)
         .then((data) => {
+          console.log(data.result);
           setAnnouncement(data.result);
           setIsLoading(false);
         })
@@ -159,6 +160,7 @@ const EditAnnouncement = () => {
           </Alert>
         </Snackbar>
       </>
+      {console.log('announcement',announcementCategory)}
 
       {/* formik form  */}
       {!isLoading ? (
@@ -240,7 +242,6 @@ const EditAnnouncement = () => {
                       variant="outlined"
                       fullWidth
                     />
-
                     <TextField
                       label="Short Description"
                       name="short_description"

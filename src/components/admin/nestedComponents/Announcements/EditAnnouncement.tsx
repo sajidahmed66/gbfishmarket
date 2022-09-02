@@ -17,12 +17,22 @@ import {
   getAnnouncementsById,
   updateAnnouncementsById,
 } from "../../../../api/apiAdminDashboard";
-import { IAnnouncement } from "../AdminAnnouncement";
+import { IAnnouncement } from "../../AdminAnnouncement";
 import { userInfo } from "../../../../utils/auth";
 import { Formik, FormikHelpers } from "formik";
 import { useParams, useNavigate } from "react-router-dom";
 import { IAnnouncementFormValues } from "./AddAnnouncement";
+import Select from "@mui/material/Select/Select";
+import MenuItem from "@mui/material/MenuItem/MenuItem";
+import { getAnnouncementCategories } from "../../../../api/apiAdminAnnouncement";
 
+interface ICategory {
+  id: number;
+  title: string;
+  image_name: string;
+  image_link: string;
+  show_on_home: boolean;
+}
 const EditAnnouncement = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -34,6 +44,23 @@ const EditAnnouncement = () => {
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [allCategories, setAllCategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getAnnouncementCategories()
+      .then((res) => {
+        setAllCategories(res.data.categoryAnnouncements);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
+    return () => {
+      setAllCategories([]);
+      setIsLoading(false);
+    };
+  }, []);
 
   //effects
   useEffect(() => {
@@ -88,8 +115,14 @@ const EditAnnouncement = () => {
           }, 2500);
         });
   };
-  const { title, short_description, show_on_home, image_name, image_link } =
-    announcement;
+  const {
+    title,
+    short_description,
+    show_on_home,
+    announcementCategory,
+    image_name,
+    image_link,
+  } = announcement;
   return (
     <Container maxWidth="lg">
       <div className="flex flex-row my-4 text-indigo-500 ">
@@ -133,6 +166,7 @@ const EditAnnouncement = () => {
           initialValues={{
             title: title,
             short_description: short_description,
+            announcementCategory_id: announcementCategory,
             image_name: "",
             show_on_home: show_on_home,
           }}
@@ -175,6 +209,25 @@ const EditAnnouncement = () => {
               <>
                 <Box className="w-full p-4">
                   <Stack spacing={3}>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="announcementCategory_id"
+                    label="Announcement Category"
+                    value={values.announcementCategory_id}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        announcementCategory_id: event.target.value,
+                      });
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {allCategories.map((item) => (
+                      <MenuItem value={item.id}>{item.title}</MenuItem>
+                    ))}
+                  </Select>
                     <TextField
                       label="Title"
                       name="title"
@@ -191,6 +244,8 @@ const EditAnnouncement = () => {
                     <TextField
                       label="Short Description"
                       name="short_description"
+                      multiline
+                      rows={8}
                       value={values.short_description}
                       onChange={(event) => {
                         setValues({

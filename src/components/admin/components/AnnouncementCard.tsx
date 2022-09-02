@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { IAnnouncement } from "../nestedComponents/AdminAnnouncement";
+import { IAnnouncement } from "../AdminAnnouncement";
 import { useNavigate } from "react-router-dom";
 import { updateAnnouncementsById } from "../../../api/apiAdminDashboard";
 import { userInfo } from "../../../utils/auth";

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts } from "../../../api/apiAdminProducts";
 import { useParams, useNavigate } from "react-router-dom";
 import { IProduct } from "../../admin/nestedComponents/Products/AllProducts";
+import { Card } from "@mui/material";
+import ImageZoom from "../components/ImageZoom";
 //this will be a dummy component for now
 
 const ProductsDetails = () => {
@@ -9,6 +11,9 @@ const ProductsDetails = () => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [imageOpen, setImageOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string>("");
+
   const { productId } = useParams();
   useEffect(() => {
     getAllProducts()
@@ -23,18 +28,24 @@ const ProductsDetails = () => {
         setIsLoading(false);
       });
   }, []);
-  console.log(product);
   return (
     <>
       {product && (
         <div className="w-full mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4 ">
           <div className="flex flex-col items-start justify-start md:flex-row">
             <div className="w-full md:w-1/2">
-              <img
-                src={product.image_link}
-                alt=""
-                className="w-full rounded-lg h-60 md:h-56 lg:h-72"
-              />
+              <Card
+                onClick={() => {
+                  setSelectedImage(product.image_link);
+                  setImageOpen(true);
+                }}
+              >
+                <img
+                  src={product.image_link}
+                  alt=""
+                  className="w-full rounded-lg h-60 md:h-56 lg:h-72"
+                />
+              </Card>
               <div className="hidden w-full mt-12 md:flex md:flex-row md:items-center md:justify-center">
                 <button
                   className="text-white  bg-[#b8cc08] btn hover:bg-pink-900"
@@ -76,6 +87,13 @@ const ProductsDetails = () => {
             </div>
           </div>
         </div>
+      )}
+      {selectedImage && imageOpen && (
+        <ImageZoom
+          record={selectedImage}
+          imageShow={imageOpen}
+          imageClose={() => setImageOpen(false)}
+        />
       )}
     </>
   );

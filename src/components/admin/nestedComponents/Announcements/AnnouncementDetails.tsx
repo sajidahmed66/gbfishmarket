@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import { IAnnouncement } from "../AdminAnnouncement";
+import { IAnnouncement } from "../../AdminAnnouncement";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import { useNavigate } from "react-router-dom";
 const AnnouncementDetails = () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -16,11 +16,22 @@ import { addAnnouncements } from "../../../../api/apiAdminDashboard";
 import { userInfo } from "../../../../utils/auth";
 import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
+import { InputLabel, MenuItem, Select } from "@mui/material";
+import { getAnnouncementCategories } from "../../../../api/apiAdminAnnouncement";
 
 export interface IAnnouncementFormValues {
   title: string;
   short_description: string;
   image_name: string;
+  show_on_home: boolean;
+  announcementCategory_id?: string;
+}
+
+interface ICategory {
+  id: number;
+  title: string;
+  image_name: string;
+  image_link: string;
   show_on_home: boolean;
 }
 
@@ -29,7 +40,24 @@ const AddAnnouncement = () => {
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [loading, setIsLoading] = useState<boolean>(false);
+  const [allCategories, setAllCategories] = useState<ICategory[]>([]);
+  const [loadingData, setLoadingData] = useState(false);
+
+  useEffect(() => {
+    setLoadingData(true);
+    getAnnouncementCategories()
+      .then((res) => {
+        setAllCategories(res.data.categoryAnnouncements);
+        setLoadingData(false);
+      })
+      .catch((err) => {
+        setLoadingData(false);
+      });
+    return () => {
+      setAllCategories([]);
+      setLoadingData(false);
+    };
+  }, []);
 
   const getFormData = (object: IAnnouncementFormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
@@ -101,6 +129,7 @@ const AddAnnouncement = () => {
         initialValues={{
           title: "",
           short_description: "",
+          announcementCategory_id: '',
           image_name: "",
           show_on_home: false,
         }}
@@ -116,7 +145,6 @@ const AddAnnouncement = () => {
         {({
           values,
           setValues,
-          isSubmitting,
           touched,
           errors,
           setFieldValue,
@@ -143,6 +171,28 @@ const AddAnnouncement = () => {
             <>
               <Box className="w-full p-4">
                 <Stack spacing={3}>
+                  <InputLabel id="demo-simple-select-label">
+                    Announcement Category
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="announcementCategory_id"
+                    label="Announcement Category"
+                    value={values.announcementCategory_id}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        announcementCategory_id: event.target.value,
+                      });
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {allCategories.map((item) => (
+                      <MenuItem value={item.id}>{item.title}</MenuItem>
+                    ))}
+                  </Select>
                   <TextField
                     label="Title"
                     name="title"
@@ -159,6 +209,8 @@ const AddAnnouncement = () => {
                   <TextField
                     label="Short Description"
                     name="short_description"
+                    multiline
+                    rows={8}
                     value={values.short_description}
                     onChange={(event) => {
                       setValues({

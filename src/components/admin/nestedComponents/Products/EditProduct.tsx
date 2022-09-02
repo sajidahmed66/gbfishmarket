@@ -18,14 +18,24 @@ import { getProduct, updateProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
 import { IProduct } from "./AllProducts";
 import { FormValues } from "./AddProduct";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { getProductCategories } from "../../../../api/apiAdminProducts";
 const EditProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const [productCategory, setProductCategory] = useState<any[]>([]);
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
     id &&
@@ -40,6 +50,16 @@ const EditProduct = () => {
           console.log(err);
           setIsLoading(false);
         });
+    getProductCategories()
+      .then((res) => res.data)
+      .then((data) => {
+        let categoeyData = data.categoryProducts.map(
+          (c: { id: any; title: any }) => ({ id: c.id, title: c.title })
+        );
+        setProductCategory(categoeyData);
+      })
+      .catch((err) => console.log(err));
+
     return () => {
       setProduct({} as IProduct);
       setIsLoading(false);
@@ -86,6 +106,7 @@ const EditProduct = () => {
     short_description,
     show_on_home,
     image_link,
+    category_id,
   } = product;
 
   return (
@@ -141,11 +162,9 @@ const EditProduct = () => {
             short_description: short_description,
             image_name: "",
             show_on_home: show_on_home,
+            category_id: category_id ? category_id : 0,
           }}
-          onSubmit={(
-            values: FormValues,
-            { setSubmitting, resetForm }: FormikHelpers<FormValues>
-          ) => {
+          onSubmit={(values: FormValues, { setSubmitting, resetForm }) => {
             handleProductSubmit(values);
             setSubmitting(false);
             resetForm();
@@ -230,20 +249,47 @@ const EditProduct = () => {
                     }
                     helperText={errors.short_description}
                   />
-                  <FormControlLabel
-                    label="Show on Home"
-                    control={
-                      <Checkbox
-                        checked={values.show_on_home}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          setValues({
-                            ...values,
-                            show_on_home: e.target.checked,
-                          });
-                        }}
-                      />
-                    }
-                  />
+                  <Stack direction="row" justifyContent="space-between">
+                    <FormControlLabel
+                      label="Show on Home"
+                      control={
+                        <Checkbox
+                          checked={values.show_on_home}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setValues({
+                              ...values,
+                              show_on_home: e.target.checked,
+                            });
+                          }}
+                        />
+                      }
+                    />
+                    {!isLoading && (
+                      <FormControl className="w-1/2">
+                        <InputLabel>Category</InputLabel>
+                        <Select
+                          label="Category"
+                          value={`${values.category_id}`}
+                          onChange={(event: SelectChangeEvent<string>) => {
+                            setValues({
+                              ...values,
+                              category_id: parseInt(event.target.value),
+                            });
+                          }}
+                        >
+                          <MenuItem value={0}>No category</MenuItem>
+                          {productCategory.length > 0 &&
+                            productCategory.map((c) => (
+                              <MenuItem value={c.id} key={c.id}>
+                                {c.title}
+                              </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    )}
+                  </Stack>
                   <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
                     {image_link && (
                       <FileUpload

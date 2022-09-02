@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -13,6 +13,14 @@ import { addProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
 import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { getProductCategories } from "../../../../api/apiAdminProducts";
 
 export type FormValues = {
   title: string;
@@ -21,6 +29,7 @@ export type FormValues = {
   short_description: string;
   image_name: string;
   show_on_home: boolean;
+  category_id?: number | undefined;
 };
 /*
  @ todo :
@@ -28,12 +37,26 @@ export type FormValues = {
  2. Success and error message on submit or failed on submit respectively(done)()
 */
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
+  const [productCategory, setProductCategory] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setIsLoading] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    getProductCategories()
+      .then((res) => res.data)
+      .then((data) => {
+        let categoeyData = data.categoryProducts.map(
+          (c: { id: any; title: any }) => ({ id: c.id, title: c.title })
+        );
+        setProductCategory(categoeyData);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const getFormData = (object: FormValues): FormData =>
     Object.keys(object).reduce((formData, key) => {
       formData.append(key, object[key as keyof object]);
@@ -50,7 +73,6 @@ const AddProduct = () => {
       .then((data) => {
         setIsLoading(false);
         setSuccess(data.message);
-        // settimeout to clear the success message
         setTimeout(() => {
           setSuccess("");
           navigate("/admin/products");
@@ -59,7 +81,6 @@ const AddProduct = () => {
       .catch((err) => {
         setIsLoading(false);
         setError(err.response.data.message);
-        // settimeout to clear the error message
         setTimeout(() => {
           setError("");
         }, 3000);
@@ -68,6 +89,7 @@ const AddProduct = () => {
 
   return (
     <Container maxWidth="lg">
+      {/* Note: it would be nice to have this section modularized and reused */}
       {success && (
         <div className="my-4 text-green-800 bg-green-100 alert" role="alert">
           {success}
@@ -97,11 +119,9 @@ const AddProduct = () => {
           short_description: "",
           image_name: "",
           show_on_home: false,
+          category_id: 0,
         }}
-        onSubmit={(
-          values: FormValues,
-          { setSubmitting, resetForm }: FormikHelpers<FormValues>
-        ) => {
+        onSubmit={(values: FormValues, { setSubmitting, resetForm }) => {
           handleProductSubmit(values);
           setSubmitting(false);
           resetForm();
@@ -182,20 +202,45 @@ const AddProduct = () => {
                   }
                   helperText={errors.short_description}
                 />
-                <FormControlLabel
-                  label="Show on Home"
-                  control={
-                    <Checkbox
-                      checked={values.show_on_home}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setValues({
-                          ...values,
-                          show_on_home: e.target.checked,
-                        });
-                      }}
-                    />
-                  }
-                />
+                <Stack direction="row" justifyContent="space-between">
+                  <FormControlLabel
+                    label="Show on Home"
+                    control={
+                      <Checkbox
+                        checked={values.show_on_home}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setValues({
+                            ...values,
+                            show_on_home: e.target.checked,
+                          });
+                        }}
+                      />
+                    }
+                  />
+                  {!loading && (
+                    <FormControl className="w-1/2">
+                      <InputLabel>Category</InputLabel>
+                      <Select
+                        label="Category"
+                        value={`${values.category_id}`}
+                        onChange={(event: SelectChangeEvent<string>) => {
+                          setValues({
+                            ...values,
+                            category_id: parseInt(event.target.value),
+                          });
+                        }}
+                      >
+                        <MenuItem value={0}>No category</MenuItem>
+                        {productCategory.length > 0 &&
+                          productCategory.map((c) => (
+                            <MenuItem value={c.id} key={c.id}>
+                              {c.title}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  )}
+                </Stack>
                 <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
                   <FileUpload
                     {...fileUploadProp}
@@ -208,7 +253,7 @@ const AddProduct = () => {
               <Box className="flex items-center justify-start w-full mt-4">
                 <Button
                   className="h-12 py-4 w-28"
-                  type="submit"
+                  // type="submit"
                   variant="contained"
                   onClick={() => {
                     handleSubmit();

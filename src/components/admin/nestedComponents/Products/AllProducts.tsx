@@ -20,6 +20,8 @@ export interface IProduct {
   image_name: string;
   image_link: string;
   show_on_home: boolean;
+  category_id?: number;
+  client_id?: number;
   created_at?: Date;
   updated_at?: Date;
 }

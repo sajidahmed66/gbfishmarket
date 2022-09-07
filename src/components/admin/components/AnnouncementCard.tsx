@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import { IAnnouncement } from "../AdminAnnouncement";
 import { useNavigate } from "react-router-dom";
-import { updateAnnouncementsById } from "../../../api/apiAdminDashboard";
-import { userInfo } from "../../../utils/auth";
 interface IAnnCardProp {
   item: IAnnouncement;
   deleteAnnouncement(id: number): void;
@@ -14,48 +10,45 @@ interface IAnnCardProp {
 
 const AnnouncementCard = ({ item, deleteAnnouncement }: IAnnCardProp) => {
   const navigation = useNavigate();
-  const [announcements, setAnnouncements] = useState<IAnnouncement>(item);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [announcements] = useState<IAnnouncement>(item);
 
-  const handleFeatured = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log("from announcement Card");
-    setLoading(true);
-    const token: string = userInfo().token;
-    const getFormData = (object: IAnnouncement): FormData =>
-      Object.keys(object).reduce((formData, key) => {
-        formData.append(key, object[key as keyof object]);
-        return formData;
-      }, new FormData());
-    updateAnnouncementsById(
-      announcements.id,
-      getFormData({ ...announcements, show_on_home: e.target.checked }),
-      token
-    )
-      .then((res) => res.data)
-      .then((data) => {
-        setAnnouncements(data.result);
-        setLoading(false);
-        setSuccess(
-          `${announcements.title} is ${
-            !announcements.show_on_home ? "now featured" : "no longer featured"
-          }`
-        );
-        setTimeout(() => {
-          setSuccess("");
-        }, 2500);
-      })
-      .catch((err) => {
-        setError("failed to update");
-        setTimeout(() => {
-          setError("");
-        }, 2500);
-      });
-  };
+  // const handleFeatured = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  //   console.log("from announcement Card");
+  //   setLoading(true);
+  //   const token: string = userInfo().token;
+  //   const getFormData = (object: IAnnouncement): FormData =>
+  //     Object.keys(object).reduce((formData, key) => {
+  //       formData.append(key, object[key as keyof object]);
+  //       return formData;
+  //     }, new FormData());
+  //   updateAnnouncementsById(
+  //     announcements.id,
+  //     getFormData({ ...announcements, show_on_home: e.target.checked }),
+  //     token
+  //   )
+  //     .then((res) => res.data)
+  //     .then((data) => {
+  //       setAnnouncements(data.result);
+  //       setLoading(false);
+  //       setSuccess(
+  //         `${announcements.title} is ${
+  //           !announcements.show_on_home ? "now featured" : "no longer featured"
+  //         }`
+  //       );
+  //       setTimeout(() => {
+  //         setSuccess("");
+  //       }, 2500);
+  //     })
+  //     .catch((err) => {
+  //       setError("failed to update");
+  //       setTimeout(() => {
+  //         setError("");
+  //       }, 2500);
+  //     });
+  // };
   return (
     <>
-      <Snackbar open={!!success} autoHideDuration={6000}>
+      {/* <Snackbar open={!!success} autoHideDuration={6000}>
         <Alert variant="filled" severity="success" sx={{ width: "100%" }}>
           {success}
         </Alert>
@@ -64,7 +57,7 @@ const AnnouncementCard = ({ item, deleteAnnouncement }: IAnnCardProp) => {
         <Alert variant="filled" severity="error" sx={{ width: "100%" }}>
           {error}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
       <Grid key={announcements.id} item xs={12} md={6} lg={4}>
         <Paper>
           <div className="card">
@@ -104,7 +97,7 @@ const AnnouncementCard = ({ item, deleteAnnouncement }: IAnnCardProp) => {
               >
                 Delete
               </button>
-              <label className="flex flex-row items-center justify-between">
+              {/* <label className="flex flex-row items-center justify-between">
                 <span className="ml-2 mr-2">Featured</span>
                 {loading ? (
                   <div className="space-x-1">
@@ -122,7 +115,7 @@ const AnnouncementCard = ({ item, deleteAnnouncement }: IAnnCardProp) => {
                     }}
                   />
                 )}
-              </label>
+              </label> */}
             </div>
           </div>
         </Paper>

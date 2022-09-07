@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getProductCategories } from "../../../api/apiAdminProducts";
 import ProductCards from "./ProductCard";
 
 const DiscoverProducts = () => {
+  const [allProductsCategories, setAllProductsCategories] = useState<any[]>([]);
+  const [loadingData, setLoadingData] = useState(false);
+
+  useEffect(() => {
+    setLoadingData(true);
+    getProductCategories()
+      .then((res) => {
+        setAllProductsCategories(res.data.categoryProducts);
+        setLoadingData(false);
+      })
+      .catch((err) => {
+        setLoadingData(false);
+      });
+    return () => {
+      setAllProductsCategories([]);
+      setLoadingData(false);
+    };
+  }, []);
   return (
     <>
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
@@ -19,7 +39,8 @@ const DiscoverProducts = () => {
         {/* img diveder */}
         {/* end img divider */}
 
-          <ProductCards />
+        <ProductCards allProductsCategories={allProductsCategories}
+          loadingData={loadingData}/>
       </div>
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
         <button className="bg-[#2c3941] text-white py-2 px-4 rounded-lg">
@@ -29,7 +50,7 @@ const DiscoverProducts = () => {
             </span>
           </Link>
         </button>
-        </div>
+      </div>
     </>
   );
 };

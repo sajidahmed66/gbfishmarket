@@ -14,7 +14,6 @@ const Announcements = () => {
   const navigate = useNavigate();
   let pathnamearry = location.pathname.split("/");
 
-
   useEffect(() => {
     setLoadingData(true);
     getAnnouncementCategories()
@@ -118,29 +117,30 @@ const Announcements = () => {
                   All Category
                 </p>
               </li>
-              {allAnnouncementsCategories.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex flex-row items-center justify-start h-4 m-3 "
-                >
-                  <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
-                  <p
-                    className={
-                      location.pathname ===
-                      `/announcements/announcement-category/${item.id}`
-                        ? "pl-3 text-base text-[#3a6ea5] cursor-pointer"
-                        : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
-                    }
-                    onClick={() =>
-                      navigate(
-                        `/announcements/announcement-category/${item.id}`
-                      )
-                    }
+              {!loadingData &&
+                allAnnouncementsCategories.map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex flex-row items-center justify-start h-4 m-3 "
                   >
-                    {item.title}
-                  </p>
-                </li>
-              ))}
+                    <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
+                    <p
+                      className={
+                        location.pathname ===
+                        `/announcements/announcement-category/${item.id}`
+                          ? "pl-3 text-base text-[#3a6ea5] cursor-pointer"
+                          : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
+                      }
+                      onClick={() =>
+                        navigate(
+                          `/announcements/announcement-category/${item.id}`
+                        )
+                      }
+                    >
+                      {item.title}
+                    </p>
+                  </li>
+                ))}
             </ul>
           </div>
           <>

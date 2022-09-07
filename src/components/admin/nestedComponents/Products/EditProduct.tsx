@@ -12,7 +12,7 @@ import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import { useParams, useNavigate } from "react-router-dom";
-import { Formik, FormikHelpers } from "formik";
+import { Formik } from "formik";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { getProduct, updateProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
@@ -26,10 +26,13 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { getProductCategories } from "../../../../api/apiAdminProducts";
+import { Editor } from "@tinymce/tinymce-react";
+
 const EditProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [productCategory, setProductCategory] = useState<any[]>([]);
+  const [categoryId, setCategoryId] = useState<string>("");
   const [file, setFile] = useState<File>();
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -43,6 +46,7 @@ const EditProduct = () => {
         .then((res) => res.data)
         .then((data) => {
           setProduct(data);
+          setCategoryId(data.category.id);
           setIsLoading(false);
           // console.log(data);
         })
@@ -50,13 +54,13 @@ const EditProduct = () => {
           console.log(err);
           setIsLoading(false);
         });
+  }, [id]);
+
+  useEffect(() => {
     getProductCategories()
       .then((res) => res.data)
       .then((data) => {
-        let categoeyData = data.categoryProducts.map(
-          (c: { id: any; title: any }) => ({ id: c.id, title: c.title })
-        );
-        setProductCategory(categoeyData);
+        setProductCategory(data.categoryProducts);
       })
       .catch((err) => console.log(err));
 
@@ -106,7 +110,6 @@ const EditProduct = () => {
     short_description,
     show_on_home,
     image_link,
-    category_id,
   } = product;
 
   return (
@@ -160,9 +163,9 @@ const EditProduct = () => {
             subtitle: subtitle,
             long_description: long_description,
             short_description: short_description,
-            image_name: "",
+            category_id: categoryId,
             show_on_home: show_on_home,
-            category_id: category_id ? category_id : 0,
+            image_name: "",
           }}
           onSubmit={(values: FormValues, { setSubmitting, resetForm }) => {
             handleProductSubmit(values);
@@ -232,6 +235,20 @@ const EditProduct = () => {
                     }
                     helperText={errors.long_description}
                   />
+                  <Editor
+                  initialValue={values.long_description}
+                  init={{
+                    plugins: "link image code",
+                    toolbar:
+                      "undo redo | bold italic | alignleft aligncenter alignright | code",
+                  }}
+                  onChange={(event) => {
+                    setValues({
+                      ...values,
+                      long_description: event.target.getContent(),
+                    });
+                  }}
+                />
                   <TextField
                     label="Short Description"
                     name="short_description"
@@ -266,29 +283,30 @@ const EditProduct = () => {
                         />
                       }
                     />
-                    {!isLoading && (
-                      <FormControl className="w-1/2">
-                        <InputLabel>Category</InputLabel>
-                        <Select
-                          label="Category"
-                          value={`${values.category_id}`}
-                          onChange={(event: SelectChangeEvent<string>) => {
-                            setValues({
-                              ...values,
-                              category_id: parseInt(event.target.value),
-                            });
-                          }}
-                        >
-                          <MenuItem value={0}>No category</MenuItem>
-                          {productCategory.length > 0 &&
-                            productCategory.map((c) => (
-                              <MenuItem value={c.id} key={c.id}>
-                                {c.title}
-                              </MenuItem>
-                            ))}
-                        </Select>
-                      </FormControl>
-                    )}
+                    {console.log(categoryId)}
+
+                    <FormControl className="w-1/2">
+                      <InputLabel>Category</InputLabel>
+                      <Select
+                        label="Category"
+                        name="category_id"
+                        value={values.category_id}
+                        onChange={(event: SelectChangeEvent<string>) => {
+                          setValues({
+                            ...values,
+                            category_id: event.target.value,
+                          });
+                        }}
+                      >
+                        <MenuItem value="">No category</MenuItem>
+                        {productCategory.length > 0 &&
+                          productCategory.map((c) => (
+                            <MenuItem key={c.id} value={c.id} >
+                              {c.title}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
                   </Stack>
                   <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
                     {image_link && (

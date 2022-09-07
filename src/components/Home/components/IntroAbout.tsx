@@ -1,7 +1,25 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllCompanyInfo } from "../../../api/apiAdminCompany";
 
 const IntroAbout = () => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [companyDetails, setCompanyDetails] = React.useState<any>(null);
+  const [companyId, setCompanyId] = React.useState<number>(0);
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    getAllCompanyInfo()
+      .then((res) => {
+        setCompanyDetails(res.data.data);
+        setCompanyId(res.data.data.id);
+        setIsLoading(false);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, [companyId]);
   return (
     <>
       {/* about section with a side image */}
@@ -20,13 +38,7 @@ const IntroAbout = () => {
               </div>
 
               <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                sed odio sit amet nibh vulputate cursus. Nullam accumsan, nulla
-                sed dictum eleifend, nunc risus consectetur purus, at elementum
-                risus nulla et nunc. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Animi placeat quibusdam numquam error fugit!
-                Eum ea quibusdam delectus earum, itaque unde, sunt dolor totam,
-                deleniti cum est laboriosam repellat similique!
+                {!isLoading && companyDetails && companyDetails.description}
               </p>
               <div className="pt-5">
                 <button
@@ -43,7 +55,7 @@ const IntroAbout = () => {
           {/* about image */}
           <div className="flex flex-col items-center justify-center  w-full md:w-1/2  sm:w-full h-full pt-8 md:pl-12 md:justify-start">
             <img
-              src={require("../../../assets/img/Carp-fishing.jpg")}
+              src={!isLoading && companyDetails && companyDetails.image_link}
               className="w-full rounded-2xl"
               alt="aboutimg"
             />

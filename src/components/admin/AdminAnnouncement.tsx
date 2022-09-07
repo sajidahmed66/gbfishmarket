@@ -11,7 +11,7 @@ export interface IAnnouncement {
   image_name: string;
   image_link: string;
   show_on_home: boolean;
-  announcementCategory?:string;
+  category?:any;
   created_at?: Date;
   updated_at?: Date;
 }

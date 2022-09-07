@@ -15,6 +15,7 @@ const ProductsDetails = () => {
   const [selectedImage, setSelectedImage] = useState<string>("");
 
   const { productId } = useParams();
+  const renderHTML = (rawHTML: string) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
   useEffect(() => {
     getAllProducts()
       .then((res) => res.data)
@@ -65,13 +66,13 @@ const ProductsDetails = () => {
                 <p className="mb-2 text-base text-gray-500">
                   {product.subtitle}
                 </p>
-                <p className="mb-2 text-lg text-gray-500">
+                <p className="mb-2 text-sm text-gray-500">
                   {product.short_description}
                 </p>
               </div>
               <div>
-                <p className="text-lg text-left text-gray-500">
-                  {product.long_description}
+                <p className="text-sm text-left text-gray-500">
+                  {renderHTML(product.long_description)}
                 </p>
               </div>
               <div className="flex flex-row items-center justify-center w-full mt-12 md:hidden">

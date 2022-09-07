@@ -11,7 +11,7 @@ import Alert from "@mui/material/Alert";
 import FileUpload, { FileUploadProps } from "../../components/FileUpload";
 import { addProduct } from "../../../../api/apiAdminProducts";
 import { userInfo } from "../../../../utils/auth";
-import { Formik, FormikHelpers } from "formik";
+import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import {
   FormControl,
@@ -21,6 +21,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { getProductCategories } from "../../../../api/apiAdminProducts";
+import { Editor } from "@tinymce/tinymce-react";
 
 export type FormValues = {
   title: string;
@@ -29,7 +30,7 @@ export type FormValues = {
   short_description: string;
   image_name: string;
   show_on_home: boolean;
-  category_id?: number | undefined;
+  category_id?: string | undefined;
 };
 /*
  @ todo :
@@ -119,7 +120,7 @@ const AddProduct = () => {
           short_description: "",
           image_name: "",
           show_on_home: false,
-          category_id: 0,
+          category_id: "",
         }}
         onSubmit={(values: FormValues, { setSubmitting, resetForm }) => {
           handleProductSubmit(values);
@@ -176,7 +177,7 @@ const AddProduct = () => {
                   error={touched.subtitle && !!errors.subtitle}
                   helperText={errors.subtitle}
                 />
-                <TextField
+                {/* <TextField
                   label="Long Description"
                   name="long_description"
                   multiline
@@ -187,6 +188,21 @@ const AddProduct = () => {
                   }
                   error={touched.long_description && !!errors.long_description}
                   helperText={errors.long_description}
+                /> */}
+
+                <Editor
+                  initialValue={values.long_description}
+                  init={{
+                    plugins: "link image code",
+                    toolbar:
+                      "undo redo | bold italic | alignleft aligncenter alignright | code",
+                  }}
+                  onChange={(event) => {
+                    setValues({
+                      ...values,
+                      long_description: event.target.getContent(),
+                    });
+                  }}
                 />
                 <TextField
                   label="Short Description"
@@ -222,15 +238,15 @@ const AddProduct = () => {
                       <InputLabel>Category</InputLabel>
                       <Select
                         label="Category"
-                        value={`${values.category_id}`}
+                        value={values.category_id}
                         onChange={(event: SelectChangeEvent<string>) => {
                           setValues({
                             ...values,
-                            category_id: parseInt(event.target.value),
+                            category_id: event.target.value,
                           });
                         }}
                       >
-                        <MenuItem value={0}>No category</MenuItem>
+                        <MenuItem value="">No category</MenuItem>
                         {productCategory.length > 0 &&
                           productCategory.map((c) => (
                             <MenuItem value={c.id} key={c.id}>

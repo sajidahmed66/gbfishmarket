@@ -6,8 +6,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
@@ -25,6 +23,7 @@ import { IAnnouncementFormValues } from "./AddAnnouncement";
 import Select from "@mui/material/Select/Select";
 import MenuItem from "@mui/material/MenuItem/MenuItem";
 import { getAnnouncementCategories } from "../../../../api/apiAdminAnnouncement";
+import { Editor } from "@tinymce/tinymce-react";
 
 interface ICategory {
   id: number;
@@ -45,6 +44,30 @@ const EditAnnouncement = () => {
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [allCategories, setAllCategories] = useState<ICategory[]>([]);
+  const [category, setCategory] = useState<string>("");
+
+  //effects
+  useEffect(() => {
+    setIsLoading(true);
+    id &&
+      getAnnouncementsById(parseInt(id))
+        .then((res) => res.data)
+        .then((data) => {
+          setAnnouncement(data.result);
+          setCategory(data.result.category.id);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.response.data.message);
+          setTimeout(() => {
+            setError("");
+          }, 2500);
+        });
+    return () => {
+      setAnnouncement({} as IAnnouncement);
+      setIsLoading(false);
+    };
+  }, [id]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -58,29 +81,6 @@ const EditAnnouncement = () => {
       });
     return () => {
       setAllCategories([]);
-      setIsLoading(false);
-    };
-  }, []);
-
-  //effects
-  useEffect(() => {
-    setIsLoading(true);
-    id &&
-      getAnnouncementsById(parseInt(id))
-        .then((res) => res.data)
-        .then((data) => {
-          console.log(data.result);
-          setAnnouncement(data.result);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setError(err.response.data.message);
-          setTimeout(() => {
-            setError("");
-          }, 2500);
-        });
-    return () => {
-      setAnnouncement({} as IAnnouncement);
       setIsLoading(false);
     };
   }, []);
@@ -116,14 +116,7 @@ const EditAnnouncement = () => {
           }, 2500);
         });
   };
-  const {
-    title,
-    short_description,
-    show_on_home,
-    announcementCategory,
-    image_name,
-    image_link,
-  } = announcement;
+  const { title, short_description, image_link } = announcement;
   return (
     <Container maxWidth="lg">
       <div className="flex flex-row my-4 text-indigo-500 ">
@@ -160,7 +153,7 @@ const EditAnnouncement = () => {
           </Alert>
         </Snackbar>
       </>
-      {console.log('announcement',announcementCategory)}
+      {console.log("announcement", category)}
 
       {/* formik form  */}
       {!isLoading ? (
@@ -168,9 +161,8 @@ const EditAnnouncement = () => {
           initialValues={{
             title: title,
             short_description: short_description,
-            announcementCategory_id: announcementCategory,
+            announcementCategory_id: category,
             image_name: "",
-            show_on_home: show_on_home,
           }}
           onSubmit={(
             values,
@@ -211,25 +203,27 @@ const EditAnnouncement = () => {
               <>
                 <Box className="w-full p-4">
                   <Stack spacing={3}>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    name="announcementCategory_id"
-                    label="Announcement Category"
-                    value={values.announcementCategory_id}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        announcementCategory_id: event.target.value,
-                      });
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    {allCategories.map((item) => (
-                      <MenuItem value={item.id}>{item.title}</MenuItem>
-                    ))}
-                  </Select>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      name="announcementCategory_id"
+                      label="Announcement Category"
+                      value={values.announcementCategory_id}
+                      onChange={(event) => {
+                        setValues({
+                          ...values,
+                          announcementCategory_id: event.target.value,
+                        });
+                      }}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {allCategories.map((item) => (
+                        <MenuItem key={item.id} value={item.id}>
+                          {item.title}
+                        </MenuItem>
+                      ))}
+                    </Select>
                     <TextField
                       label="Title"
                       name="title"
@@ -242,7 +236,21 @@ const EditAnnouncement = () => {
                       variant="outlined"
                       fullWidth
                     />
-                    <TextField
+                    <Editor
+                      initialValue={values.short_description}
+                      init={{
+                        plugins: "link image code",
+                        toolbar:
+                          "undo redo | bold italic | alignleft aligncenter alignright | code",
+                      }}
+                      onChange={(event) => {
+                        setValues({
+                          ...values,
+                          short_description: event.target.getContent(),
+                        });
+                      }}
+                    />
+                    {/* <TextField
                       label="Short Description"
                       name="short_description"
                       multiline
@@ -262,23 +270,8 @@ const EditAnnouncement = () => {
                       }
                       variant="outlined"
                       fullWidth
-                    />
-                    <FormControlLabel
-                      label="Show on Home"
-                      control={
-                        <Checkbox
-                          checked={values.show_on_home}
-                          onChange={(
-                            e: React.ChangeEvent<HTMLInputElement>
-                          ) => {
-                            setValues({
-                              ...values,
-                              show_on_home: e.target.checked,
-                            });
-                          }}
-                        />
-                      }
-                    />
+                    /> */}
+
                     <div>hover over the image and click to upload</div>
                     <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
                       {image_link && (

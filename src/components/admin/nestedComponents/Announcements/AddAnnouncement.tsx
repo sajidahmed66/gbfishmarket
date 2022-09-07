@@ -6,8 +6,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
@@ -18,12 +16,12 @@ import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import { InputLabel, MenuItem, Select } from "@mui/material";
 import { getAnnouncementCategories } from "../../../../api/apiAdminAnnouncement";
+import { Editor } from "@tinymce/tinymce-react";
 
 export interface IAnnouncementFormValues {
   title: string;
   short_description: string;
   image_name: string;
-  show_on_home: boolean;
   announcementCategory_id?: string;
 }
 
@@ -129,9 +127,8 @@ const AddAnnouncement = () => {
         initialValues={{
           title: "",
           short_description: "",
-          announcementCategory_id: '',
+          announcementCategory_id: "",
           image_name: "",
-          show_on_home: false,
         }}
         onSubmit={(
           values,
@@ -205,8 +202,21 @@ const AddAnnouncement = () => {
                     variant="outlined"
                     fullWidth
                   />
-
-                  <TextField
+                  <Editor
+                    initialValue={values.short_description}
+                    init={{
+                      plugins: "link image code",
+                      toolbar:
+                        "undo redo | bold italic | alignleft aligncenter alignright | code",
+                    }}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        short_description: event.target.getContent(),
+                      });
+                    }}
+                  />
+                  {/* <TextField
                     label="Short Description"
                     name="short_description"
                     multiline
@@ -226,21 +236,8 @@ const AddAnnouncement = () => {
                     }
                     variant="outlined"
                     fullWidth
-                  />
-                  <FormControlLabel
-                    label="Show on Home"
-                    control={
-                      <Checkbox
-                        checked={values.show_on_home}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          setValues({
-                            ...values,
-                            show_on_home: e.target.checked,
-                          });
-                        }}
-                      />
-                    }
-                  />
+                  /> */}
+
                   <div>hover over the image and click to upload</div>
                   <Box className="flex items-center justify-center w-full border-2 border-black rounded-md">
                     <FileUpload

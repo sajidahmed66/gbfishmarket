@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getAnnouncementCategories } from "../../../api/apiAdminAnnouncement";
+import { getAnnouncements } from "../../../api/apiAdminAnnouncement";
 
 interface Idata {
   id: number;
@@ -9,7 +9,6 @@ interface Idata {
 }
 const FilteredAnnouncements = () => {
   const { categoryId } = useParams();
-  console.log(categoryId);
   const navigate = useNavigate();
   const [filteredAnnouncements, setFilteredAnnouncements] = useState<Idata[]>(
     []
@@ -17,11 +16,12 @@ const FilteredAnnouncements = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getAnnouncementCategories()
+    getAnnouncements()
       .then((res) => {
         let getAnnouncements = categoryId
-          ? res.data.categoryAnnouncements.filter(
-              (item: { id: number }) => item.id === parseInt(categoryId)
+          ? res.data.announcements.filter(
+              (item: { category: any; id: number }) =>
+                item.category.id === parseInt(categoryId)
             )
           : ([] as Idata[]);
         setFilteredAnnouncements(getAnnouncements);
@@ -38,25 +38,26 @@ const FilteredAnnouncements = () => {
   // setFilteredAnnouncements(getAnnouncements);
   return (
     <div className="grid w-full grid-cols-3 gap-4 mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4">
-      {filteredAnnouncements.map((item) => (
-        <div className="flex flex-col items-center">
-          <div className="w-full bg-white h-36 md:h-48 ">
-            <img
-              src={item.image_link}
-              alt={item.title}
-              className="object-cover w-full h-full hover:opacity-50"
-              onClick={() =>
-                navigate(`/announcements/announcement-details/${item.id}`)
-              }
-            />
+      {!isLoading &&
+        filteredAnnouncements.map((item,index) => (
+          <div className="flex flex-col items-center"key={index}>
+            <div className="w-full bg-white h-36 md:h-48 ">
+              <img
+                src={item.image_link}
+                alt={item.title}
+                className="object-cover w-full h-full hover:opacity-50"
+                onClick={() =>
+                  navigate(`/announcements/announcement-details/${item.id}`)
+                }
+              />
+            </div>
+            <div className="w-full h-12 ">
+              <p className="text-base text-center text-gray-800 md:text-xl">
+                {item.title}
+              </p>
+            </div>
           </div>
-          <div className="w-full h-12 ">
-            <p className="text-base text-center text-gray-800 md:text-xl">
-              {item.title}
-            </p>
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

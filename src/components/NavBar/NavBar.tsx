@@ -64,7 +64,7 @@ const NavBar = () => {
         <div className="w-48">
           <Link to="/">
             <img
-              src={logo}
+              src={require('../../assets/img/logo.PNG')}
               alt='logo'
               className={`h-20 py-3  ${makeSticky}`}
             />

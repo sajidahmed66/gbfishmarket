@@ -37,7 +37,7 @@ const FilteredAnnouncements = () => {
 
   // setFilteredAnnouncements(getAnnouncements);
   return (
-    <div className="grid w-full grid-cols-3 gap-4 mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4">
+    <div className="grid w-full grid-cols-3 gap-4 mt-2 mb-12 ml-0 md:mt-2 md:ml-4 md:w-3/4 lg:w-3/4">
       {!isLoading &&
         filteredAnnouncements.map((item,index) => (
           <div className="flex flex-col items-center"key={index}>

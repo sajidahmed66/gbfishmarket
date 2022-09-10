@@ -70,6 +70,7 @@ const AddCompany = () => {
       short_description: "",
     },
     onSubmit: (values: FormValues, { resetForm }) => {
+      console.log(values);
       const finalValues = getFormData(values);
       const token = userInfo().token as string;
       if (companyId) {
@@ -100,10 +101,8 @@ const AddCompany = () => {
   return (
     <Box>
       <Box className="w-full p-4 ">
-        {!loading&&companyId ? (
+        {/* {companyId ? ( */}
         <form onSubmit={formik.handleSubmit}>
-          {console.log(formik.values)}
-          {console.log(loading)}
           <Stack spacing={2}>
             <TextField
               fullWidth
@@ -164,11 +163,12 @@ const AddCompany = () => {
               </Button>
             </Box>
           </Stack>
-        </form>):(
-          <div className="flex flex-col items-center justify-center w-full py-8">
-          <CircularProgress />
-        </div>
-        )}
+        </form>
+        {/* // ):(
+        //   <div className="flex flex-col items-center justify-center w-full py-8">
+        //   <CircularProgress />
+        // </div>
+        // )} */}
         
       </Box>
     </Box>

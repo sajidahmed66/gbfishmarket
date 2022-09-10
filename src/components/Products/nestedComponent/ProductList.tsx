@@ -23,7 +23,7 @@ const ProductList = () => {
   }, []);
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col md:grid md:grid-cols-3 w-full gap-4 mt-2 md:mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4">
+    <div className="flex flex-col md:grid md:grid-cols-3 w-full gap-4 mt-2 md:mt-2 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4">
       {!loadingData &&
         allProducts.map((item) => (
           <div className="flex flex-col items-center" key={item.id}>

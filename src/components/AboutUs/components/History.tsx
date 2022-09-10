@@ -37,6 +37,9 @@ const History = () => {
               </div>
             </div>
             <div className="w-full pl-2 pr-4 md:w-1/2">
+              <p className="p-4 text-xl font-bold text-gray-800 md:text-2xl font-skModernistBold">
+                {companyDetails && companyDetails.history_title}
+              </p>
               <div className="text-left">
                 <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
                   {companyDetails && companyDetails.history_description}

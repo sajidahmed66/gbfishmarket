@@ -75,7 +75,7 @@ const CEOMessage = () => {
     setIsLoading(true);
     const token = userInfo().token as string;
     const finalValues = getFormData(values);
-    if (file) finalValues.append("image_link", file);
+    if (file) finalValues.append("ceo_message_image_link", file);
     updateCompanyInfo(finalValues, companyId, token)
       .then((res) => {
         setIsLoading(false);
@@ -159,7 +159,7 @@ const CEOMessage = () => {
                       event.target.files !== null &&
                       event.target?.files?.length > 0
                     ) {
-                      setFieldValue("image_link", event.target.files[0].name);
+                      setFieldValue("ceo_message_image_name", event.target.files[0].name);
                       setFile(event.target.files[0]);
                     }
                   },

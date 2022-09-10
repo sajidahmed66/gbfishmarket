@@ -1,11 +1,14 @@
 import Layout from "../Common/Layout";
-import { productsCategoryData } from "../../data/produtsData";
 import Container from "@mui/material/Container";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getProductCategories } from "../../api/apiAdminProducts";
+import {
+  getAllProducts,
+  getProductCategories,
+} from "../../api/apiAdminProducts";
 const Products = () => {
   const [allProductsCategories, setAllProductsCategories] = useState<any[]>([]);
+  const [allProducts, setAllProducts] = useState<any[]>([]);
   const [loadingData, setLoadingData] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,7 +18,10 @@ const Products = () => {
     setLoadingData(true);
     getProductCategories()
       .then((res) => {
-        setAllProductsCategories(res.data.categoryProducts);
+        let displayProductsCategory = res.data.categoryProducts.filter(
+          (item: any) => item?.show_on_home
+        );
+        setAllProductsCategories(displayProductsCategory);
         setLoadingData(false);
       })
       .catch((err) => {
@@ -23,6 +29,21 @@ const Products = () => {
       });
     return () => {
       setAllProductsCategories([]);
+      setLoadingData(false);
+    };
+  }, []);
+  useEffect(() => {
+    setLoadingData(true);
+    getAllProducts()
+      .then((res) => {
+        setAllProducts(res.data);
+        setLoadingData(false);
+      })
+      .catch((err) => {
+        setLoadingData(false);
+      });
+    return () => {
+      setAllProducts([]);
       setLoadingData(false);
     };
   }, []);
@@ -37,10 +58,10 @@ const Products = () => {
             alt="aboutimg"
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
-            <p className="text-5xl text-white text-transform: uppercase">
+            <p className=" text-3xl md:text-5xl text-white text-transform: uppercase">
               Products
             </p>
-            <div className="flex flex-row my-2 text-2xl text-white capitalize transition-colors duration-500 font-skModernist ">
+            <div className="flex flex-row my-2 text-xl md:text-2xl text-white capitalize transition-colors duration-500 font-skModernist ">
               <p
                 className="px-1 cursor-pointer hover:text-orange-400 "
                 onClick={() => {
@@ -64,9 +85,9 @@ const Products = () => {
                   {"|"}
                   <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
-                      productsCategoryData.find(
+                      allProductsCategories.find(
                         (item) => item.id === parseInt(pathnamearry[3])
-                      )?.name
+                      )?.title
                     }
                   </p>
                 </>
@@ -79,9 +100,17 @@ const Products = () => {
                   {"|"}
                   <p className="px-1 cursor-pointer hover:text-orange-400">
                     {
-                      productsCategoryData.find(
+                      allProducts.find(
                         (item) => item.id === parseInt(pathnamearry[3])
-                      )?.name
+                      )?.category.title
+                    }
+                  </p>
+                  {"|"}
+                  <p className="px-1 cursor-pointer hover:text-orange-400">
+                    {
+                      allProducts.find(
+                        (item) => item.id === parseInt(pathnamearry[3])
+                      )?.title
                     }
                   </p>
                 </>

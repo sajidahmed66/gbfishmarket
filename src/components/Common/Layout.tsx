@@ -13,7 +13,7 @@ const Layout = ({ children, title }: ILayoutProps) => {
   return (
     <div>
       <NavBar />
-      <div>{children}</div>
+      <div className="relative">{children}</div>
       <Footer />
     </div>
   );

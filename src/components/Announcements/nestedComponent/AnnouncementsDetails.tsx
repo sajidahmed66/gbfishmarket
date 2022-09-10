@@ -30,8 +30,8 @@ const AnnouncementsDetails = () => {
     <>
       {!isLoading && announcements && (
         <div className="w-full mt-8 mb-12 ml-0 md:mt-0 md:ml-4 md:w-3/4 lg:w-3/4 ">
-          <div className="flex flex-row items-start justify-start">
-            <div className="w-1/2">
+          <div className="flex flex-col items-start justify-start md:flex-row">
+            <div className="w-full md:w-1/2">
             <Card
                 onClick={() => {
                   setSelectedImage(announcements.image_link);
@@ -41,10 +41,10 @@ const AnnouncementsDetails = () => {
               <img
                 src={announcements.image_link}
                 alt=""
-                className="w-full h-48 rounded-lg md:h-56 lg:h-72"
+                className="w-full h-60 rounded-lg md:h-56 lg:h-72"
               />
               </Card>
-              <div className="flex flex-row items-center justify-center w-full mt-12">
+              <div className="hidden w-full mt-12 md:flex md:flex-row md:items-center md:justify-center">
                 <button
                   className="text-white bg-[#b8cc08] btn hover:bg-pink-900"
                   onClick={() => {
@@ -55,11 +55,11 @@ const AnnouncementsDetails = () => {
                 </button>
               </div>
             </div>
-            <div className="w-1/2 h-auto p-4">
+            <div className="w-full h-auto p-4 md:w-1/2">
               <div className="flex flex-row items-center justify-center w-full h-12">
                 <h2 className="mb-2 text-2xl ">{announcements.title}</h2>
               </div>
-              <div className="flex flex-col items-start w-full">
+              <div className="flex flex-col items-center w-full">
                 <p className="mb-2 text-sm text-gray-500">
                   {renderHTML(announcements.short_description)}
                 </p>

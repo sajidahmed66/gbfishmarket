@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { getLogo } from "../../api/apiAdminDashboard";
 //
 //  raisin black = #2E2C2F
 // deep space Sparkle = #475B63
@@ -11,9 +12,20 @@ const NavBar = () => {
   pervScrollY.current = 110;
   const [makeSticky, setMakeSticky] = useState("");
   const [isToggle, setIsToggle] = useState(false);
+  const [logo, setLogo] = useState<string>("");
   const [toggleClass, setToggleClass] = useState(
     "min-w-max absolute bg-white text-base z-50 top-6 -right-8 py-2 list-none text-left  rounded-lg shadow-lg  mt-1 m-0 bg-clip-padding border-none hidden md:hidden"
   );
+
+  useEffect(() => {
+    getLogo()
+      .then((res: any) => res.data)
+      .then((res) => setLogo(res.data.file_link))
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, []);
+
   const toggleMenuHandler = () => {
     if (!isToggle) {
       setToggleClass(
@@ -43,15 +55,17 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`bg-[#2c3941] items-center drop-shadow-md top-0 z-50   ${makeSticky}`}
+      className={`bg-[#2c3941] items-center drop-shadow-md top-0 z-50 relative  ${makeSticky}`}
     >
-      <div className= {`flex flex-row mx-auto  justify-between  max-w-screen-xl px-8 xl:px-32 lg:px-24 md:px-12 sm:px-8 ${makeSticky}`}>
+      <div
+        className={`flex flex-row mx-auto  justify-between  max-w-screen-xl px-8 xl:px-32 lg:px-24 md:px-12 sm:px-8 ${makeSticky}`}
+      >
         {/* LOGO #2c3941*/}
         <div className="w-48">
           <Link to="/">
             <img
-              src={require("../../assets/img/gbicon.PNG")}
-              alt="LOGO"
+              src={logo}
+              alt='logo'
               className={`h-20 py-3  ${makeSticky}`}
             />
           </Link>

@@ -16,7 +16,7 @@ const AboutUs = () => {
             Golden Bough Aquaculture Ltd.
           </p>
         </div>
-        <div className="flex flex-col w-full p-4 md:flex-row ">
+        <div className="flex flex-col w-full p-4 md:flex-row md:px-16">
           <div className="flex flex-row flex-wrap items-center justify-start flex-1 flex-grow w-full md:flex-col md:w-1/4 ">
             {[
               { title: "About Us", path: "/about-us" },
@@ -26,8 +26,6 @@ const AboutUs = () => {
                 title: "Company Philosophy",
                 path: "/about-us/company-philosophy",
               },
-              { title: "Teams", path: "/about-us/teams" },
-
             ].map((item, index) => (
               <NavLink
                 key={index}

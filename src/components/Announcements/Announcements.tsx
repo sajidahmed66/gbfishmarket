@@ -34,17 +34,18 @@ const Announcements = () => {
     <Layout title="Our Announcements">
       {/* page banner */}
       <div className="w-full h-96">
-        <div className="absolute w-full h-96">
+        <div className="relative w-full h-96">
           <img
-            src={require("../../assets/img/product-fish.jpg")}
+            src={require("../../assets/img/banner_ann.jpg")}
             className="relative w-full min-w-full h-96"
+            style={{objectFit:'cover'}}
             alt="aboutimg"
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30">
-            <p className="text-5xl text-white text-transform: uppercase">
+            <p className="text-3xl md:text-5xl text-white text-transform: uppercase">
               Announcements
             </p>
-            <div className="flex flex-row my-2 text-2xl text-white capitalize transition-colors duration-500 font-skModernist ">
+            <div className="flex flex-row my-2 text-xl md:text-2xl text-white capitalize transition-colors duration-500 font-skModernist ">
               <p
                 className="px-1 cursor-pointer hover:text-orange-400 "
                 onClick={() => {

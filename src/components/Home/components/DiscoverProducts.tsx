@@ -11,7 +11,10 @@ const DiscoverProducts = () => {
     setLoadingData(true);
     getProductCategories()
       .then((res) => {
-        setAllProductsCategories(res.data.categoryProducts);
+        let displayProductsCategory = res.data.categoryProducts.filter(
+          (item: any) => item?.show_on_home
+        );
+        setAllProductsCategories(displayProductsCategory);
         setLoadingData(false);
       })
       .catch((err) => {
@@ -35,12 +38,13 @@ const DiscoverProducts = () => {
           <img src={require("../../../assets/img/divider.png")} alt="divider" />
         </div>
       </div>
-      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
+      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 xl:px-24 lg:px-24 md:px-12 sm:px-8 pt-4 pb-6 mx-auto">
         {/* img diveder */}
         {/* end img divider */}
-
-        <ProductCards allProductsCategories={allProductsCategories}
-          loadingData={loadingData}/>
+        <ProductCards
+          allProductsCategories={allProductsCategories}
+          loadingData={loadingData}
+        />
       </div>
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
         <button className="bg-[#2c3941] text-white py-2 px-4 rounded-lg">

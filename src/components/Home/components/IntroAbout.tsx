@@ -23,8 +23,8 @@ const IntroAbout = () => {
   return (
     <>
       {/* about section with a side image */}
-      <div className="p-6 mt-1 lg:py-12 px-8 xl:px-64 lg:px-24 md:px-12 sm:px-8 py-8">
-        <div className="container flex flex-col flex-wrap items-center py-4 mx-auto lg:container md:flex-row md:items-center md:justify-start ">
+      <div className=" container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 xl:px-36 lg:px-24 md:px-12 sm:px-8 pt-4 pb-6 mx-auto">
+        <div className="flex flex-col flex-wrap items-center py-4 mx-auto lg:container md:flex-row md:items-center md:justify-start ">
           {/* about intro  div*/}
           <div className="w-full pr-4 md:w-1/2">
             <div className="text-left">

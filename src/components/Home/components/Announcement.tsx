@@ -39,7 +39,7 @@ const Announcement = () => {
           <img src={require("../../../assets/img/divider.png")} alt="divider" />
         </div>
       </div>
-      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
+      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 xl:px-24 lg:px-24 md:px-12 sm:px-8 pt-4 pb-6 mx-auto">
         {/* img diveder */}
         {/* end img divider */}
 

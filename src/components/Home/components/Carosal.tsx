@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { getBanner } from "../../../api/apiAdminDashboard";
 import { IBanner } from "../../admin/nestedComponents/Banner/data";
+import { Card } from "@mui/material";
 /* 
 Notes :
   1. Api call for carosal images
@@ -20,8 +21,8 @@ const Carosal = () => {
     dots: true,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 7000,
-    speed: 2000,
+    autoplaySpeed: 10000,
+    speed: 3000,
     pauseOnHover: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -31,7 +32,6 @@ const Carosal = () => {
     getBanner()
       .then((res) => res.data)
       .then((data) => {
-        console.log("data", data);
         let displayedBanner = data.filter(
           (item: IBanner) => item?.show_on_home
         );
@@ -70,14 +70,26 @@ const Carosal = () => {
                 visiable: { opacity: 1, scale: 1.5 },
               }}
             >
-              <h1 className="py-4 -mt-16 text-xl text-center text-white sm:text-2xl md:text-4xl lg:text-5xl-mt-24">
+              <h1 className="max-w-[200px] sm:max-w-screen-sm md:max-w-screen-md py-4 -mt-16 text-sm text-center text-transform: uppercase text-white sm:text-2xl md:text-4xl lg:text-5xl-mt-24">
                 {title}
               </h1>
             </motion.div>
           }
-          {/* <p className="text-center text-white md:text-xl lg:text-2xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p> */}
+          {
+            <motion.div
+              initial="hidden"
+              whileInView="visiable"
+              transition={{ duration: 6 }}
+              variants={{
+                hidden: { opacity: 0, scale: 0.5 },
+                visiable: { opacity: 1, scale: 1.5 },
+              }}
+            >
+              <h1 className="max-w-[200px] sm:max-w-screen-sm py-4 -mt-0 text-xs text-center text-transform: uppercase text-white sm:text-base md:text-lg lg:text-xl-mt-2">
+                {name}
+              </h1>
+            </motion.div>
+          }
         </div>
       </div>
     );
@@ -90,74 +102,6 @@ const Carosal = () => {
           {banner.map((item) => (
             <CarosalImage key={item.id} {...item} />
           ))}
-
-          {/* <div className="h-[22rem] md:h-[24rem] lg:h-[28rem] relative bg-black">
-            <img
-              className="object-cover w-full h-[22rem] md:h-full"
-              src={require("../../../assets/img/banner/car-3.jpg")}
-              alt="imag"
-            />
-            <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>
-            <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
-              <h1 className="py-4 text-xl text-center text-white sm:text-2xl md:text-4xl lg:text-5xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-              <p className="text-center text-white md:text-xl lg:text-2xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
-
-          <div className="h-[22rem] md:h-[24rem] lg:h-[28rem] relative">
-            <img
-              className="object-cover w-full h-[22rem] md:h-full"
-              src={require("../../../assets/img/banner/car-2.jpg")}
-              alt="imag"
-            />
-            <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>
-            <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
-              <h1 className="py-4 text-xl text-center text-white sm:text-2xl md:text-4xl lg:text-5xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-              <p className="text-center text-white md:text-xl lg:text-2xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
-
-          <div className="h-[22rem] md:h-[24rem] lg:h-[28rem] relative ">
-            <img
-              className="object-cover w-full h-[22rem] md:h-full"
-              src={require("../../../assets/img/banner/car-3.jpg")}
-              alt="imag"
-            />
-            <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>
-            <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
-              <h1 className="py-4 text-xl text-center text-white sm:text-2xl md:text-4xl lg:text-5xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-              <p className="text-center text-white md:text-xl lg:text-2xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
-
-          <div className="h-[22rem] md:h-[24rem] lg:h-[28rem] relative">
-            <img
-              className="object-cover w-full h-[22rem] md:h-full"
-              src={require("../../../assets/img/banner/car-4.jpg")}
-              alt="imag"
-            />
-            <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>
-            <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
-              <h1 className="py-4 text-xl text-center text-white sm:text-2xl md:text-4xl lg:text-5xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-              <p className="text-center text-white md:text-xl lg:text-2xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div> */}
         </Slider>
       </div>
     </>

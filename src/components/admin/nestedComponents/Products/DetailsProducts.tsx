@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -17,6 +17,10 @@ const DetailsProducts = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
+  const renderHTML = (rawHTML: string) =>
+    React.createElement("div", {
+      dangerouslySetInnerHTML: { __html: rawHTML },
+    });
   useEffect((): void => {
     if (id) {
       getProduct(parseInt(id))
@@ -90,7 +94,7 @@ const DetailsProducts = () => {
                   <Typography variant="h6">{subtitle}</Typography>
                 </Paper>
                 <Paper className="p-4">
-                  <Typography variant="body1">{long_description}</Typography>
+                  <Typography variant="body1">{renderHTML(long_description)}</Typography>
                 </Paper>
                 <Paper className="p-4">
                   <Typography variant="body1">{short_description}</Typography>

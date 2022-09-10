@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../../../api/apiAdminProducts";
+import { getAllProducts, getProduct } from "../../../api/apiAdminProducts";
 import { useParams, useNavigate } from "react-router-dom";
 import { IProduct } from "../../admin/nestedComponents/Products/AllProducts";
 import { Card } from "@mui/material";
@@ -8,27 +8,31 @@ import ImageZoom from "../components/ImageZoom";
 
 const ProductsDetails = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [imageOpen, setImageOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string>("");
 
-  const { productId } = useParams();
-  const renderHTML = (rawHTML: string) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
+  const renderHTML = (rawHTML: string) =>
+    React.createElement("div", {
+      dangerouslySetInnerHTML: { __html: rawHTML },
+    });
+
   useEffect(() => {
-    getAllProducts()
-      .then((res) => res.data)
-      .then((data) => {
-        // setProduct(data.find((item) => item.id === parseInt(productId)));
-        setProduct(data[0]);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsError(true);
-        setIsLoading(false);
-      });
-  }, []);
+    id &&
+      getProduct(parseInt(id))
+        .then((res) => res.data)
+        .then((data) => {
+          setProduct(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setIsError(true);
+          setIsLoading(false);
+        });
+  }, [id]);
   return (
     <>
       {product && (
@@ -54,7 +58,7 @@ const ProductsDetails = () => {
                     navigate("/contact-us");
                   }}
                 >
-                  Cantact sales
+                  Contact sales
                 </button>
               </div>
             </div>
@@ -62,7 +66,7 @@ const ProductsDetails = () => {
               <div className="flex flex-row items-center justify-center w-full h-12">
                 <h2 className="mb-2 text-2xl ">{product.title}</h2>
               </div>
-              <div className="flex flex-col items-start w-full">
+              <div className="flex flex-col items-center w-full">
                 <p className="mb-2 text-base text-gray-500">
                   {product.subtitle}
                 </p>
@@ -82,7 +86,7 @@ const ProductsDetails = () => {
                     navigate("/contact-us");
                   }}
                 >
-                  Cantact sales
+                  Contact sales
                 </button>
               </div>
             </div>

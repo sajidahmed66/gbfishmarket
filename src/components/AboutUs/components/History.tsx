@@ -23,20 +23,18 @@ const History = () => {
     <>
       {!isLoading ? (
         <>
-          <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pt-4 pb-2 mx-auto"></div>
-
-          <div className="flex flex-col items-center w-full max-w-screen-xl p-6 justify-items-center md:flex-row md:items-start md:justify-center md:mx-auto">
+          <div className="flex flex-col items-center w-full max-w-screen-xl p-6 pt-0 justify-items-center md:flex-row md:items-start md:justify-center md:mx-auto">
             {/* history image */}
-            <div className="w-5/6 h-full py-6 mx-auto md:w-1/2">
+            <div className="w-5/6 h-full py-6 pt-0 mx-auto md:w-1/2">
               <div className="flex justify-start">
                 <img
                   src={companyDetails && companyDetails.history_image_link}
-                  className="w-5/6 rounded-2xl"
+                  className="w-full"
                   alt="aboutimg"
                 />
               </div>
             </div>
-            <div className="w-full pl-2 pr-4 md:w-1/2">
+            <div className="w-full pl-2 pr-4 pt-0 md:w-1/2">
               <p className="p-4 text-xl font-bold text-gray-800 md:text-2xl font-skModernistBold">
                 {companyDetails && companyDetails.history_title}
               </p>

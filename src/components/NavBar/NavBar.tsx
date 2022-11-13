@@ -80,7 +80,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase ">
+                <span className="text-sm  font-montserratBold text-transform: uppercase ">
                   Home
                 </span>
               </NavLink>
@@ -92,7 +92,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
+                <span className="text-sm  font-montserratBold text-transform: uppercase">
                   About Us
                 </span>
               </NavLink>
@@ -104,7 +104,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
+                <span className="text-sm  font-montserratBold text-transform: uppercase">
                   Products
                 </span>
               </NavLink>
@@ -116,7 +116,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm font-bold font-skModernistBold text-transform: uppercase">
+                <span className="text-sm  font-montserratBold text-transform: uppercase">
                   Announcements
                 </span>
               </NavLink>
@@ -128,7 +128,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm font-bold font-skModernistBold hover:text-[#042a2b] text-transform: uppercase">
+                <span className="text-sm  font-montserratBold hover:text-[#042a2b] text-transform: uppercase">
                   Contact Us
                 </span>
               </NavLink>
@@ -159,7 +159,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/"
-                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
                     >
                       Home
                     </Link>
@@ -167,7 +167,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/about-us"
-                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
                     >
                       About Us
                     </Link>
@@ -175,7 +175,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/products"
-                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Products
                     </Link>
@@ -183,7 +183,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/announcements"
-                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Announcements
                     </Link>
@@ -191,7 +191,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/contact-us"
-                      className="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent font-skModernist dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Contact Us
                     </Link>

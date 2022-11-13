@@ -90,10 +90,10 @@ const ContactUs = () => {
     <Layout title="Contact Us">
       <Container maxWidth="lg">
         <div className="flex flex-col items-center justify-center w-full mx-auto mt-20 ">
-          <p className="text-xl md:text-xl font-kawshan text-[#b8cc08]">
+          <p className="text-xl md:text-xl font-montserratItalic text-[#b8cc08]">
             contact us
           </p>
-          <p className="p-2 text-2xl font-bold text-gray-800 md:text-3xl font-skModernistBold">
+          <p className="p-2 text-2xl text-gray-800 md:text-3xl font-montserratBold">
             DROP US A MESSAGE
           </p>
         </div>
@@ -224,7 +224,7 @@ const ContactUs = () => {
                             id="name"
                             name="name"
                             type="text"
-                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             placeholder="Enter your name"
                             value={values.name}
                             onChange={(
@@ -254,7 +254,7 @@ const ContactUs = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             placeholder="Enter your email"
                             value={values.email}
                             onChange={(
@@ -282,18 +282,13 @@ const ContactUs = () => {
                     <div className="flex-col flex-wrap justify-between block w-full  md:flex md:flex-row">
                       <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col ">
-                          {/* <label
-                            htmlFor="full_name"
-                            className="mb-2 text-sm font-semibold leading-tight tracking-normal text-gray-800"
-                          >
-                            Full Name
-                          </label> */}
+                          
                           <input
                             required
                             id="phone"
                             name="phone"
                             type="number"
-                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             placeholder="Enter your phone number"
                             value={values.phone}
                             onChange={(
@@ -325,7 +320,7 @@ const ContactUs = () => {
                             name="quereAbout"
                             value={values.quereAbout}
                             placeholder="select one"
-                            className="flex items-center w-full h-12 pl-3 text-sm font-normal border border-gray-300 rounded form-select focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded form-select focus:outline-none focus:border focus:border-indigo-700"
                             onChange={(e) => {
                               setValues({
                                 ...values,
@@ -352,7 +347,7 @@ const ContactUs = () => {
                     <div className="w-full mt-6">
                       <div className="flex flex-col">
                         <label
-                          className="mb-2 text-sm font-semibold text-gray-800"
+                          className="mb-2 text-sm montserratBold text-gray-800"
                           htmlFor="message"
                         >
                           Message

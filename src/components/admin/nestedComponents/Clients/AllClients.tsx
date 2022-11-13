@@ -80,7 +80,7 @@ const AllClients = () => {
       <Divider />
       <div className="w-full p-4 mt-4">
         <div className="flex flex-row items-center justify-start pl-4 mb-4">
-          <Typography variant="h6" className="font-skModernist">
+          <Typography variant="h6" className="font-montserrat">
             List of clients{" "}
           </Typography>
         </div>

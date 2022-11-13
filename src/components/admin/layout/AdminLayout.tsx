@@ -99,7 +99,7 @@ const AdminLayout = () => {
             variant="h6"
             noWrap
             component="div"
-            className="skModernist"
+            className="montserrat"
           >
             Admin Dashboard
           </Typography>

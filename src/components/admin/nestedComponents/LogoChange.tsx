@@ -134,10 +134,10 @@ const LogoChange = () => {
           // border: "1px solid #ccc",
         }}
       >
-        <Typography variant="h5" className="py-4 skModernistBold">
+        <Typography variant="h5" className="py-4 montserratBold">
           Change Your Logo here{" "}
         </Typography>
-        <Typography variant="body1" className="py-4 skModernistRegular">
+        <Typography variant="body1" className="py-4 montserratRegular">
           Drag and drop your logo here or click to upload
         </Typography>
       </Box>

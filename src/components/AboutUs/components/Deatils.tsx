@@ -21,19 +21,19 @@ const AboutDetails = () => {
   return (
     <>
       {!isLoading ? (
-        <div className="flex flex-wrap max-w-screen-xl pl-6 md:flex-row md:px-8">
+        <div className="flex flex-wrap max-w-screen-xl pl-1 md:flex-row md:px-8">
           <div className="w-full  md:w-1/2 bg-cyan-300">
-            <p className="p-4 text-xl text-center font-bold text-gray-800 md:text-2xl font-skModernistBold">
+            <p className="p-4 text-xl text-center  text-gray-800 md:text-2xl font-montserratBold">
               {companyDetails && companyDetails.title}
             </p>
             <div className="text-left">
-              <p className="p-6 pt-0 mb-4 leading-normal text-md leading-8 text-left text-gray-600 font-skModernist">
+              <p className="p-6 pt-0 mb-4 leading-normal text-md leading-8 text-left text-gray-600 font-montserrat">
                 {companyDetails && companyDetails.description}
               </p>
             </div>
           </div>
           {/* about image */}
-          <div className="w-1/2 h-full md:w-1/2">
+          <div className="w-full h-full md:w-1/2">
             <div className="flex justify-end">
               <img
                 src={companyDetails && companyDetails.image_link}

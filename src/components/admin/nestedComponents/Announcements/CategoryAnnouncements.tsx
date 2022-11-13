@@ -36,7 +36,7 @@ const CategoryAnnouncements = () => {
   return (
     <Container maxWidth="lg">
       {allCategories.length === 0 && (
-        <div className="py-4 font-semibold font-skModernist">
+        <div className="py-4 font-semibold font-montserrat">
           No categories were found
         </div>
       )}

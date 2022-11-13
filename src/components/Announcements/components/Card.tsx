@@ -20,11 +20,11 @@ const Card = ({ announcement }: ICardProps) => {
       {/* end of image portion */}
       <div className="pl-6 md:w-2/3 md:">
         <div className="flex flex-col items-center justify-center">
-          <h2 className="w-full py-4 text-2xl font-bold leading-8 font-skModernist">
+          <h2 className="w-full py-4 text-2xl font-bold leading-8 font-montserrat">
             {title}
           </h2>
-          <p className="text-lg leading-8 font-skModernist">{short_description}.</p>
-          <p className="text-lg leading-8 font-skModernist">{short_description}</p>
+          <p className="text-lg leading-8 font-montserrat">{short_description}.</p>
+          <p className="text-lg leading-8 font-montserrat">{short_description}</p>
         </div>
       </div>
     </div>

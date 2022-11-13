@@ -59,7 +59,7 @@ const Carosal = () => {
           alt={name}
         />
         <span className="absolute inset-0 w-full h-full bg-black opacity-25"></span>
-        <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
+        <div className="absolute inset-0 flex flex-col items-center font-montserrat justify-center w-full h-full">
           {
             <motion.div
               initial="hidden"

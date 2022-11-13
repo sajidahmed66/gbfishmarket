@@ -23,17 +23,14 @@ const CompanyPhilosophy = () => {
   return (
     <>
       {!isLoading ? (
-        <div className="max-w-screen-xl p-2 m-4 md:px-8">
-          <h5 className="pb-4 text-xl font-bold font-skModernistBold ">
+        <div className="max-w-screen-xl  md:px-8 bg-cyan-300">
+          <h5 className="p-4 text-xl font-montserratBold text-center">
             {" "}
             Company Philosophy
           </h5>
-          <div className="w-full pr-4 ">
-            <p className="p-4 text-xl font-bold text-gray-800 md:text-2xl font-skModernistBold">
-              {companyDetails && companyDetails.mission_title}
-            </p>
+          <div className="w-full px-4 ">
             <div className="text-left">
-              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-montserrat">
                 {/* {companyDetails && companyDetails.mission_description} */}
                 1) The Older, The Wiser With our 30years of experience as a
                 leading importer, exporter and distributor of seafood products.
@@ -41,7 +38,7 @@ const CompanyPhilosophy = () => {
                 built over decades of business operations allow us to procure
                 products of the highest quaity for our customers.
               </p>
-              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-montserrat">
                 2) SimplyPremium Lam Kee Fisheries’s products are sourced
                 internationally across the globe offering a curated range of
                 premium seafood products such as Chilean Sea Bass, Black Cod,
@@ -49,7 +46,7 @@ const CompanyPhilosophy = () => {
                 strive to serve with the best sourcing practices and highly
                 sustainable quality products for our customers.
               </p>
-              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-montserrat">
                 3) Cutting Edge Constantly challenging ourselves to be at the
                 forefront of the seafood industry, Lam Kee Fisheries with its
                 strong belief, continually invests in its people, business

@@ -29,25 +29,25 @@ const IntroAbout = () => {
           <div className="w-full pr-4 md:w-1/2">
             <div className="text-left">
               <div>
-                <h4 className="font-bold font-skModernist text-2xl leading-8 py-4 px-1 text-[#b8cc08]">
+                <h4 className="font-montserratBold text-2xl leading-8 py-4 px-1 text-[#b8cc08]">
                   About us
                 </h4>
-                <h1 className="pb-5 text-4xl font-bold text-gray-800 font-skModernistBold">
+                <h1 className="pb-5 text-4xl text-gray-800 font-montserratBold">
                   Golden Bough Aquaculture Ltd.
                 </h1>
               </div>
 
-              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-skModernist">
+              <p className="mb-4 text-lg leading-8 text-left text-gray-600 font-montserrat">
                 {!isLoading && companyDetails && companyDetails.description}
               </p>
               <div className="pt-5">
                 <button
-                  className=" rounded-xl  text-gray-800 font-skModernistBold bg-[#b8cc08] text-lg border-solid  border-4  hover:border-[#b8cc08]"
+                  className=" rounded-xl  text-gray-800 font-montserratBold bg-[#b8cc08] text-lg border-solid  border-4  hover:border-[#b8cc08]"
                   onClick={() => {
                     navigate("/about-us");
                   }}
                 >
-                  <div className="p-2 text-white">Read More</div>
+                  <div className="p-2 text-white font-montserrat">Read More</div>
                 </button>
               </div>
             </div>

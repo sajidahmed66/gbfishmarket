@@ -15,7 +15,7 @@ const Home = () => {
   };
   return (
     <Layout title="Home">
-      <div>
+      <div className="font-montserrat">
         <Carosal />
         <IntroAbout />
         <DiscoverProducts />

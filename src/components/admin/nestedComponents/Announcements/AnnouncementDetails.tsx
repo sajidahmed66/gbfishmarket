@@ -23,7 +23,7 @@ const AnnouncementDetails = () => {
           <div className="flex items-center justify-around w-1/2">
             <Typography
               variant="h6"
-              className="font-skModernistBold"
+              className="font-montserratBold"
               gutterBottom
             >
               Announcement details

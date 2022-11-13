@@ -8,11 +8,11 @@ const AboutUs = () => {
     <Layout title="About Us">
       <Container maxWidth="lg" className="">
         {/* about us heading */}
-        <div className="flex flex-col items-center justify-center w-full mx-auto mt-20 ">
-          <p className="text-xl md:text-2xl font-kawshan text-[#b8cc08]">
-            about us
+        <div className="flex flex-col items-center justify-center w-full mx-auto mt-8 ">
+          <p className="text-xl md:text-2xl font-montserratItalic text-[#b8cc08]">
+            About us
           </p>
-          <p className="p-4 text-2xl font-bold text-gray-800 md:text-4xl font-skModernistBold">
+          <p className="p-4 text-2xl  text-gray-800 md:text-4xl font-montserratBold">
             Golden Bough Aquaculture Ltd.
           </p>
         </div>
@@ -31,8 +31,8 @@ const AboutUs = () => {
                 key={index}
                 className={
                   location.pathname === item.path
-                    ? "w-full px-4 py-2 m-1 text-base font-bold text-center text-white hover:cursor-pointer sm:text-lg md:text-lg font-skModernistBold bg-slate-700"
-                    : "w-full px-4 py-2 m-1 text-base font-bold text-center bg-slate-100 hover:text-white hover:cursor-pointer sm:text-lg md:text-lg font-skModernistBold hover:bg-slate-700"
+                    ? "w-full px-4 py-2 m-1 text-base  text-center text-white hover:cursor-pointer sm:text-lg md:text-lg font-montserratBold bg-slate-700"
+                    : "w-full px-4 py-2 m-1 text-base  text-center bg-slate-100 hover:text-white hover:cursor-pointer sm:text-lg md:text-lg font-montserratBold hover:bg-slate-700"
                 }
                 to={item.path}
               >

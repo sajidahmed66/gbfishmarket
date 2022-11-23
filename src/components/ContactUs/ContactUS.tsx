@@ -43,7 +43,6 @@ const ContactUs = () => {
       });
   }, [companyId]);
 
-
   let validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "too short")
@@ -60,17 +59,17 @@ const ContactUs = () => {
       .required("Phone is required"),
   });
 
-  const getFormData = (object: IConatctFormValues): FormData =>
-    Object.keys(object).reduce((formData, key) => {
-      formData.append(key, object[key as keyof object]);
-      return formData;
-    }, new FormData());
+  // const getFormData = (object: IConatctFormValues): FormData =>
+  //   Object.keys(object).reduce((formData, key) => {
+  //     formData.append(key, object[key as keyof object]);
+  //     return formData;
+  //   }, new FormData());
 
   const handleSubmit = (values: IConatctFormValues) => {
+    console.log(values);
     postContactForm(values)
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
         setSuccess(data.message);
         setTimeout(() => {
           setSuccess("");
@@ -89,6 +88,7 @@ const ContactUs = () => {
   return (
     <Layout title="Contact Us">
       <Container maxWidth="lg">
+        {/* contact us header */}
         <div className="flex flex-col items-center justify-center w-full mx-auto mt-20 ">
           <p className="text-xl md:text-xl font-montserratItalic text-[#b8cc08]">
             contact us
@@ -97,72 +97,80 @@ const ContactUs = () => {
             DROP US A MESSAGE
           </p>
         </div>
-        {!isLoading ? (
 
-        <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pl-8 md:pl-20 pr-8 pt-4 pb-6 mx-auto">
-          <ul className="flex flex-row flex-wrap items-center w-full justify-items-center md:flex-row md:flex-wrap">
-            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
-              <div className="flex flex-col items-center justify-center w-full h-1/3">
-                <LocalPhoneSharpIcon
-                  fontSize="large"
-                  sx={{
-                    color: "#b8cc08",
-                  }}
-                />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-2/3">
-                Phone
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-2/3">
-                <div className="w-full text-xs break-words text-center md:text-base">
-                  {companyDetails ? companyDetails.phone : "+880 1711-111-111"}
+        {/* 3 grid icon blocks for information */}
+        {!isLoading ? (
+          <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pt-4 pb-6 pl-8 pr-8 mx-auto md:pl-20">
+            <ul className="flex flex-row flex-wrap items-center w-full justify-items-center md:flex-row md:flex-wrap">
+              <li className="flex flex-col items-center justify-start h-40 p-4 m-2 w-80 bg-slate-100 ">
+                <div className="flex flex-col items-center justify-center w-full h-1/3">
+                  <LocalPhoneSharpIcon
+                    fontSize="large"
+                    sx={{
+                      color: "#b8cc08",
+                    }}
+                  />
                 </div>
-              </div>
-            </li>
-            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
-              <div className="flex flex-col items-center justify-center w-full h-1/3">
-                <MarkunreadSharpIcon
-                  fontSize="large"
-                  sx={{
-                    color: "#b8cc08",
-                  }}
-                />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-2/3">
-                Email
-              </div>
-              <div className="flex flex-col items-center justify-start w-full h-2/3">
-                <p className="w-full text-xs break-words md:text-center md:text-base ">
-                  {companyDetails ? companyDetails.email : "goldenbough.bd@gmail.com"}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-col items-center justify-start w-80  h-40 p-4 m-2 bg-slate-100 ">
-              <div className="flex flex-col items-center justify-center w-full h-1/3">
-                <HomeSharpIcon
-                  fontSize="large"
-                  sx={{
-                    color: "#b8cc08",
-                  }}
-                />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-2/3">
-                Address
-              </div>
-              <div className="flex flex-col items-center justify-start w-full h-2/3">
-                <p className="text-xs break-word md:text-center md:text-base">
-                  {companyDetails ? companyDetails.address : "Khulna, Bangladesh"}
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        ):(
+                <div className="flex flex-col items-center justify-center w-full h-2/3">
+                  Phone
+                </div>
+                <div className="flex flex-col items-center justify-center w-full h-2/3">
+                  <div className="w-full text-xs text-center break-words md:text-base">
+                    {companyDetails
+                      ? companyDetails.phone
+                      : "+880 1711-111-111"}
+                  </div>
+                </div>
+              </li>
+              <li className="flex flex-col items-center justify-start h-40 p-4 m-2 w-80 bg-slate-100 ">
+                <div className="flex flex-col items-center justify-center w-full h-1/3">
+                  <MarkunreadSharpIcon
+                    fontSize="large"
+                    sx={{
+                      color: "#b8cc08",
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col items-center justify-center w-full h-2/3">
+                  Email
+                </div>
+                <div className="flex flex-col items-center justify-start w-full h-2/3">
+                  <p className="w-full text-xs break-words md:text-center md:text-base ">
+                    {companyDetails
+                      ? companyDetails.email
+                      : "goldenbough.bd@gmail.com"}
+                  </p>
+                </div>
+              </li>
+              <li className="flex flex-col items-center justify-start h-40 p-4 m-2 w-80 bg-slate-100 ">
+                <div className="flex flex-col items-center justify-center w-full h-1/3">
+                  <HomeSharpIcon
+                    fontSize="large"
+                    sx={{
+                      color: "#b8cc08",
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col items-center justify-center w-full h-2/3">
+                  Address
+                </div>
+                <div className="flex flex-col items-center justify-start w-full h-2/3">
+                  <p className="text-xs break-word md:text-center md:text-base">
+                    {companyDetails
+                      ? companyDetails.address
+                      : "Khulna, Bangladesh"}
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        ) : (
           <div className="flex flex-col items-center justify-center w-full py-8">
-          <CircularProgress />
-        </div>
+            <CircularProgress />
+          </div>
         )}
-        {/* form div */}
+        {/* ends */}
+        {/* contact form div */}
         <div>
           <Formik
             initialValues={{
@@ -193,11 +201,12 @@ const ContactUs = () => {
               handleBlur,
             }) => {
               return (
-                <div className="w-full justify-center h-full md:p-12 ">
+                <div className="justify-center w-full h-full md:p-12">
                   <div
                     id="contact"
-                    className="px-8 py-4 bg-white rounded-tr rounded-br md:w-2/3 mx-auto justify-center item-center"
+                    className="justify-center px-8 py-4 mx-auto bg-white rounded-tr rounded-br md:w-2/3 item-center"
                   >
+                    {/* error and success message snack alert */}
                     {success && (
                       <div
                         className="my-4 text-green-800 bg-green-100 alert"
@@ -215,7 +224,7 @@ const ContactUs = () => {
                       </div>
                     )}
                     {/* full name and email */}
-                    <div className="flex-col flex-wrap justify-between block w-full  md:flex md:flex-row">
+                    <div className="flex-col flex-wrap justify-between block w-full md:flex md:flex-row">
                       {/* full name */}
                       <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col ">
@@ -254,7 +263,7 @@ const ContactUs = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             placeholder="Enter your email"
                             value={values.email}
                             onChange={(
@@ -279,16 +288,15 @@ const ContactUs = () => {
                     </div>
                     {/* phone Number and genaral quere selection */}
 
-                    <div className="flex-col flex-wrap justify-between block w-full  md:flex md:flex-row">
+                    <div className="flex-col flex-wrap justify-between block w-full md:flex md:flex-row">
                       <div className="w-full pr-4 my-4 md:w-1/2">
                         <div className="flex flex-col ">
-                          
                           <input
                             required
                             id="phone"
                             name="phone"
                             type="number"
-                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             placeholder="Enter your phone number"
                             value={values.phone}
                             onChange={(
@@ -320,7 +328,7 @@ const ContactUs = () => {
                             name="quereAbout"
                             value={values.quereAbout}
                             placeholder="select one"
-                            className="flex items-center w-full h-12 pl-3 text-sm  border border-gray-300 rounded form-select focus:outline-none focus:border focus:border-indigo-700"
+                            className="flex items-center w-full h-12 pl-3 text-sm border border-gray-300 rounded form-select focus:outline-none focus:border focus:border-indigo-700"
                             onChange={(e) => {
                               setValues({
                                 ...values,
@@ -347,7 +355,7 @@ const ContactUs = () => {
                     <div className="w-full mt-6">
                       <div className="flex flex-col">
                         <label
-                          className="mb-2 text-sm montserratBold text-gray-800"
+                          className="mb-2 text-sm text-gray-800 montserratBold"
                           htmlFor="message"
                         >
                           Message

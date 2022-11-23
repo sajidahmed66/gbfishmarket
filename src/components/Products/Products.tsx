@@ -128,13 +128,13 @@ const Products = () => {
           {/* category filter container  */}
           <div className="flex flex-row items-center justify-start w-full px-4 py-8 md:flex-col md:w-1/4 lg:w-1/4 bg-slate-100">
             <ul className="w-full">
-              <li className="flex flex-row items-center justify-start h-4 m-3 font-montserratBold">Categories</li>
+              <li className="flex flex-row items-center justify-start h-4 m-3 font-montserrat font-semibold">Categories</li>
               <li className="flex flex-row items-center justify-start h-4 m-3 ">
                 <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
                 <p
                   className={
                     location.pathname === "/products"
-                      ? "pl-3 text-base text-[#3a6ea5] cursor-pointer font-montserratBold"
+                      ? "pl-3 text-base text-[#3a6ea5] cursor-pointer font-montserrat font-semibold"
                       : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
                   }
                   onClick={() => navigate("/products")}
@@ -152,7 +152,7 @@ const Products = () => {
                     <p
                       className={
                         location.pathname === `/products/category/${item.id}`
-                          ? "pl-3 text-base text-[#3a6ea5] cursor-pointer font-montserratBold"
+                          ? "pl-3 text-base text-[#3a6ea5] cursor-pointer font-montserrat font-semibold"
                           : "pl-4 text-sm hover:transform hover:duration-200 hover:text-[#3a6ea5] hover:ease-in hover:scale-125 cursor-pointer"
                       }
                       onClick={() => navigate(`/products/category/${item.id}`)}

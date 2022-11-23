@@ -93,7 +93,7 @@ const ContactUs = () => {
           <p className="text-xl md:text-xl font-montserratItalic text-[#b8cc08]">
             contact us
           </p>
-          <p className="p-2 text-2xl text-gray-800 md:text-3xl font-montserratBold">
+          <p className="p-2 text-2xl text-gray-800 md:text-3xl font-montserrat font-semibold">
             DROP US A MESSAGE
           </p>
         </div>

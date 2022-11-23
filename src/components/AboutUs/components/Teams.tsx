@@ -4,7 +4,7 @@ const Teams = () => {
       <div className="max-w-screen-xl px-4 mx-auto md:px-8">
         {/* <!-- text - start --> */}
         <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-3xl font-bold text-[#b8cc08] font-montserratBold text-center lg:text-5xl md:mb-6">
+          <h2 className="mb-4 text-3xl font-bold text-[#b8cc08] font-montserrat font-semibold text-center lg:text-5xl md:mb-6">
             Meet our Team
           </h2>
 

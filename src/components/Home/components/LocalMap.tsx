@@ -13,7 +13,7 @@ interface ILocalMapProps {
 const LocalMap = ({ location, zoomLevel }: ILocalMapProps) => {
   return (
     <div className="flex flex-col items-center justify-center w-full pt-4 pb-0 mx-auto">
-      <h2 className="text-2xl text-[#b8cc08] font-montserratBold text-transform: uppercase ">
+      <h2 className="text-2xl text-[#b8cc08] font-montserrat font-semibold text-transform: uppercase ">
         DISCOVER OUR LOCATION
       </h2>
       <div className=" flex items-center justify-center py-4">

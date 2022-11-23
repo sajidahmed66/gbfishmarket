@@ -29,10 +29,10 @@ const Announcement = () => {
   return (
     <>
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl md:px-8 px-0 pt-4 pb-6 mx-auto">
-        <h2 className="text-sm font-montserratBold text-[#b8cc08] text-transform: lowercase font-style: italic ">
+        <h2 className="text-sm font-montserrat font-semibold text-[#b8cc08] text-transform: lowercase font-style: italic ">
           Sea food
         </h2>
-        <h2 className="text-2xl text-[#b8cc08] font-montserratBold text-transform: uppercase ">
+        <h2 className="text-2xl text-[#b8cc08] font-montserrat font-semibold text-transform: uppercase ">
           OUR ANNOUNCEMENTS
         </h2>
         <div className="flex items-center justify-center pt-4 ">
@@ -51,7 +51,7 @@ const Announcement = () => {
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
         <button className="bg-[#2c3941] text-white py-2 px-4 rounded-lg">
           <Link to="/announcements">
-            <span className="text-sm  font-montserratBold text-transform: uppercase">
+            <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
               View All Announcements
             </span>
           </Link>

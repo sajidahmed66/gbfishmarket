@@ -80,7 +80,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserratBold text-transform: uppercase ">
+                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase ">
                   Home
                 </span>
               </NavLink>
@@ -92,7 +92,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserratBold text-transform: uppercase">
+                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
                   About Us
                 </span>
               </NavLink>
@@ -104,7 +104,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserratBold text-transform: uppercase">
+                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
                   Products
                 </span>
               </NavLink>
@@ -116,7 +116,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserratBold text-transform: uppercase">
+                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
                   Announcements
                 </span>
               </NavLink>
@@ -128,7 +128,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserratBold hover:text-[#042a2b] text-transform: uppercase">
+                <span className="text-sm  font-montserrat font-semibold hover:text-[#042a2b] text-transform: uppercase">
                   Contact Us
                 </span>
               </NavLink>

@@ -48,7 +48,7 @@ const Footer = () => {
           {/* end of first column */}
           {/* <!-- nav - start --> */}
           <div className="mb-4">
-            <div className="mb-4 font-montserratBold tracking-widest text-gray-100 uppercase">
+            <div className="mb-4 font-montserrat font-semibold tracking-widest text-gray-100 uppercase">
               About Us
             </div>
 

@@ -23,7 +23,7 @@ const AboutDetails = () => {
       {!isLoading ? (
         <div className="flex flex-wrap max-w-screen-xl pl-1 md:flex-row md:px-8">
           <div className="w-full  md:w-1/2 bg-cyan-300">
-            <p className="p-4 text-xl text-center  text-gray-800 md:text-2xl font-montserratBold">
+            <p className="p-4 text-xl text-center  text-gray-800 md:text-2xl font-montserrat font-semibold">
               {companyDetails && companyDetails.title}
             </p>
             <div className="text-left">

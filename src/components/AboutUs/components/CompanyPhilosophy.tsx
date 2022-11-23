@@ -24,7 +24,7 @@ const CompanyPhilosophy = () => {
     <>
       {!isLoading ? (
         <div className="max-w-screen-xl  md:px-8 bg-cyan-300">
-          <h5 className="p-4 text-xl font-montserratBold text-center">
+          <h5 className="p-4 text-xl font-montserrat font-semibold text-center">
             {" "}
             Company Philosophy
           </h5>

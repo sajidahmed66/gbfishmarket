@@ -28,6 +28,11 @@
   src: url("../src/assets/fonts/Sk-Modernist-Mono.otf");
   font-family: "kaushanScript-Regular";
   src: url("../src/assets/fonts/KaushanScript-Regular.ttf");
+  font-family: "Montserrat-Italic-VariableFont_wght";
+  src: url("../src/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf");
+
+  font-family: "Montserrat-Regular";
+  src: url("../src/assets/fonts/Montserrat-Regular.ttf");
 }
 
 /* for input field with number not to show increment decrement arrow */

@@ -63,7 +63,7 @@ const ProductsDetails = () => {
               </div>
             </div>
             <div className="w-full h-auto p-4 md:w-1/2">
-              <div className="flex flex-row items-center justify-center w-full h-12 font-montserratBold">
+              <div className="flex flex-row items-center justify-center w-full h-12 font-montserrat font-semibold">
                 <h2 className="mb-2 text-2xl ">{product.title}</h2>
               </div>
               <div className="flex flex-col items-center w-full font-montserrat">

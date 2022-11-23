@@ -37,7 +37,7 @@ const Footer = () => {
                 </svg>
                 Flowrift */}
                 <img
-                  src={require("../../assets/img/logo.png")}
+                  src={require("../../assets/img/logo.PNG")}
                   alt="LOGO"
                   className="h-20 "
                 />
@@ -48,7 +48,7 @@ const Footer = () => {
           {/* end of first column */}
           {/* <!-- nav - start --> */}
           <div className="mb-4">
-            <div className="mb-4 tracking-widest text-gray-100 uppercase font-montserratBold">
+            <div className="mb-4 font-montserrat font-semibold tracking-widest text-gray-100 uppercase">
               About Us
             </div>
 

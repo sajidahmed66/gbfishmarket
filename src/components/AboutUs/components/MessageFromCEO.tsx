@@ -35,7 +35,7 @@ const MessageFromCEO = () => {
               </div>
             </div>
             <div className="w-full bg-cyan-300 pl-2 pr-4 pt-0 md:w-1/2">
-              <p className="p-4 text-xl text-center text-gray-800 md:text-2xl font-montserratBold">
+              <p className="p-4 text-xl text-center text-gray-800 md:text-2xl font-montserrat  font-semibold">
                 {companyDetails && companyDetails.ceo_message_title}
               </p>
               <div className="text-left">

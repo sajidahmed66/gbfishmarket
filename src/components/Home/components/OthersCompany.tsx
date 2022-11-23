@@ -17,7 +17,7 @@ const OthersCompany = () => {
           </div>
           <div className="flex items-center justify-center">
             <img
-              src={require("../../../assets/img/logo.PNG")}
+              src={require("../../../assets/img/logo.png")}
               className="object-contain h-28"
             />
           </div>

@@ -64,7 +64,7 @@ const NavBar = () => {
         <div className="w-48">
           <Link to="/">
             <img
-              src={require("../../assets/img/logo.PNG")}
+              src={require("../../assets/img/logo.png")}
               alt="logo"
               className={`h-20 py-3  ${makeSticky}`}
             />
@@ -80,7 +80,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase ">
+                <span className="text-sm font-semibold uppercase font-montserrat text-transform: ">
                   Home
                 </span>
               </NavLink>
@@ -92,7 +92,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
+                <span className="text-sm font-semibold uppercase font-montserrat text-transform:">
                   About Us
                 </span>
               </NavLink>
@@ -104,7 +104,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
+                <span className="text-sm font-semibold uppercase font-montserrat text-transform:">
                   Products
                 </span>
               </NavLink>
@@ -116,7 +116,7 @@ const NavBar = () => {
                   isActive ? { color: "#b8cc08" } : { color: "#3a6ea5" }
                 }
               >
-                <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
+                <span className="text-sm font-semibold uppercase font-montserrat text-transform:">
                   Announcements
                 </span>
               </NavLink>

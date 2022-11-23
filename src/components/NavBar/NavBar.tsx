@@ -64,8 +64,8 @@ const NavBar = () => {
         <div className="w-48">
           <Link to="/">
             <img
-              src={require('../../assets/img/logo.PNG')}
-              alt='logo'
+              src={require("../../assets/img/logo.PNG")}
+              alt="logo"
               className={`h-20 py-3  ${makeSticky}`}
             />
           </Link>
@@ -135,7 +135,7 @@ const NavBar = () => {
             </li>
           </ul>
           {/* icon with dropdown menu */}
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <div>
               <div className="relative">
                 {isToggle ? (
@@ -159,7 +159,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/"
-                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
                     >
                       Home
                     </Link>
@@ -167,7 +167,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/about-us"
-                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 bg-transparent font-montserrat whitespace-nowrap hover:bg-gray-100"
                     >
                       About Us
                     </Link>
@@ -175,7 +175,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/products"
-                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Products
                     </Link>
@@ -183,7 +183,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/announcements"
-                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Announcements
                     </Link>
@@ -191,7 +191,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/contact-us"
-                      className="block w-full px-4 py-2 text-sm  text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 bg-transparent font-montserrat dropdown-item whitespace-nowrap hover:bg-gray-100"
                     >
                       Contact Us
                     </Link>

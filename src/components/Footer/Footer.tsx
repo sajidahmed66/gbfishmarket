@@ -14,8 +14,8 @@ const Footer = () => {
   const yearDate = new Date();
   return (
     <div className="bg-gray-900">
-      <footer className="flex flex-row mx-auto  justify-between  max-w-screen-xl px-8 text-sm text-gray-500 xl:px-32 lg:px-24 md:px-12 sm:px-8 font-montserrat ">
-        <div className="grid  pt-10 mb-16 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 lg:pt-24">
+      <footer className="flex flex-row justify-between max-w-screen-xl px-8 mx-auto text-sm text-gray-500 xl:px-32 lg:px-24 md:px-12 sm:px-8 font-montserrat ">
+        <div className="grid pt-10 mb-16 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 lg:pt-24">
           {/* start of first column */}
           <div className="">
             {/* <!-- logo - start --> */}
@@ -87,7 +87,7 @@ const Footer = () => {
           {/* <!-- nav - end --> */}
 
           {/* <!-- nav - start --> */}
-          <div  className="mb-4">
+          <div className="mb-4">
             <div className="mb-4 font-bold tracking-widest text-gray-100 uppercase">
               Contact Us
             </div>

@@ -53,15 +53,17 @@ const Products = () => {
       <div className="w-full h-96">
         <div className="absolute w-full h-96">
           <img
-            src={require("../../assets/img/product-fish.jpg")}
+            src={
+              new URL("../../assets/img/product-fish.jpg", import.meta.url).href
+            }
             className="relative w-full min-w-full h-96"
             alt="aboutimg"
           />
           <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full bg-black h-96 bg-opacity-30 font-montserrat">
-            <p className=" text-3xl md:text-5xl text-white text-transform: uppercase">
+            <p className="text-3xl text-white uppercase  md:text-5xl text-transform:">
               Products
             </p>
-            <div className="flex flex-row my-2 text-xl md:text-2xl text-white capitalize transition-colors duration-500  ">
+            <div className="flex flex-row my-2 text-xl text-white capitalize transition-colors duration-500 md:text-2xl ">
               <p
                 className="px-1 cursor-pointer hover:text-orange-400 "
                 onClick={() => {
@@ -124,11 +126,13 @@ const Products = () => {
       {/* end of page banner */}
       {/* products section */}
       <Container maxWidth="lg">
-        <div className="flex flex-col items-center justify-start w-full px-2 md:px-16 mt-2 md:mt-24 md:flex-row md:items-start font-montserrat">
+        <div className="flex flex-col items-center justify-start w-full px-2 mt-2 md:px-16 md:mt-24 md:flex-row md:items-start font-montserrat">
           {/* category filter container  */}
           <div className="flex flex-row items-center justify-start w-full px-4 py-8 md:flex-col md:w-1/4 lg:w-1/4 bg-slate-100">
             <ul className="w-full">
-              <li className="flex flex-row items-center justify-start h-4 m-3 font-montserrat font-semibold">Categories</li>
+              <li className="flex flex-row items-center justify-start h-4 m-3 font-semibold font-montserrat">
+                Categories
+              </li>
               <li className="flex flex-row items-center justify-start h-4 m-3 ">
                 <div className="bg-[#3a6ea5] h-2 w-2 rounded-full"></div>{" "}
                 <p

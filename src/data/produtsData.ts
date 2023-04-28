@@ -75,26 +75,34 @@ export const productsCategoryData = [
   {
     id: 1,
     name: "Chilian Seabass",
-    image: require("../assets/img/productCategory/Seabass-1.jpg"),
+
+    image: new URL(
+      "../assets/img/productCategory/Seabass-1.jpg",
+      import.meta.url
+    ).href,
   },
   {
     id: 2,
     name: "Fish",
-    image: require("../assets/img/productCategory/Fish-2.jpg"),
+    image: new URL("../assets/img/productCategory/Fish-2.jpg", import.meta.url)
+      .href,
   },
   {
     id: 3,
     name: "Fish",
-    image: require("../assets/img/productCategory/Fish-3.jpg"),
+    image: new URL("../assets/img/productCategory/Fish-3.jpg", import.meta.url)
+      .href,
   },
   {
     id: 4,
     name: "Fish",
-    image: require("../assets/img/productCategory/Fish-4.jpg"),
+    image: new URL("../assets/img/productCategory/Fish-4.jpg", import.meta.url)
+      .href,
   },
   {
     id: 5,
     name: "Fish",
-    image: require("../assets/img/productCategory/Fish-5.jpg"),
+    image: new URL("../assets/img/productCategory/Fish-5.jpg", import.meta.url)
+      .href,
   },
 ];

@@ -16,8 +16,11 @@ const LocalMap = ({ location, zoomLevel }: ILocalMapProps) => {
       <h2 className="text-2xl text-[#b8cc08] font-montserrat font-semibold text-transform: uppercase ">
         DISCOVER OUR LOCATION
       </h2>
-      <div className=" flex items-center justify-center py-4">
-        <img src={require("../../../assets/img/divider.png")} alt="divider" />
+      <div className="flex items-center justify-center py-4 ">
+        <img
+          src={new URL("../../../assets/img/divider.png", import.meta.url).href}
+          alt="divider"
+        />
       </div>
 
       <div className="h-screen max-h-[80vh] w-full border-2  border-black">

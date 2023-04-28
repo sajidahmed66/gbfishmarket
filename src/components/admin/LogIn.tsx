@@ -51,7 +51,7 @@ const Login = () => {
           className="flex items-center justify-start sm:justify-center"
         >
           <img
-            src={require("../../assets/img/gbicon.PNG")}
+            src={new URL("../../assets/img/gbicon.PNG", import.meta.url).href}
             alt="Golden Bourgh Aquaculture Logo"
           />
         </Link>

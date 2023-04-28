@@ -27,7 +27,7 @@ const DiscoverProducts = () => {
   }, []);
   return (
     <>
-      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pr-4 pt-4 pb-6 mx-auto">
+      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 pr-4 mx-auto">
         <h2 className="text-sm font-montserrat font-semibold text-[#b8cc08] text-transform: lowercase font-style: italic ">
           Sea food
         </h2>
@@ -35,10 +35,15 @@ const DiscoverProducts = () => {
           DISCOVER OUR PRODUCTS
         </h2>
         <div className="flex items-center justify-center pt-4 ">
-          <img src={require("../../../assets/img/divider.png")} alt="divider" />
+          <img
+            src={
+              new URL("../../../assets/img/divider.png", import.meta.url).href
+            }
+            alt="divider"
+          />
         </div>
       </div>
-      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 xl:px-24 lg:px-24 md:px-12 sm:px-8 pt-4 pb-6 mx-auto">
+      <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto xl:px-24 lg:px-24 md:px-12 sm:px-8">
         {/* img diveder */}
         {/* end img divider */}
         <ProductCards
@@ -49,7 +54,7 @@ const DiscoverProducts = () => {
       <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl px-8 pt-4 pb-6 mx-auto">
         <button className="bg-[#2c3941] text-white py-2 px-4 rounded-lg">
           <Link to="/products">
-            <span className="text-sm  font-montserrat font-semibold text-transform: uppercase">
+            <span className="text-sm font-semibold uppercase font-montserrat text-transform:">
               View All Products
             </span>
           </Link>

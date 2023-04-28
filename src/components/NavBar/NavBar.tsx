@@ -61,15 +61,17 @@ const NavBar = () => {
         className={`flex flex-row mx-auto  justify-between  max-w-screen-xl px-8 xl:px-32 lg:px-24 md:px-12 sm:px-8 ${makeSticky}`}
       >
         {/* LOGO #2c3941*/}
-        <div className="w-48">
-          <Link to="/">
-            <img
-              src={require("../../assets/img/logo.png")}
-              alt="logo"
-              className={`h-20 py-3  ${makeSticky}`}
-            />
-          </Link>
-        </div>
+        {logo && (
+          <div className="w-48">
+            <Link to="/">
+              <img
+                src={logo}
+                alt="logo"
+                className={`h-20 py-3  ${makeSticky}`}
+              />
+            </Link>
+          </div>
+        )}
         {/* nav links */}
         <div className="flex">
           <ul className="hidden md:flex md:flex-row md:items-center md:space-x-6 md:justify-end">

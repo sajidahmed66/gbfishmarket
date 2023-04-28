@@ -73,7 +73,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   height = "100px",
   backgroundColor = "#fff",
   image: {
-    url = require("../../../assets/img/gbicon.PNG"),
+    url = new URL("../../../assets/img/gbicon.PNG", import.meta.url).href,
     imageStyle = {
       height: "inherit",
     },

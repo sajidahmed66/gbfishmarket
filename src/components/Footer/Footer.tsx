@@ -37,7 +37,9 @@ const Footer = () => {
                 </svg>
                 Flowrift */}
                 <img
-                  src={require("../../assets/img/logo.png")}
+                  src={
+                    new URL("../../assets/img/logo.png", import.meta.url).href
+                  }
                   alt="LOGO"
                   className="h-20 "
                 />

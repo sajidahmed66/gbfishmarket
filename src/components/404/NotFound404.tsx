@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 const NotFound404 = () => {
   return (
     <Layout title="404">
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
-        <div className="max-w-screen-lg px-4 md:px-8 mx-auto">
-          <div className="grid sm:grid-cols-2 gap-8">
+      <div className="py-6 bg-white sm:py-8 lg:py-12">
+        <div className="max-w-screen-lg px-4 mx-auto md:px-8">
+          <div className="grid gap-8 sm:grid-cols-2">
             {/* <!-- content - start --> */}
-            <div className="flex flex-col justify-center items-center sm:items-start md:py-24 lg:py-32">
-              <p className="text-indigo-500 text-sm md:text-base font-semibold uppercase mb-4">
+            <div className="flex flex-col items-center justify-center sm:items-start md:py-24 lg:py-32">
+              <p className="mb-4 text-sm font-semibold text-indigo-500 uppercase md:text-base">
                 Error 404
               </p>
-              <h1 className="text-gray-800 text-2xl md:text-3xl font-bold text-center sm:text-left mb-2">
+              <h1 className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl sm:text-left">
                 Page not found
               </h1>
 
-              <p className="text-gray-500 md:text-lg text-center sm:text-left mb-8">
+              <p className="mb-8 text-center text-gray-500 md:text-lg sm:text-left">
                 The page you are looking for does not exist.
               </p>
 
               <Link
                 to="/"
-                className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                className="inline-block px-8 py-3 text-sm font-semibold text-center text-gray-500 transition duration-100 bg-gray-200 rounded-lg outline-none hover:bg-gray-300 focus-visible:ring ring-indigo-300 active:text-gray-700 md:text-base"
               >
                 Go home
               </Link>
@@ -30,12 +30,12 @@ const NotFound404 = () => {
             {/* <!-- content - end --> */}
 
             {/* <!-- image - start --> */}
-            <div className="h-80 md:h-auto bg-gray-100 overflow-hidden shadow-lg rounded-lg relative">
+            <div className="relative overflow-hidden bg-gray-100 rounded-lg shadow-lg h-80 md:h-auto">
               <img
-                src={require("../../assets/img/404.png")}
+                src={new URL("../../assets/img/404.png", import.meta.url).href}
                 loading="lazy"
                 alt="404"
-                className="w-full h-full object-cover object-center absolute inset-0"
+                className="absolute inset-0 object-cover object-center w-full h-full"
               />
             </div>
             {/* <!-- image - end --> */}

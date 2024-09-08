@@ -25,7 +25,7 @@ type IConatctFormValues = {
 const ContactUs = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
-  const [isVarified, setIsVarified] = useState<boolean>(false);
+  const [isVerified, setIsVerified] = useState<boolean>(true);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [companyDetails, setCompanyDetails] = React.useState<any>(null);
   const [companyId, setCompanyId] = React.useState<number>(0);
@@ -98,7 +98,7 @@ const ContactUs = () => {
           </p>
         </div>
 
-        {/* 3 grid icon blocks for information */}
+        {/* 3 grid icon blocks for information this part can be converted into a component*/}
         {!isLoading ? (
           <div className="container flex flex-col items-center justify-center w-full max-w-screen-xl pt-4 pb-6 pl-8 pr-8 mx-auto md:pl-20">
             <ul className="flex flex-row flex-wrap items-center w-full justify-items-center md:flex-row md:flex-wrap">
@@ -385,18 +385,18 @@ const ContactUs = () => {
                           </div>
                         ) : null}
                       </div>
-                      <ReCAPTCHA
-                        sitekey={GOOGLE_RECAPCHA_SITE_KEY}
-                        onChange={(value) => {
-                          // console.log("captcha changed", value);
-                          setIsVarified(true);
-                        }}
-                        onExpired={() => {
-                          console.log("captcha expired");
-                          setIsVarified(false);
-                        }}
-                      />
-                      {isVarified ? (
+                      {/*<ReCAPTCHA*/}
+                      {/*  sitekey={GOOGLE_RECAPCHA_SITE_KEY}*/}
+                      {/*  onChange={(value) => {*/}
+                      {/*    // console.log("captcha changed", value);*/}
+                      {/*    setIsVarified(true);*/}
+                      {/*  }}*/}
+                      {/*  onExpired={() => {*/}
+                      {/*    console.log("captcha expired");*/}
+                      {/*    setIsVarified(false);*/}
+                      {/*  }}*/}
+                      {/*/>*/}
+                      {isVerified ? (
                         <button
                           type="submit"
                           className="px-8 py-3 mt-3 text-sm leading-6 text-white transition duration-150 ease-in-out bg-indigo-700 rounded focus:outline-none hover:bg-indigo-600"

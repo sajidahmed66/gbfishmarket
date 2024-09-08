@@ -20,8 +20,8 @@ const Home = () => {
         <IntroAbout />
         <DiscoverProducts />
         <Announcement />
-        <LocalMap location={locationStatic} zoomLevel={1} />
-        <OthersCompany/>
+        {/*<LocalMap location={locationStatic} zoomLevel={1} />*/}
+        {/*<OthersCompany/>*/}
       </div>
     </Layout>
   );

@@ -53,7 +53,7 @@ import AnnouncementsDetails from "./Announcements/nestedComponent/AnnouncementsD
 import CategoryAnnouncements from "./admin/nestedComponents/Announcements/CategoryAnnouncements";
 import AddAnnouncementCategory from "./admin/nestedComponents/Announcements/AddCategoryAnnouncements";
 import EditAnnouncementsCategory from "./admin/nestedComponents/Announcements/EditCategoryAnnouncements";
-import AdminSisterCompanyLogo from "./admin/nestedComponents/AdminSisterCompanyLogo";
+// import AdminSisterCompanyLogo from "./admin/nestedComponents/AdminSisterCompanyLogo";
 const LazyAdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
 const LazyAdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 
